@@ -1,0 +1,253 @@
+from config import *
+
+import sqlite3
+import json
+from InquirerPy import inquirer
+from utils.file_utils import save_tool_json
+from rich import print
+from pathlib import Path
+
+DB_PATH = DB_PATH
+
+def query_db(query, params=()):
+    with sqlite3.connect(DB_PATH) as conn:
+        conn.row_factory = sqlite3.Row
+        cur = conn.cursor()
+        cur.execute(query, params)
+        return [dict(row) for row in cur.fetchall()]
+
+def group_use_cases_by_function():
+    cases = query_db("SELECT id, function, category, name, description FROM use_cases ORDER BY function, category")
+    grouped = {}
+    for case in cases:
+        func = case["function"]
+        grouped.setdefault(func, []).append(case)
+    return grouped
+
+def display_use_cases():
+    grouped = group_use_cases_by_function()
+    selected_ids = set()
+
+    for func, items in grouped.items():
+        print(f"\n[bold yellow]📘 Function: {func}[/bold yellow]")
+        cats = {}
+        for case in items:
+            cats.setdefault(case["category"], []).append(case)
+
+        for cat, entries in cats.items():
+            print(f"\n  [green]{cat}[/green]")
+            for e in entries:
+                desc = (e['description'] or "").strip()
+                preview = desc[:100] + ("..." if len(desc) > 100 else "")
+                print(f"    [cyan]{e['id']}[/cyan] [bold]{e['name']}[/bold]\n      {preview}")
+
+        # Let user choose from current group
+        ids = inquirer.checkbox(
+            message=f"✅ Select use cases from function: [bold]{func}[/bold]",
+            choices=[{"name": f"{e['id']} - {e['name']}", "value": e['id']} for e in items]
+        ).execute()
+        selected_ids.update(ids)
+
+    return [dict(row) for row in query_db("SELECT * FROM use_cases WHERE id IN ({})".format(",".join(["?"] * len(selected_ids))), tuple(selected_ids))]
+
+def create_tool():
+    print("[bold green]\n--- CYOTE TOOL WIZ: Create New Tool Entry ---[/bold green]")
+
+    tool_name = inquirer.text(message="🛠 Tool name:").execute()
+    description = inquirer.text(message="📘 Describe what this tool does and how it's used:").execute()
+
+    roles = query_db("SELECT name FROM tool_roles")
+    selected_roles = inquirer.checkbox(
+        message="👥 Select applicable user roles:",
+        choices=[r["name"] for r in roles],
+        instruction="(Spacebar to select)"
+    ).execute()
+
+    matrix_choice = inquirer.select(
+        message="🧽 Choose MITRE matrix:",
+        choices=["ICS", "Enterprise"]
+    ).execute()
+
+    selected_tactic_ids = []
+    selected_techniques = []
+    based_on_pars = inquirer.confirm(
+        message="📊 Is this tool based on the CyOTE Precursor Analysis Reports (PARs)?",
+        default=False
+    ).execute()
+
+    if based_on_pars:
+        print("[yellow]⚙ Auto-loading all techniques and tactics from CyOTE PAR dataset...[/yellow]")
+        par_techs = query_db("SELECT DISTINCT tech_id FROM case_technique_examples")
+        par_tech_ids = tuple(t["tech_id"] for t in par_techs)
+
+        if par_tech_ids:
+            placeholder = ",".join(["?"] * len(par_tech_ids))
+            selected_techniques = query_db(f"""
+                SELECT id, name, description FROM techniques WHERE id IN ({placeholder})
+            """, par_tech_ids)
+
+            tactic_rows = query_db(f"""
+                SELECT DISTINCT tt.tactic_id, t.name
+                FROM technique_tactics tt
+                JOIN tactics t ON tt.tactic_id = t.id
+                WHERE tt.technique_id IN ({placeholder})
+            """, par_tech_ids)
+            selected_tactic_ids = [f"{row['tactic_id']} - {row['name']}" for row in tactic_rows]
+
+            print(f"[green]✅ Loaded {len(selected_techniques)} techniques and {len(tactic_rows)} tactics from PAR dataset.[/green]")
+
+    else:
+        tactics = query_db("""
+            SELECT t.id, t.name FROM tactics t 
+            JOIN matrices m ON t.matrix_id = m.id WHERE m.name = ?
+        """, (matrix_choice,))
+        selected_tactic_ids = inquirer.checkbox(
+            message="🎯 Select supported tactics:",
+            choices=[f"{t['id']} - {t['name']}" for t in tactics]
+        ).execute()
+
+        known_input = inquirer.text(
+            message="🔍 Known Technique IDs or Names (comma-separated):", default=""
+        ).execute()
+
+        all_techs = query_db("""
+            SELECT t.id, t.name, t.description FROM techniques t 
+            JOIN matrices m ON t.matrix_id = m.id WHERE m.name = ?
+        """, (matrix_choice,))
+
+        if known_input:
+            known_vals = [k.strip().lower() for k in known_input.split(",")]
+            for val in known_vals:
+                for t in all_techs:
+                    if val in t["id"].lower() or val in t["name"].lower():
+                        selected_techniques.append(t)
+
+        if inquirer.confirm(message="➕ Select techniques manually by tactic?", default=True).execute():
+            for tactic in selected_tactic_ids:
+                tactic_id = tactic.split(" - ")[0]
+                techs = query_db("""
+                    SELECT t.id, t.name, t.description
+                    FROM techniques t
+                    JOIN technique_tactics tt ON tt.technique_id = t.id
+                    WHERE tt.tactic_id = ?
+                """, (tactic_id,))
+                if techs:
+                    manual_selection = inquirer.checkbox(
+                        message=f"📌 Techniques under [bold]{tactic}[/bold]:",
+                        choices=[f"{t['id']} - {t['name']}" for t in techs]
+                    ).execute()
+                    for choice in manual_selection:
+                        tid = choice.split(" - ")[0]
+                        match = next((t for t in techs if t["id"] == tid), None)
+                        if match and match not in selected_techniques:
+                            selected_techniques.append(match)
+                            print(f"[cyan]{match['id']}[/cyan]: {match['description']}\n")
+
+    targeted_assets = []
+    tech_ids = tuple(t["id"] for t in selected_techniques)
+    if tech_ids:
+        placeholder = ",".join(["?"] * len(tech_ids))
+        assets = query_db(f"""
+            SELECT DISTINCT a.id, a.name, a.description
+            FROM assets a
+            JOIN technique_assets ta ON ta.asset_id = a.id
+            WHERE ta.technique_id IN ({placeholder})
+        """, tech_ids)
+        if assets:
+            print("\n[bold yellow]🎯 Assets potentially targeted by selected techniques:[/bold yellow]")
+            for a in assets:
+                print(f" - [green]{a['id']}[/green]: {a['name']}")
+                targeted_assets.append(a)
+
+    related_cases = []
+    if tech_ids:
+        cases = query_db(f"""
+            SELECT case_id, case_name, tech_id, tech_name, case_description
+            FROM case_technique_examples
+            WHERE tech_id IN ({placeholder})
+            ORDER BY case_id, tech_id
+        """, tech_ids)
+
+        if cases:
+            print("\n[bold magenta]📚 Grouped case descriptions from enriched dataset:[/bold magenta]")
+            case_map = {}
+            for case in cases:
+                if not case["case_description"] or not case["case_description"].strip():
+                    continue
+                cid = case["case_id"]
+                tid = case["tech_id"]
+                if cid not in case_map:
+                    case_map[cid] = {
+                        "case_id": cid,
+                        "case_name": case["case_name"] or "Unknown Case",
+                        "descriptions": []
+                    }
+                if not any(d["tech_id"] == tid for d in case_map[cid]["descriptions"]):
+                    case_map[cid]["descriptions"].append({
+                        "tech_id": tid,
+                        "tech_name": case["tech_name"],
+                        "case_description": case["case_description"]
+                    })
+            for cid, case_obj in case_map.items():
+                print(f" - [cyan]{cid}[/cyan] [white]({case_obj['case_name']})[/white]: {len(case_obj['descriptions'])} technique descriptions")
+                related_cases.append(case_obj)
+
+    data_source_details = []
+    observable_details = []
+    if tech_ids:
+        placeholder = ",".join(["?"] * len(tech_ids))
+        data_source_details = query_db(f"""
+            SELECT DISTINCT ds.id, ds.name
+            FROM data_sources ds
+            JOIN technique_data_sources tds ON ds.id = tds.data_source_id
+            WHERE tds.technique_id IN ({placeholder})
+        """, tech_ids)
+
+        ds_ids = tuple(ds["id"] for ds in data_source_details)
+        if ds_ids:
+            placeholder_ds = ",".join(["?"] * len(ds_ids))
+            observable_details = query_db(f"""
+                SELECT DISTINCT ot.name, ot.category, ot.description
+                FROM observable_types ot
+                JOIN data_source_observable_types dsot ON ot.id = dsot.observable_type_id
+                WHERE dsot.data_source_id IN ({placeholder_ds})
+            """, ds_ids)
+
+        print(f"\n[bold green]✅ Auto-selected {len(data_source_details)} data sources and {len(observable_details)} observable types.[/bold green]")
+
+    use_case_details = display_use_cases()
+
+    dep_context = query_db("SELECT id, label, description FROM tool_deployment_context")
+    selected_contexts = inquirer.checkbox(
+        message="🚀 Select deployment context details (inputs/outputs/hosting/interface):",
+        choices=[{"name": f"{r['label']} → {r['description']}", "value": r["id"]} for r in dep_context]
+    ).execute()
+    deployment_details = [r for r in dep_context if r["id"] in selected_contexts]
+
+    example_usage = inquirer.text(message="📌 Paste example usage from doc or README:").execute()
+    github_link = inquirer.text(message="🔗 GitHub URL (if available):").execute()
+    fact_sheet = inquirer.text(message="📄 Fact Sheet or PDF URL (if available):").execute()
+
+    tool_entry = {
+        "tool_name": tool_name,
+        "description": description,
+        "user_roles": [{"name": r} for r in selected_roles],
+        "tactics_supported": selected_tactic_ids,
+        "techniques_supported": [dict(t) for t in selected_techniques],
+        "data_sources": [dict(ds) for ds in data_source_details],
+        "observable_types": observable_details,
+        "use_cases": use_case_details,
+        "deployment_context": deployment_details,
+        "targeted_assets": targeted_assets,
+        "related_cases": related_cases,
+        "example_usage": example_usage,
+        "github": github_link or None,
+        "factsheet": fact_sheet or None
+    }
+
+    save_tool_json(tool_entry)
+    print(f"\n[bold blue]✔ Tool entry for '{tool_name}' saved successfully to JSON![/bold blue]")
+
+if __name__ == "__main__":
+    create_tool()
+

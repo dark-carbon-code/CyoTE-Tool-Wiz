@@ -1,0 +1,24 @@
+id,label,description
+1,CSV File,"Tabular indicators, logs, or IOCs in a spreadsheet-compatible format"
+2,JSON File,"Generic structured input for configurations, logs, or indicators"
+3,PCAP File,Network packet capture used for protocol analysis or anomaly detection
+4,PDF Report,"Narrative CTI or threat reports for parsing, summarizing, or entity extraction"
+5,STIX 2.1 Bundle,Structured CTI ingestion format used by most threat intel platforms
+6,TXT File,Unstructured logs or plaintext artifacts
+7,Database Connection,Direct query into a local or remote SQL/NoSQL datastore
+8,API Ingestion,Tool receives real-time or batch data via a pull/push API mechanism
+9,Syslog Stream,Real-time log stream received from host/network devices using Syslog protocol
+10,Sensor Feed,"OT/ICS telemetry such as Modbus, OPC UA, or SCADA data streams"
+11,Directory Watcher,Monitors a folder for incoming files or changes for batch processing
+12,Interactive Prompt,"User provides inputs interactively (e.g., answering CLI questions)"
+13,Executable/Binary Sample,"Binary files (e.g., PE, ELF) for malware analysis or reverse engineering"
+14,Encrypted Archive (ZIP/RAR),"Password-protected archives containing logs, malware, or documents"
+15,YARA Rules File,"YARA rules for signature-based scanning of memory, files, or binaries"
+16,Email Message (EML/MSG),"Structured email artifacts with headers, body, and attachments"
+17,Memory Dump,Volatile memory image from a host system for forensic analysis
+18,ICS Config Snapshot,Configuration exports from industrial control systems or PLCs
+19,Cloud Storage Bucket,Files ingested from cloud storage services like S3 or Azure Blob
+20,HAR File,HTTP Archive file containing web traffic for malware or session replay
+21,Image File (JPG/PNG),Used by tools that perform image classification or OCR on screenshots
+22,Audio Stream,Acoustic data used for anomaly detection or signal analysis
+23,Video Feed,Used in tools that analyze video surveillance or camera data

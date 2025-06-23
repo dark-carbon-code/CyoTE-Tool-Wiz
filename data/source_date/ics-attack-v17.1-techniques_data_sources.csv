@@ -1,0 +1,251 @@
+technique_id,data_source
+T0800,Application Log: Application Log Content
+T0800,Network Traffic: Network Traffic Content
+T0800,Operational Databases: Device Alarm
+T0801,Application Log: Application Log Content
+T0801,Network Traffic: Network Traffic Content
+T0802,Command: Command Execution
+T0802,File: File Access
+T0802,Network Traffic: Network Traffic Content
+T0802,Script: Script Execution
+T0803,Application Log: Application Log Content
+T0803,Network Traffic: Network Traffic Flow
+T0803,Operational Databases: Process History/Live Data
+T0803,Operational Databases: Process/Event Alarm
+T0803,Process: Process Termination
+T0804,Application Log: Application Log Content
+T0804,Network Traffic: Network Traffic Flow
+T0804,Operational Databases: Process History/Live Data
+T0804,Operational Databases: Process/Event Alarm
+T0804,Process: Process Termination
+T0805,Application Log: Application Log Content
+T0805,Network Traffic: Network Traffic Flow
+T0805,Operational Databases: Process History/Live Data
+T0805,Operational Databases: Process/Event Alarm
+T0805,Process: Process Termination
+T0806,Application Log: Application Log Content
+T0806,Network Traffic: Network Traffic Content
+T0806,Operational Databases: Process History/Live Data
+T0807,Application Log: Application Log Content
+T0807,Command: Command Execution
+T0807,Process: Process Creation
+T0809,Command: Command Execution
+T0809,File: File Deletion
+T0809,File: File Modification
+T0809,Process: Process Creation
+T0811,Application Log: Application Log Content
+T0811,Logon Session: Logon Session Creation
+T0811,Network Share: Network Share Access
+T0812,Logon Session: Logon Session Creation
+T0812,Network Traffic: Network Traffic Content
+T0813,External Effects: Human Observation Needed
+T0814,Application Log: Application Log Content
+T0814,Network Traffic: Network Traffic Content
+T0814,Network Traffic: Network Traffic Flow
+T0814,Operational Databases: Process History/Live Data
+T0815,External Effects: Human Observation Needed
+T0816,Application Log: Application Log Content
+T0816,Network Traffic: Network Traffic Content
+T0816,Network Traffic: Network Traffic Flow
+T0816,Operational Databases: Device Alarm
+T0817,Application Log: Application Log Content
+T0817,File: File Creation
+T0817,Network Traffic: Network Connection Creation
+T0817,Network Traffic: Network Traffic Content
+T0817,Process: Process Creation
+T0819,Application Log: Application Log Content
+T0819,Network Traffic: Network Traffic Content
+T0820,Application Log: Application Log Content
+T0821,Application Log: Application Log Content
+T0821,Asset: Software
+T0821,Operational Databases: Device Alarm
+T0822,Application Log: Application Log Content
+T0822,Logon Session: Logon Session Metadata
+T0822,Network Traffic: Network Traffic Flow
+T0823,Command: Command Execution
+T0823,Logon Session: Logon Session Creation
+T0823,Module: Module Load
+T0823,Process: Process Creation
+T0826,External Effects: Human Observation Needed
+T0827,External Effects: Human Observation Needed
+T0828,External Effects: Human Observation Needed
+T0829,External Effects: Human Observation Needed
+T0830,Application Log: Application Log Content
+T0830,Network Traffic: Network Traffic Content
+T0830,Network Traffic: Network Traffic Flow
+T0830,Process: Process Creation
+T0830,Service: Service Creation
+T0830,Windows Registry: Windows Registry Key Modification
+T0831,External Effects: Human Observation Needed
+T0832,External Effects: Human Observation Needed
+T0834,Process: OS API Execution
+T0835,Asset: Software
+T0836,Application Log: Application Log Content
+T0836,Asset: Asset Inventory
+T0836,Network Traffic: Network Traffic Content
+T0836,Operational Databases: Device Alarm
+T0837,External Effects: Human Observation Needed
+T0838,Application Log: Application Log Content
+T0838,Asset: Asset Inventory
+T0838,Network Traffic: Network Traffic Content
+T0838,Operational Databases: Process History/Live Data
+T0839,Application Log: Application Log Content
+T0839,Firmware: Firmware Modification
+T0839,Network Traffic: Network Traffic Content
+T0839,Operational Databases: Device Alarm
+T0840,Command: Command Execution
+T0840,Process: OS API Execution
+T0840,Process: Process Creation
+T0840,Script: Script Execution
+T0842,Command: Command Execution
+T0842,Process: Process Creation
+T0843,Application Log: Application Log Content
+T0843,Asset: Asset Inventory
+T0843,Network Traffic: Network Traffic Content
+T0843,Operational Databases: Device Alarm
+T0845,Application Log: Application Log Content
+T0845,Network Traffic: Network Traffic Content
+T0845,Network Traffic: Network Traffic Flow
+T0846,File: File Access
+T0846,Network Traffic: Network Traffic Content
+T0846,Network Traffic: Network Traffic Flow
+T0846,Process: Process Creation
+T0847,Drive: Drive Creation
+T0847,File: File Access
+T0847,File: File Creation
+T0847,Process: Process Creation
+T0848,Application Log: Application Log Content
+T0848,Asset: Asset Inventory
+T0848,Network Traffic: Network Traffic Content
+T0848,Network Traffic: Network Traffic Flow
+T0848,Operational Databases: Device Alarm
+T0849,Command: Command Execution
+T0849,File: File Metadata
+T0849,File: File Modification
+T0849,Process: Process Metadata
+T0849,Scheduled Job: Scheduled Job Creation
+T0849,Scheduled Job: Scheduled Job Modification
+T0849,Service: Service Creation
+T0849,Service: Service Modification
+T0851,Firmware: Firmware Modification
+T0852,Command: Command Execution
+T0852,Process: OS API Execution
+T0853,Command: Command Execution
+T0853,Module: Module Load
+T0853,Process: Process Creation
+T0853,Process: Process Metadata
+T0853,Script: Script Execution
+T0855,Application Log: Application Log Content
+T0855,Network Traffic: Network Traffic Content
+T0855,Network Traffic: Network Traffic Flow
+T0855,Operational Databases: Process History/Live Data
+T0855,Operational Databases: Process/Event Alarm
+T0856,Network Traffic: Network Traffic Content
+T0856,Network Traffic: Network Traffic Flow
+T0856,Operational Databases: Device Alarm
+T0856,Windows Registry: Windows Registry Key Modification
+T0857,Application Log: Application Log Content
+T0857,Firmware: Firmware Modification
+T0857,Network Traffic: Network Traffic Content
+T0857,Operational Databases: Device Alarm
+T0858,Application Log: Application Log Content
+T0858,Network Traffic: Network Traffic Content
+T0858,Operational Databases: Device Alarm
+T0859,Logon Session: Logon Session Creation
+T0859,Logon Session: Logon Session Metadata
+T0859,User Account: User Account Authentication
+T0860,Application Log: Application Log Content
+T0860,Logon Session: Logon Session Creation
+T0860,Network Traffic: Network Traffic Flow
+T0861,Application Log: Application Log Content
+T0861,Network Traffic: Network Traffic Content
+T0862,File: File Metadata
+T0863,Application Log: Application Log Content
+T0863,Command: Command Execution
+T0863,File: File Access
+T0863,Network Traffic: Network Connection Creation
+T0863,Network Traffic: Network Traffic Content
+T0863,Process: Process Creation
+T0864,Application Log: Application Log Content
+T0864,Network Traffic: Network Traffic Flow
+T0865,Application Log: Application Log Content
+T0865,File: File Creation
+T0865,Network Traffic: Network Traffic Content
+T0865,Process: Process Creation
+T0866,Application Log: Application Log Content
+T0866,Network Traffic: Network Traffic Content
+T0867,Command: Command Execution
+T0867,File: File Creation
+T0867,File: File Metadata
+T0867,Network Share: Network Share Access
+T0867,Network Traffic: Network Traffic Content
+T0867,Network Traffic: Network Traffic Flow
+T0867,Process: Process Creation
+T0868,Network Traffic: Network Traffic Content
+T0869,Network Traffic: Network Traffic Content
+T0869,Network Traffic: Network Traffic Flow
+T0871,Process: OS API Execution
+T0872,Command: Command Execution
+T0872,File: File Deletion
+T0872,File: File Metadata
+T0872,File: File Modification
+T0872,Process: OS API Execution
+T0872,Process: Process Creation
+T0872,Windows Registry: Windows Registry Key Deletion
+T0872,Windows Registry: Windows Registry Key Modification
+T0873,File: File Modification
+T0874,Process: OS API Execution
+T0874,Process: Process Metadata
+T0877,Asset: Software
+T0878,Network Traffic: Network Traffic Flow
+T0878,Operational Databases: Device Alarm
+T0878,Operational Databases: Process History/Live Data
+T0878,Operational Databases: Process/Event Alarm
+T0879,External Effects: Human Observation Needed
+T0880,External Effects: Human Observation Needed
+T0881,Command: Command Execution
+T0881,File: File Modification
+T0881,Process: OS API Execution
+T0881,Process: Process Creation
+T0881,Process: Process Termination
+T0881,Service: Service Metadata
+T0881,Windows Registry: Windows Registry Key Modification
+T0882,External Effects: Human Observation Needed
+T0883,Logon Session: Logon Session Metadata
+T0883,Network Traffic: Network Traffic Content
+T0883,Network Traffic: Network Traffic Flow
+T0884,Network Traffic: Network Traffic Content
+T0884,Network Traffic: Network Traffic Flow
+T0885,Network Traffic: Network Traffic Content
+T0885,Network Traffic: Network Traffic Flow
+T0886,Command: Command Execution
+T0886,Logon Session: Logon Session Creation
+T0886,Module: Module Load
+T0886,Network Share: Network Share Access
+T0886,Network Traffic: Network Connection Creation
+T0886,Network Traffic: Network Traffic Flow
+T0886,Process: Process Creation
+T0887,Network Traffic: Network Traffic Flow
+T0888,File: File Access
+T0888,Network Traffic: Network Traffic Content
+T0888,Network Traffic: Network Traffic Flow
+T0888,Process: Process Creation
+T0889,Application Log: Application Log Content
+T0889,Asset: Software
+T0889,Network Traffic: Network Traffic Content
+T0889,Operational Databases: Device Alarm
+T0890,Application Log: Application Log Content
+T0891,Logon Session: Logon Session Creation
+T0891,Network Traffic: Network Traffic Content
+T0892,Network Traffic: Network Traffic Content
+T0892,Operational Databases: Device Alarm
+T0893,Command: Command Execution
+T0893,File: File Access
+T0893,Process: OS API Execution
+T0893,Process: Process Creation
+T0893,Script: Script Execution
+T0894,Command: Command Execution
+T0894,Process: Process Creation
+T0894,Script: Script Execution
+T0895,Drive: Drive Creation
+T0895,Process: Process Creation

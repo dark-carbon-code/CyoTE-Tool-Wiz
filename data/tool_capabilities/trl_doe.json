@@ -1,0 +1,138 @@
+{
+  "TRLs": [
+    {
+      "level": 1,
+      "name": "Basic Principles Observed and Reported",
+      "description": "Foundational scientific research; basic scientific principles are observed and reported.",
+      "deliverables": [
+        "Peer‑reviewed literature or whitepapers",
+        "Experimental data validating basic principles",
+        "Lab notes or internal reports"
+      ],
+      "users": ["Academic researchers", "National lab scientists"],
+      "environment": "Controlled lab/office theoretical or experimental setting",
+      "scale": "Paper (theoretical or conceptual studies)",
+      "commercial_viable": false
+    },
+    {
+      "level": 2,
+      "name": "Technology Concept and/or Application Formulated",
+      "description": "Conceptual application formulated based on observed principles.",
+      "deliverables": [
+        "Conceptual design documents or analytical models",
+        "Feasibility studies",
+        "Process flow diagrams or design sketches",
+        "Analytical simulation results"
+      ],
+      "users": ["Applied researchers", "Government R&D teams", "University–industry partnerships"],
+      "environment": "Lab bench, simulation environments",
+      "scale": "Paper → Pieces (analytical models or desk simulations)",
+      "commercial_viable": false
+    },
+    {
+      "level": 3,
+      "name": "Analytical and Experimental Proof‑of‑Concept",
+      "description": "Laboratory proof‑of‑concept via analyses and early prototypes.",
+      "deliverables": [
+        "Lab‑scale prototypes or test articles",
+        "Test plans/fixtures",
+        "Performance reports comparing measured vs. predicted metrics"
+      ],
+      "users": ["Lab R&D engineers", "Prototype developers", "Systems analysts"],
+      "environment": "Bench‑scale labs and high‑fidelity simulations",
+      "scale": "Lab pieces (bench‑scale prototypes)",
+      "commercial_viable": false
+    },
+    {
+      "level": 4,
+      "name": "Component and/or Breadboard Validation in Laboratory Environment",
+      "description": "Integration of components into a lab‑based breadboard setup.",
+      "deliverables": [
+        "Breadboard integration schematics",
+        "Test procedures and setup documentation",
+        "Functionality test data",
+        "Risk/failure analysis"
+      ],
+      "users": ["R&D engineers", "Systems integrators"],
+      "environment": "Laboratory integration environments",
+      "scale": "Bench‑scale integrated subsystems",
+      "commercial_viable": false
+    },
+    {
+      "level": 5,
+      "name": "Component and/or Breadboard Validation in Relevant Environment",
+      "description": "Testing in environments representative of intended conditions.",
+      "deliverables": [
+        "Detailed subsystem models",
+        "Environmental test plans",
+        "Prototype test data under simulated conditions",
+        "Mapping of prototype behavior to application requirements"
+      ],
+      "users": ["Pilot‑scale engineers", "Lab‑to‑field transition teams", "Early adopter partners"],
+      "environment": "Simulated field environments or environmental chambers",
+      "scale": "Engineering scale (bench → engineering plant level testing)",
+      "commercial_viable": false
+    },
+    {
+      "level": 6,
+      "name": "System/Subsystem Model or Prototype Demonstration in Relevant Environment",
+      "description": "Prototype demonstration in realistic settings.",
+      "deliverables": [
+        "Working prototype with BOM and interface docs",
+        "Integration test plans",
+        "Demonstration data with performance metrics",
+        "Preliminary cost, schedule, and requirements traceability"
+      ],
+      "users": ["System engineers", "Integration teams", "Pilot operators"],
+      "environment": "Pilot plants or production‑like facilities",
+      "scale": "Engineering scale → small pilot plant",
+      "commercial_viable": false
+    },
+    {
+      "level": 7,
+      "name": "System Prototype Demonstration in Operational Environment",
+      "description": "Prototype tested in actual operational site's environment.",
+      "deliverables": [
+        "Field‑ready integrated prototype",
+        "Field test reports, QA logs, issue tracking",
+        "Operational readiness assessments",
+        "User feedback documentation",
+        "Licensing, safety, compliance documentation"
+      ],
+      "users": ["Field engineers", "Operational staff", "Early commercial users"],
+      "environment": "Industrial sites, field installations",
+      "scale": "Pilot plant → full plant demonstration",
+      "commercial_viable": false
+    },
+    {
+      "level": 8,
+      "name": "Actual System Completed and Qualified Through Test & Demo",
+      "description": "Final system design proven under expected conditions.",
+      "deliverables": [
+        "Final hardware/software documentation",
+        "Qualification & acceptance test plans",
+        "Test results confirming functional requirements",
+        "Manufacturing readiness & QA documentation"
+      ],
+      "users": ["Manufacturing engineers", "QA/QC staff", "Compliance officers"],
+      "environment": "Full‑scale production and certification labs",
+      "scale": "Full plant scale qualification",
+      "commercial_viable": true
+    },
+    {
+      "level": 9,
+      "name": "Actual System Proven Through Successful Mission Operations",
+      "description": "System successfully deployed, operating under real‑world conditions.",
+      "deliverables": [
+        "Operational data demonstrating reliability and performance",
+        "Operation & maintenance manuals",
+        "Training materials and user support documentation",
+        "Regulatory and production‑readiness certifications"
+      ],
+      "users": ["End users", "Operators", "Maintenance personnel"],
+      "environment": "Commercial/industrial deployment sites",
+      "scale": "Full plant — steady‑state commercial operations",
+      "commercial_viable": true
+    }
+  ]
+}

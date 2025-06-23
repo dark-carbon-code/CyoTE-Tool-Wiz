@@ -1,0 +1,34 @@
+id,label,description,category
+1,Tool Input: STIX 2.1 Bundle,Structured CTI ingestion format used by most threat intel platforms,Input
+2,Tool Input: PCAP File,Network packet capture used for protocol analysis or anomaly detection,Input
+3,Tool Input: JSON File,"Generic structured input for configurations, logs, or indicators",Input
+4,Tool Input: CSV File,"Tabular indicators, logs, or IOCs in a spreadsheet-compatible format",Input
+5,Tool Input: PDF Report,"Narrative CTI or threat reports for parsing, summarizing, or entity extraction",Input
+6,Tool Input: TXT File,Unstructured logs or plaintext artifacts,Input
+7,Tool Output: STIX 2.1 Bundle,Enriched CTI output compatible with OpenCTI or MISP,Output
+8,Tool Output: PDF Summary,"Formatted report of results, analytics, or emulation findings",Output
+9,Tool Output: JSON File,"Structured output of enriched observables, configs, or logs",Output
+10,Tool Output: CSV Export,Human-readable structured report of tool results,Output
+11,Tool Output: PCAP File,Generated or filtered network captures for replay or analysis,Output
+12,Tool Output: TXT Log,Plain text logging of tool activity or scan results,Output
+13,Format: STIX 2.1,Structured Threat Intelligence format by OASIS used in CTI exchanges,Format
+14,Format: JSON,Standard structured data format for input/output between tools,Format
+15,Format: CSV,"Comma-separated format used in logs, indicators, or observables",Format
+16,Format: PDF,Portable Document Format used for human-readable reports,Format
+17,Format: TXT,Raw plaintext format,Format
+18,Format: PCAP,Packet Capture file used for deep network inspection,Format
+19,Hosted: Local CLI,Runs as a command-line tool on analyst workstation or testbed,Hosting
+20,Hosted: Cloud Service,Accessible over the internet via secured portal or API,Hosting
+21,Hosted: Containerized (Docker),Runs in a portable containerized environment,Hosting
+22,Hosted: Virtual Machine,Requires virtual appliance or VM image,Hosting
+23,Hosted: SaaS Platform,Subscription-based platform with hosted dashboard and services,Hosting
+24,Hosted: Web Service Application,Tool is deployed as a browser-accessible web service hosted internally or in the cloud,Hosting
+25,Hosted: Local Application Executable,Tool runs as a native GUI application installed on a local system,Hosting
+26,User Input: CLI Prompt,Tool requires user to provide input interactively via terminal,Interface
+27,User Input: Form Fields (GUI),"Tool provides form fields for entering observables, filters, or parameters",Interface
+28,User Input: Drag-and-Drop Upload,"Allows analysts to upload artifacts via drag-and-drop (e.g., PCAPs, PDFs)",Interface
+29,User Input: API Payload Configuration,User manually structures JSON/STIX payloads to submit to the tool,Interface
+30,User Input: File Path or Directory Selection,Requires user to specify input file paths or scan directories,Interface
+31,Interface: Web Dashboard,"Browser-based interface for search, configuration, and results visualization",Interface
+32,Interface: REST API,Tool exposes endpoints for integration with other systems,Interface
+33,Interface: CLI Utility,Command-line driven interface for automation and batch use,Interface

@@ -1,0 +1,17 @@
+{
+  "tool_name": "BAM",
+  "description": "identify likelihood of adversarial behavior",
+  "user_roles": [],
+  "tactics_supported": [],
+  "techniques_supported": [],
+  "observable_types": [],
+  "use_cases": [
+    "Anomaly Detection",
+    "Cyber Intelligence"
+  ],
+  "data_sources": [],
+  "deployment_context": "FastAPI endpoint, Linux host, Windows Host",
+  "example_usage": "Help users determine if an anomaly is related to cyber-based adversary behavior",
+  "github": "inl.gov/BAM",
+  "factsheet": "inl.gov/BAM"
+}

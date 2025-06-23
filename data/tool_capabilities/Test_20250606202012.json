@@ -1,0 +1,395 @@
+{
+  "tool_name": "Test",
+  "description": "Test",
+  "user_roles": [
+    {
+      "name": "OT Cybersecurity"
+    }
+  ],
+  "tactics_supported": [
+    "TA0100 - Collection",
+    "TA0101 - Command and Control",
+    "TA0102 - Discovery",
+    "TA0103 - Evasion",
+    "TA0104 - Execution"
+  ],
+  "techniques_supported": [
+    {
+      "id": "T0830",
+      "name": "Adversary-in-the-Middle",
+      "description": "Adversaries with privileged network access may seek to modify network traffic in real time using adversary-in-the-middle (AiTM) attacks. (Citation: Gabriel Sanchez October 2017) This type of attack allows the adversary to intercept traffic to and/or from a particular device on the network. If a AiTM attack is established, then the adversary has the ability to block, log, modify, or inject traffic into the communication stream. There are several ways to accomplish this attack, but some of the most-common are Address Resolution Protocol (ARP) poisoning and the use of a proxy. (Citation: Bonnie Zhu, Anthony Joseph, Shankar Sastry 2011)  \n\nAn AiTM attack may allow an adversary to perform the following attacks:  \n[Block Reporting Message](https://attack.mitre.org/techniques/T0804), [Spoof Reporting Message](https://attack.mitre.org/techniques/T0856), [Modify Parameter](https://attack.mitre.org/techniques/T0836), [Unauthorized Command Message](https://attack.mitre.org/techniques/T0855)"
+    },
+    {
+      "id": "T0811",
+      "name": "Data from Information Repositories",
+      "description": "Adversaries may target and collect data from information repositories. This can include sensitive data such as specifications, schematics, or diagrams of control system layouts, devices, and processes. Examples of information repositories include reference databases in the process environment, as well as databases in the corporate network that might contain information about the ICS.(Citation: Cybersecurity & Infrastructure Security Agency March 2018)\n\nInformation collected from these systems may provide the adversary with a better understanding of the operational environment, vendors used, processes, or procedures of the ICS.\n\nIn a campaign between 2011 and 2013 against ONG organizations, Chinese state-sponsored actors searched document repositories for specific information such as, system manuals, remote terminal unit (RTU) sites, personnel lists, documents that included the string SCAD*, user credentials, and remote dial-up access information. (Citation: CISA AA21-201A Pipeline Intrusion July 2021)"
+    },
+    {
+      "id": "T0893",
+      "name": "Data from Local System",
+      "description": "Adversaries may target and collect data from local system sources, such as file systems, configuration files, or local databases. This can include sensitive data such as specifications, schematics, or diagrams of control system layouts, devices, and processes.\n\nAdversaries may do this using [Command-Line Interface](https://attack.mitre.org/techniques/T0807) or [Scripting](https://attack.mitre.org/techniques/T0853) techniques to interact with the file system to gather information. Adversaries may also use [Automated Collection](https://attack.mitre.org/techniques/T0802) on the local system. "
+    },
+    {
+      "id": "T0877",
+      "name": "I/O Image",
+      "description": "Adversaries may seek to capture process values related to the inputs and outputs of a PLC. During the scan cycle, a PLC reads the status of all inputs and stores them in an image table. (Citation: Nanjundaiah, Vaidyanath) The image table is the PLCs internal storage location where values of inputs/outputs for one scan are stored while it executes the user program. After the PLC has solved the entire logic program, it updates the output image table. The contents of this output image table are written to the corresponding output points in I/O Modules.\n\nThe Input and Output Image tables described above make up the I/O Image on a PLC. This image is used by the user program instead of directly interacting with physical I/O. (Citation: Spenneberg, Ralf 2016) \n\nAdversaries may collect the I/O Image state of a PLC by utilizing a devices [Native API](https://attack.mitre.org/techniques/T0834) to access the memory regions directly. The collection of the PLCs I/O state could be used to replace values or inform future stages of an attack."
+    },
+    {
+      "id": "T0801",
+      "name": "Monitor Process State",
+      "description": "Adversaries may gather information about the physical process state. This information may be used to gain more information about the process itself or used as a trigger for malicious actions. The sources of process state information may vary such as, OPC tags, historian data, specific PLC block information, or network traffic."
+    },
+    {
+      "id": "T0861",
+      "name": "Point & Tag Identification",
+      "description": "Adversaries may collect point and tag values to gain a more comprehensive understanding of the process environment. Points may be values such as inputs, memory locations, outputs or other process specific variables. (Citation: Dennis L. Sloatman September 2016) Tags are the identifiers given to points for operator convenience. \n\nCollecting such tags provides valuable context to environmental points and enables an adversary to map inputs, outputs, and other values to their control processes. Understanding the points being collected may inform an adversary on which processes and values to keep track of over the course of an operation."
+    },
+    {
+      "id": "T0845",
+      "name": "Program Upload",
+      "description": "Adversaries may attempt to upload a program from a PLC to gather information about an industrial process. Uploading a program may allow them to acquire and study the underlying logic. Methods of program upload include vendor software, which enables the user to upload and read a program running on a PLC. This software can be used to upload the target program to a workstation, jump box, or an interfacing device."
+    },
+    {
+      "id": "T0852",
+      "name": "Screen Capture",
+      "description": "Adversaries may attempt to perform screen capture of devices in the control system environment. Screenshots may be taken of workstations, HMIs, or other devices that display environment-relevant process, device, reporting, alarm, or related data. These device displays may reveal information regarding the ICS process, layout, control, and related schematics. In particular, an HMI can provide a lot of important industrial process information. (Citation: ICS-CERT October 2017) Analysis of screen captures may provide the adversary with an understanding of intended operations and interactions between critical devices."
+    },
+    {
+      "id": "T0885",
+      "name": "Commonly Used Port",
+      "description": "Adversaries may communicate over a commonly used port to bypass firewalls or network detection systems and to blend in with normal network activity, to avoid more detailed inspection. They may use the protocol associated with the port, or a completely different protocol. They may use commonly open ports, such as the examples provided below. \n \n * TCP:80 (HTTP) \n * TCP:443 (HTTPS) \n * TCP/UDP:53 (DNS) \n * TCP:1024-4999 (OPC on XP/Win2k3) \n * TCP:49152-65535 (OPC on Vista and later) \n * TCP:23 (TELNET) \n * UDP:161 (SNMP) \n * TCP:502 (MODBUS) \n * TCP:102 (S7comm/ISO-TSAP) \n * TCP:20000 (DNP3) \n * TCP:44818 (Ethernet/IP)"
+    },
+    {
+      "id": "T0884",
+      "name": "Connection Proxy",
+      "description": "Adversaries may use a connection proxy to direct network traffic between systems or act as an intermediary for network communications.\n\nThe definition of a proxy can also be expanded to encompass trust relationships between networks in peer-to-peer, mesh, or trusted connections between networks consisting of hosts or systems that regularly communicate with each other.\n\nThe network may be within a single organization or across multiple organizations with trust relationships. Adversaries could use these types of relationships to manage command and control communications, to reduce the number of simultaneous outbound network connections, to provide resiliency in the face of connection loss, or to ride over existing trusted communications paths between victims to avoid suspicion. (Citation: Enterprise ATT&CK January 2018)"
+    },
+    {
+      "id": "T0840",
+      "name": "Network Connection Enumeration",
+      "description": "Adversaries may perform network connection enumeration to discover information about device communication patterns. If an adversary can inspect the state of a network connection with tools, such as Netstat(Citation: Netstat), in conjunction with [System Firmware](https://attack.mitre.org/techniques/T0857), then they can determine the role of certain devices on the network  (Citation: MITRE). The adversary can also use [Network Sniffing](https://attack.mitre.org/techniques/T0842) to watch network traffic for details about the source, destination, protocol, and content."
+    },
+    {
+      "id": "T0842",
+      "name": "Network Sniffing",
+      "description": "Network sniffing is the practice of using a network interface on a computer system to monitor or capture information (Citation: Enterprise ATT&CK January 2018) regardless of whether it is the specified destination for the information. \n\nAn adversary may attempt to sniff the traffic to gain information about the target. This information can vary in the level of importance. Relatively unimportant information is general communications to and from machines.  Relatively important information would be login information. User credentials may be sent over an unencrypted protocol, such as Telnet, that can be captured and obtained through network packet analysis. \n\nIn addition, ARP and Domain Name Service (DNS) poisoning can be used to capture credentials to websites, proxies, and internal systems by redirecting traffic to an adversary."
+    },
+    {
+      "id": "T0858",
+      "name": "Change Operating Mode",
+      "description": "Adversaries may change the operating mode of a controller to gain additional access to engineering functions such as Program Download.   Programmable controllers typically have several modes of operation that control the state of the user program and control access to the controllers API. Operating modes can be physically selected using a key switch on the face of the controller but may also be selected with calls to the controllers API. Operating modes and the mechanisms by which they are selected often vary by vendor and product line. Some commonly implemented operating modes are described below:  \n\n* Program - This mode must be enabled before changes can be made to a devices program. This allows program uploads and downloads between the device and an engineering workstation. Often the PLCs logic Is halted, and all outputs may be forced off. (Citation: N.A. October 2017)  \n* Run - Execution of the devices program occurs in this mode. Input and output (values, points, tags, elements, etc.) are monitored and used according to the programs logic. [Program Upload](https://attack.mitre.org/techniques/T0845) and [Program Download](https://attack.mitre.org/techniques/T0843) are disabled while in this mode. (Citation: Omron) (Citation: Machine Information Systems 2007)  (Citation: N.A. October 2017) (Citation: PLCgurus 2021)   \n* Remote - Allows for remote changes to a PLCs operation mode. (Citation: PLCgurus 2021)    \n* Stop - The PLC and program is stopped, while in this mode, outputs are forced off. (Citation: Machine Information Systems 2007)   \n* Reset - Conditions on the PLC are reset to their original states. Warm resets may retain some memory while cold resets will reset all I/O and data registers. (Citation: Machine Information Systems 2007)   \n* Test / Monitor mode - Similar to run mode, I/O is processed, although this mode allows for monitoring, force set, resets, and more generally tuning or debugging of the system. Often monitor mode may be used as a trial for initialization. (Citation: Omron)"
+    },
+    {
+      "id": "T0895",
+      "name": "Autorun Image",
+      "description": "Adversaries may leverage AutoRun functionality or scripts to execute malicious code. Devices configured to enable AutoRun functionality or legacy operating systems may be susceptible to abuse of these features to run malicious code stored on various forms of removeable media (i.e., USB, Disk Images [.ISO]). Commonly, AutoRun or AutoPlay are disabled in many operating systems configurations to mitigate against this technique. If a device is configured to enable AutoRun or AutoPlay, adversaries may execute code on the device by mounting the removable media to the device, either through physical or virtual means. This may be especially relevant for virtual machine environments where disk images may be dynamically mapped to a guest system on a hypervisor.  \n\nAn example could include an adversary gaining access to a hypervisor through the management interface to modify a virtual machine\u2019s hardware configuration. They could then deploy an iso image with a malicious AutoRun script to cause the virtual machine to automatically execute the code contained on the disk image. This would enable the execution of malicious code within a virtual machine without needing any prior remote access to that system.\n"
+    }
+  ],
+  "data_sources": [
+    {
+      "id": "DS0015",
+      "name": "Application Log"
+    }
+  ],
+  "observable_types": [
+    {
+      "category": "Host",
+      "name": "Firmware"
+    }
+  ],
+  "use_cases": [
+    {
+      "id": 1,
+      "name": "Govern: Organizational Context"
+    }
+  ],
+  "deployment_context": [
+    {
+      "id": 1,
+      "label": "Tool Input: STIX 2.1 Bundle",
+      "description": "Structured CTI ingestion format used by most threat intel platforms"
+    }
+  ],
+  "targeted_assets": [
+    {
+      "id": "A0002",
+      "name": "Human-Machine Interface (HMI)",
+      "description": "Human-Machine Interfaces (HMIs) are systems used by an operator to monitor the real-time status of an operational process and to perform necessary control functions, including the adjustment of device parameters. An HMI can take various forms, including a dedicated screen or control panel integrated with a specific device/controller, or a customizable software GUI application running on a standard operating system (e.g., MS Windows) that interfaces with a control/SCADA server. The HMI is critical to ensuring operators have sufficient visibility and control over the operational process."
+    },
+    {
+      "id": "A0003",
+      "name": "Programmable Logic Controller (PLC)",
+      "description": "A Programmable Logic Controller (PLC) is an embedded programmable control device. PLCs typically utilize a modular architecture with separate modules used to support its processing capabilities, communication mediums, and I/O interfaces. PLCs allow for the deployment of customized programs/logic to control or monitor an operational process. This logic is defined using industry specific programming languages, such as IEC 61131 (Citation: IEC February 2013), which define the set of tasks and program organizational units (POUs) included in the device\u2019s programs.  PLCs also typically have distinct operating modes (e.g., Remote, Run, Program, Stop) which are used to determine when the device can be programmed or whether it should execute the custom logic."
+    },
+    {
+      "id": "A0004",
+      "name": "Remote Terminal Unit (RTU)",
+      "description": "A Remote Terminal Unit (RTU) is a device that typically resides between field devices (e.g., PLCs, IEDs) and control/SCADA servers and supports various communication interfacing and data aggregation functions. RTUs are typically responsible for forwarding commands from the control server and the collection of telemetry, events, and alerts from the field devices. An RTU can be implemented as a dedicated embedded device, as software platform that runs on a hardened/ruggedized computer, or using a custom application program on a PLC."
+    },
+    {
+      "id": "A0005",
+      "name": "Intelligent Electronic Device (IED)",
+      "description": "An Intelligent Electronic Device (IED) is a type of specialized field device that is designed to perform specific operational functions, frequently for protection, monitoring, or control within the electric sector. IEDs are typically used to both acquire telemetry and execute tailored control algorithms/actions based on customizable parameters/settings. An IED is usually implemented as a dedicated embedded device and supports various network automation protocols to communicate with RTUs and Control Servers."
+    },
+    {
+      "id": "A0006",
+      "name": "Data Historian",
+      "description": "Data historians, or historian, are systems used to collect and store data, including telemetry, events, alerts, and alarms about the operational process and supporting devices. The historian typically utilizes a database to store this data, and commonly provide tools and interfaces to support the analysis of the data. Data historians are often used to support various engineering or business analysis functions and therefore commonly needs access from the corporate network. Data historians often work in a hierarchical paradigm where lower/site level historians collect and store data which is then aggregated into a site/plant level historian. Therefore, data historians often have remote services that can be accessed externally from the ICS network."
+    },
+    {
+      "id": "A0007",
+      "name": "Control Server",
+      "description": "Control servers are typically a software platform that runs on a modern server operating system (e.g., MS Windows Server). The server typically uses one or more automation protocols (e.g., Modbus, DNP3) to communicate with the various low-level control devices such as Remote Terminal Units (RTUs) and Programmable Logic Controllers (PLCs). The control server also usually provides an interface/network service to connect with an HMI."
+    },
+    {
+      "id": "A0009",
+      "name": "Data Gateway",
+      "description": "Data Gateway is a device that supports the communication and exchange of data between different systems, networks, or protocols within the ICS. Different types of data gateways are used to perform various functions, including:\n\n *  <u>Protocol Translation:</u> Enable communication to devices that support different or incompatible protocols by translating information from one protocol to another. \n *  <u>Media Converter:</u> Convert data across different Layer 1 and 2 network protocols / mediums, for example, converting from Serial to Ethernet. \n *  <u>Data Aggregation:</u> Collect and combine data from different devices into one consistent format and protocol interface. \n\nData gateways are often critical to the forwarding/transmission of critical control or monitoring data within the ICS. Further, these devices often have remote various network services that are used to communicate across different zones or networks.  \n\nThese assets may focus on a single function listed below or combinations of these functions to best fit the industry use-case. \n"
+    },
+    {
+      "id": "A0010",
+      "name": "Safety Controller",
+      "description": "Safety controllers are typically a type of field device used to perform the safety critical function. Safety controllers often support the deployment of custom programs/logic, similar to a PLC, but can also be tailored for sector specific functions/applications. The safety controllers typically utilize redundant hardware and processors to ensure they operate reliably if a component fails."
+    },
+    {
+      "id": "A0013",
+      "name": "Field I/O",
+      "description": "Field I/O are devices that communicate with a controller or data aggregator to either send input data or receive output data. Input data may include readings about a given environment/device state from sensors, while output data may include data sent back to actuators for them to either undertake actions or change parameter values.(Citation: Guidance - NIST SP800-82) These devices are frequently embedded devices running on lightweight embedded operating systems or RTOSes. "
+    },
+    {
+      "id": "A0001",
+      "name": "Workstation",
+      "description": "Workstations are devices used by human operators or engineers to perform various configuration, programming, maintenance, diagnostic, or operational tasks. Workstations typically utilize standard desktop or laptop hardware and operating systems (e.g., MS Windows), but run dedicated control system applications or diagnostic/management software     to support interfacing with the control servers or field devices. Some workstations have a fixed location within the network architecture, while others are transient devices that are directly connected to various field devices to support local management activities."
+    },
+    {
+      "id": "A0008",
+      "name": "Application Server",
+      "description": "Application servers are used across many different sectors to host various diverse software applications necessary to supporting the ICS. Example functions can include data analytics and reporting, alarm management, and the management/coordination of different control servers.  The application server typically runs on a modern server operating system (e.g., MS Windows Server)."
+    },
+    {
+      "id": "A0011",
+      "name": "Virtual Private Network (VPN) Server",
+      "description": "A VPN server is a device that is used to establish a secure network tunnel between itself and other remote VPN devices, including field VPNs. VPN servers can be used to establish a secure connection with a single remote device, or to securely bridge all traffic between two separate networks together by encapsulating all data between those networks. VPN servers typically support remote network services that are used by field VPNs to initiate the establishment of the secure VPN tunnel between the field device and server."
+    },
+    {
+      "id": "A0012",
+      "name": "Jump Host",
+      "description": "Jump hosts are devices used to support remote management sessions into ICS networks or devices. The system is used to access the ICS environment securely from external networks, such as the corporate network. The user must first remote into the jump host before they can access ICS devices. The jump host may be a customized Windows server using common remote access protocols (e.g., RDP) or a dedicated access management device. The jump host typically performs various security functions to ensure the authenticity of remote sessions, including authentication, enforcing access controls/permissions, and auditing all access attempts.  "
+    },
+    {
+      "id": "A0014",
+      "name": "Routers",
+      "description": "A computer that is a gateway between two networks at OSI layer 3 and that relays and directs data packets through that inter-network. The most common form of router operates on IP packets.(Citation: IETF RFC4949 2007)"
+    }
+  ],
+  "related_cases": [
+    {
+      "case_id": "C0028",
+      "case_name": "2015 Ukraine Electric Power Attack",
+      "case_description": "During the [2015 Ukraine Electric Power Attack](https://attack.mitre.org/campaigns/C0028), [Sandworm Team](https://attack.mitre.org/groups/G0034) blocked command messages by using malicious firmware to render serial-to-ethernet converters inoperable. (Citation: Ukraine15 - EISAC - 201603)"
+    },
+    {
+      "case_id": "C0034",
+      "case_name": "2022 Ukraine Electric Power Attack",
+      "case_description": "During the [2022 Ukraine Electric Power Attack](https://attack.mitre.org/campaigns/C0034), [Sandworm Team](https://attack.mitre.org/groups/G0034) used existing hypervisor access to map an ISO image named `a.iso` to a virtual machine running a SCADA server. The SCADA server\u2019s operating system was configured to autorun CD-ROM images, and as a result, a malicious VBS script on the ISO image was automatically executed.(Citation: Mandiant-Sandworm-Ukraine-2022)"
+    },
+    {
+      "case_id": "C0030",
+      "case_name": "Triton Safety Instrumented System Attack",
+      "case_description": "In the [Triton Safety Instrumented System Attack](https://attack.mitre.org/campaigns/C0030), [TEMP.Veles](https://attack.mitre.org/groups/G0088) changed phone numbers tied to certain specific accounts in a designated contact list. They then used the changed phone numbers to redirect network traffic to websites controlled by them, thereby allowing them to capture and use any login codes sent to the devices via text message.(Citation: Triton-EENews-2017)"
+    },
+    {
+      "case_id": "G1000",
+      "case_name": "ALLANITE",
+      "case_description": "[ALLANITE](https://attack.mitre.org/groups/G1000) leverages watering hole attacks to gain access into electric utilities. (Citation: Eduard Kovacs May 2018)"
+    },
+    {
+      "case_id": "G0064",
+      "case_name": "APT33",
+      "case_description": "[APT33](https://attack.mitre.org/groups/G0064) utilize backdoors capable of capturing screenshots once installed on a system. (Citation: Jacqueline O'Leary et al. September 2017)(Citation: Junnosuke Yagi March 2017)"
+    },
+    {
+      "case_id": "G0034",
+      "case_name": "Sandworm Team",
+      "case_description": "[Sandworm Team](https://attack.mitre.org/groups/G0034) uses the MS-SQL server xp_cmdshell command, and PowerShell to execute commands. (Citation: Dragos October 2018)"
+    },
+    {
+      "case_id": "S1000",
+      "case_name": "ACAD/Medre.A",
+      "case_description": "[ACAD/Medre.A](https://attack.mitre.org/software/S1000) collects information related to the AutoCAD application. The worm collects AutoCAD (*.dwg) files with drawings from infected systems. (Citation: ESET)"
+    },
+    {
+      "case_id": "S0093",
+      "case_name": "Backdoor.Oldrea",
+      "case_description": "Using OPC, a component of [Backdoor.Oldrea](https://attack.mitre.org/software/S0093) gathers any details about connected devices and sends them back to the C2 for the attackers to analyze. (Citation: Daavid Hentunen, Antti Tikkanen June 2014)"
+    },
+    {
+      "case_id": "S0038",
+      "case_name": "Duqu",
+      "case_description": "[Duqu](https://attack.mitre.org/software/S0038) downloads additional modules for the collection of data in information repositories, including the Infostealer 2 module that can access data from Windows Shares.(Citation: Symantec)"
+    },
+    {
+      "case_id": "S0605",
+      "case_name": "EKANS",
+      "case_description": "[EKANS](https://attack.mitre.org/software/S0605) infection resulted in a temporary production loss within a Honda manufacturing plant. (Citation: Davey Winder June 2020)"
+    },
+    {
+      "case_id": "S0143",
+      "case_name": "Flame",
+      "case_description": "[Flame](https://attack.mitre.org/software/S0143) has built-in modules to gather information from compromised computers. (Citation: Kevin Savage and Branko Spasojevic)"
+    },
+    {
+      "case_id": "S1165",
+      "case_name": "FrostyGoop",
+      "case_description": "[FrostyGoop](https://attack.mitre.org/software/S1165) is compiled for Windows systems and leverages a Windows-based command line interface.(Citation: Dragos FROSTYGOOP 2024) Modbus interaction functionality is based off a publicly available Github repository for command line input.(Citation: Nozomi BUSTLEBERM 2024)"
+    },
+    {
+      "case_id": "S1045",
+      "case_name": "INCONTROLLER",
+      "case_description": "[INCONTROLLER](https://attack.mitre.org/software/S1045) can establish a remote HTTP connection to change the operating mode of Omron PLCs.(Citation: Dragos-Pipedream)(Citation: Wylie-22)"
+    },
+    {
+      "case_id": "S0604",
+      "case_name": "Industroyer",
+      "case_description": "The [Industroyer](https://attack.mitre.org/software/S0604) SIPROTEC DoS module places the victim device into firmware update mode. This is a legitimate use case under normal circumstances, but in this case is used the adversary to prevent the SIPROTEC from performing its designed protective functions. As a result the normal safeguards are disabled, leaving an unprotected link in the electric transmission. (Citation: Joe Slowik August 2019)"
+    },
+    {
+      "case_id": "S1072",
+      "case_name": "Industroyer2",
+      "case_description": "[Industroyer2](https://attack.mitre.org/software/S1072) leverages a hardcoded list of remote-station IP addresses to iteratively initiate communications and collect information across multiple priority IEC-104 priority levels.(Citation: Industroyer2 Forescout July 2022)"
+    },
+    {
+      "case_id": "S1006",
+      "case_name": "PLC-Blaster",
+      "case_description": "[PLC-Blaster](https://attack.mitre.org/software/S1006) stops the execution of the user program on the target to enable the transfer of its own code. The worm then copies itself to the target and subsequently starts the target PLC again. (Citation: Spenneberg, Ralf, Maik Brggemann, and Hendrik Schwartke March 2016)"
+    },
+    {
+      "case_id": "S0603",
+      "case_name": "Stuxnet",
+      "case_description": "[Stuxnet](https://attack.mitre.org/software/S0603) will store and execute SQL code that will extract and execute Stuxnet from the saved CAB file using xp_cmdshell with the following command: `set @s = master..xp _ cmdshell extrac32 /y +@t+ +@t+x; exec(@s);` (Citation: Nicolas Falliere, Liam O Murchu, Eric Chien February 2011)"
+    },
+    {
+      "case_id": "S1009",
+      "case_name": "Triton",
+      "case_description": "[Triton](https://attack.mitre.org/software/S1009) has the ability to halt or run a program through the TriStation protocol. TsHi.py contains instances of halt and run functions being executed. (Citation: MDudek-ICS)"
+    },
+    {
+      "case_id": "S1010",
+      "case_name": "VPNFilter",
+      "case_description": "The [VPNFilter](https://attack.mitre.org/software/S1010)'s ssler module configures the device's iptables to redirect all traffic destined for port 80 to its local service listening on port 8888. Any outgoing web requests on port 80 are now intercepted by ssler and can be inspected by the ps module and manipulated before being sent to the legitimate HTTP service. (Citation: William Largent June 2018) (Citation: Carl Hurd March 2019)"
+    },
+    {
+      "case_id": "PAR003",
+      "case_name": "NIGHT DRAGON CAMPAIGN (2007 TO 2011) TARGETING A U.S.-BASED OIL AND GAS FIRM",
+      "case_description": "Anomalous Network Traffic: From Supervisory Control and Data Acquisition (SCADA) System to External Remote Server: Simple Mail Transfer Protocol (SMTP) Over TCP Port 25: Containing Local File Information: Operational Technology (OT) Information: Associated with Anomalous Executable: zwShell.exe"
+    },
+    {
+      "case_id": "PAR004",
+      "case_name": "BAKU-TBILISI-CEYHAN (BTC) PIPELINE EXPLOSION IN REFAHIYE, TURKEY 2008",
+      "case_description": "Loss of Revenue: $3-4 Billion in Export Revenue"
+    },
+    {
+      "case_id": "PAR005",
+      "case_name": "HAVEX MALWARE IN A U.S. MANUFACTURING FACILITY 2014",
+      "case_description": "Anomalous System Behavior on Local Host: Rollback to Last Safe Backup"
+    },
+    {
+      "case_id": "PAR006",
+      "case_name": "Cyber Attack on Thyssenkrupp Blast Furnace 2014",
+      "case_description": "Anomalous Loss of Productivity: Extensive Delays in Planned Outage Cycle: 30 Additional Days in Outage Cycle"
+    },
+    {
+      "case_id": "PAR007",
+      "case_name": "UKRAINE ENERGY SECTOR CYBER ATTACK 2015 (BlackEnergy)",
+      "case_description": "Anomalous System Behavior on Local Host: Windows is Shutting Down (Windows Event ID 4609)"
+    },
+    {
+      "case_id": "PAR008",
+      "case_name": "INDUSTROYER TARGETING UKRAINE ELECTRIC POWER TRANSPORT UTILITY (UKRENERGO) 2016",
+      "case_description": "Anomalous System Behavior on Local Host: Anomalous Failure to Reboot Operating System (OS)"
+    },
+    {
+      "case_id": "PAR009",
+      "case_name": "CONFICKER INFECTION OF GUNDREMMINGEN NUCLEAR POWER PLANT 2016",
+      "case_description": "Anomalous System Behavior on Local Host: Rollback to Last Safe Backup"
+    },
+    {
+      "case_id": "PAR010",
+      "case_name": "SHAMOON 2017 MALWARE CAMPAIGN AGAINST SADARA CHEMICAL COMPANY",
+      "case_description": "Anomalous System Behavior on Local Host: Service Control Manager (Windows Event ID 7036): Anomalous Service Stop"
+    },
+    {
+      "case_id": "PAR011",
+      "case_name": "WANNACRY RANSOMWARE ATTACK ON RENAULT-NISSAN",
+      "case_description": "Files Anomalously Missing on User Host"
+    },
+    {
+      "case_id": "PAR012",
+      "case_name": "TRITON MALWARE ATTACK AGAINST PETRO RABIGH",
+      "case_description": "Anomalous Loss of Revenue: Approximately $938,000"
+    },
+    {
+      "case_id": "PAR014",
+      "case_name": "LOCKERGOGA RANSOMWARE ATTACK ON NORSK HYDRO 2019",
+      "case_description": "Anomalous System Behavior on Local Host: Systems Inaccessible: Operational Technology (OT) Operations"
+    },
+    {
+      "case_id": "PAR016",
+      "case_name": "2020 SOLARWINDS SUPPLY CHAIN COMPROMISE AGAINST A U.S. ENERGY PROVIDER",
+      "case_description": "Anomalous Loss of Revenue: Cost Associated With Reputational Damage"
+    },
+    {
+      "case_id": "PAR017",
+      "case_name": "DOPPELPAYMER RANSOMWARE ATTACK ON PETROLEOS MEXICANOS (PEMEX) 2019",
+      "case_description": "Anomalous Loss of Productivity: Business Processes Inaccessible: Billing"
+    },
+    {
+      "case_id": "PAR018",
+      "case_name": "EKANS RANSOMWARE ATTACK ON HONDA",
+      "case_description": "Loss of Revenue"
+    },
+    {
+      "case_id": "PAR019",
+      "case_name": "MUMBAI 2020 POWER OUTAGE-RELIABILITY FAILURE EXPOSES MALWARE INTRUSION",
+      "case_description": "Anomalous Behavior of Controlled Process: Generation Loss: 1375 MW"
+    },
+    {
+      "case_id": "PAR020",
+      "case_name": "RYUK RANSOMWARE ATTACK ON UNIVERSAL HEALTH SERVICES 2020",
+      "case_description": "Anomalous Loss of Revenue: $67 Million"
+    },
+    {
+      "case_id": "PAR022",
+      "case_name": "JBS FOODS RANSOMWARE ATTACK 2021",
+      "case_description": "Anomalous Loss of Revenue: Company Stock Valuation Decrease"
+    },
+    {
+      "case_id": "PAR023",
+      "case_name": "CONTI RANSOMWARE ATTACK ON THE HEALTH SERVICE EXECUTIVE OF IRELAND 2021",
+      "case_description": "Anomalous Loss of Productivity: Extended Recovery Period: 130 Days of Corporate and Operational Service Full Recovery"
+    },
+    {
+      "case_id": "PAR024",
+      "case_name": "DARKSIDE RANSOMWARE ATTACK ON COLONIAL PIPELINE",
+      "case_description": "Loss of $4.4 Million for Ransom Payment"
+    },
+    {
+      "case_id": "PAR025",
+      "case_name": "BLACKMATTER RANSOMWARE ATTACK ON NEW COOPERATIVE 2021",
+      "case_description": "Anomalous System Behavior on Local Host: Anomalous Interruption of Automated Processes: Information Technology (IT) Systems: Production Systems: For Eight Weeks"
+    },
+    {
+      "case_id": "PAR026",
+      "case_name": "INDUSTROYER2 AND WIPER MALWARE TARGETING UKRAINIAN ENERGY PROVIDER 2022",
+      "case_description": "Anomalous System Behavior on Local Host: Anomalous Modification of Data: Within GUID Partition Table (GPT): Overwriting Existing Data: Overwriting with Null Bytes"
+    },
+    {
+      "case_id": "PAR027",
+      "case_name": "OPERATIONAL TECHNOLOGY MALWARE FRAMEWORKS BASED ON INCONTROLLER",
+      "case_description": "Anomalous Behavior of Controlled Process: Sustained Loss of Control"
+    }
+  ],
+  "example_usage": "Test",
+  "github": "Test",
+  "factsheet": "tes"
+}

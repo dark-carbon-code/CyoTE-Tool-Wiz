@@ -1,0 +1,9 @@
+id,label,description
+1,Access: Website,"Tool or service is accessed via a public or internal website URL."
+2,Access: GitHub Repository,"Tool is available as open-source or binary via GitHub."
+3,Access: Internal Network Portal,"Tool is hosted within an organization's intranet and accessed through an internal portal."
+4,Access: Downloadable Installer,"Tool is distributed as a downloadable package (e.g., EXE, MSI, DEB)."
+5,Access: Container Registry,"Tool is retrieved from Docker Hub, GHCR, or a private container registry."
+6,Access: API Call,"Tool is used by submitting API requests to a defined endpoint."
+7,Access: CLI Executable,"Tool is executed directly via command line from a local or remote system."
+8,Access: Marketplace Listing,"Tool is accessed through a third-party platform marketplace (e.g., AWS Marketplace)."

@@ -1,0 +1,40 @@
+id,label,description
+1,STIX 2.1 Bundle,Structured CTI output used for intelligence sharing and correlation
+2,JSON File,"Structured machine-readable output (e.g., alerts, configs, observables)"
+3,CSV Export,"Tabular data for analysis in tools like Excel, pandas, or SOC dashboards"
+4,PDF Summary Report,"Rich narrative output including results, analysis, figures, and recommendations"
+5,TXT Log,"Plain text logs, debug info, or analyst comments"
+6,PCAP File,Network capture of real or simulated traffic for deep inspection or training
+7,YAML Configuration,"Structured output (e.g., adversary profiles, playbooks, pipelines)"
+8,Syslog Event Stream,Logs formatted for real-time ingestion into log collectors or SIEMs
+9,REST API Response,"Real-time or batch output available from APIs, often in JSON or XML"
+10,Database Record,SQL or NoSQL format records for persistence and dashboard use
+11,MITRE ATT&CK Mapping File,"Export of detected or supported techniques in STIX, JSON, or Markdown"
+12,Graph Visualization (ATT&CK / KG),"Visual output in GraphML, DOT, or Neo4j-compatible formats"
+13,Alert or Detection Notification,"Triggered alerts as SNMP traps, webhook events, email, etc."
+14,Annotated Artifact File,"Original file enriched with metadata, labels, or classifications"
+15,Timeline Output,"Temporal view of events, incidents, or attacks (CSV, JSON, HTML)"
+16,Container Image,Packaged tool or result in Docker/Singularity container
+17,Research Dataset,"Labeled, anonymized, or synthetic dataset produced by simulations"
+18,Simulation Output Log,Emulation or sim result with environmental telemetry and action logs
+19,AI/ML Model Result,"Output vector, class prediction, or explanation (e.g., SHAP, LIME)"
+20,Knowledge Graph Export,"Structured export of entities and relations (RDF, JSON-LD, Cypher)"
+21,External Report Link,URL to hosted report or dashboard on internal/partner system
+22,Automation Script,"Bash, PowerShell, Python, or workflow automation result (e.g., n8n)"
+23,Detection Signature File,"Generated Snort, Sigma, Suricata, or YARA rule from tool logic"
+24,Interactive Jupyter Notebook,Notebook file with embedded code and data for reproducible analysis
+25,Threat Emulation Profile,"MITRE Caldera or SCYTHE adversary YAML, used for red team planning"
+26,Configuration Patch File,"Suggestion or automated config remediations (e.g., JSON diff, CIS YAML)"
+27,Vulnerability Assessment Report,Structured output of CVE/CWE assessments with severity and impact
+28,Attack Graph File,"Graph representation of feasible paths (e.g., DOT, D3.js JSON)"
+29,Evaluation Metrics Report,Results from tool benchmarking or detection efficacy evaluations
+30,Model Card or System Card,"AI metadata explaining model scope, training, biases, risk posture"
+31,AI-Generated Summary,"Executive summaries, report generation, or incident narration by LLM"
+32,Compliance Checklist Output,NIST/CSF/IEC framework alignment in checklist or JSON scorecard format
+33,LLM-Ready Knowledge File,Structured JSON/Markdown tailored for ingestion into RAG or assistant
+34,Video Walkthrough or Replay,"Generated session replay or demonstration (MP4, WebM)"
+35,Real-Time Dashboard Export,"Screenshot, data extract, or summary snapshot from live interface"
+36,Data Provenance Record,"Trace log for dataset or artifact origin, transformation, and use"
+37,Incident Storyboard,"Generated sequence showing adversary progression, detections, and analyst steps"
+38,Evidence Bundle (Archive),"Compressed package of observables, logs, and configs for postmortem"
+39,External Tool Interop Package,"Export formatted for tools like Splunk, MISP, OpenCTI, Maltego, etc."

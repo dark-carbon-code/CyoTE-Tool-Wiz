@@ -1,0 +1,440 @@
+{
+  "tool_name": "Test 4",
+  "description": "Test 4",
+  "user_roles": [
+    {
+      "name": "IT Staff"
+    }
+  ],
+  "tactics_supported": [
+    "TA0100 - Collection",
+    "TA0101 - Command and Control",
+    "TA0102 - Discovery"
+  ],
+  "techniques_supported": [
+    {
+      "id": "T0830",
+      "name": "Adversary-in-the-Middle",
+      "description": "Adversaries with privileged network access may seek to modify network traffic in real time using adversary-in-the-middle (AiTM) attacks. (Citation: Gabriel Sanchez October 2017) This type of attack allows the adversary to intercept traffic to and/or from a particular device on the network. If a AiTM attack is established, then the adversary has the ability to block, log, modify, or inject traffic into the communication stream. There are several ways to accomplish this attack, but some of the most-common are Address Resolution Protocol (ARP) poisoning and the use of a proxy. (Citation: Bonnie Zhu, Anthony Joseph, Shankar Sastry 2011)  \n\nAn AiTM attack may allow an adversary to perform the following attacks:  \n[Block Reporting Message](https://attack.mitre.org/techniques/T0804), [Spoof Reporting Message](https://attack.mitre.org/techniques/T0856), [Modify Parameter](https://attack.mitre.org/techniques/T0836), [Unauthorized Command Message](https://attack.mitre.org/techniques/T0855)"
+    },
+    {
+      "id": "T0885",
+      "name": "Commonly Used Port",
+      "description": "Adversaries may communicate over a commonly used port to bypass firewalls or network detection systems and to blend in with normal network activity, to avoid more detailed inspection. They may use the protocol associated with the port, or a completely different protocol. They may use commonly open ports, such as the examples provided below. \n \n * TCP:80 (HTTP) \n * TCP:443 (HTTPS) \n * TCP/UDP:53 (DNS) \n * TCP:1024-4999 (OPC on XP/Win2k3) \n * TCP:49152-65535 (OPC on Vista and later) \n * TCP:23 (TELNET) \n * UDP:161 (SNMP) \n * TCP:502 (MODBUS) \n * TCP:102 (S7comm/ISO-TSAP) \n * TCP:20000 (DNP3) \n * TCP:44818 (Ethernet/IP)"
+    },
+    {
+      "id": "T0840",
+      "name": "Network Connection Enumeration",
+      "description": "Adversaries may perform network connection enumeration to discover information about device communication patterns. If an adversary can inspect the state of a network connection with tools, such as Netstat(Citation: Netstat), in conjunction with [System Firmware](https://attack.mitre.org/techniques/T0857), then they can determine the role of certain devices on the network  (Citation: MITRE). The adversary can also use [Network Sniffing](https://attack.mitre.org/techniques/T0842) to watch network traffic for details about the source, destination, protocol, and content."
+    }
+  ],
+  "data_sources": [
+    {
+      "id": "DS0015",
+      "name": "Application Log"
+    }
+  ],
+  "observable_types": [
+    {
+      "category": "Host",
+      "name": "Firmware"
+    }
+  ],
+  "use_cases": [
+    {
+      "id": 1,
+      "name": "Govern: Organizational Context"
+    }
+  ],
+  "deployment_context": [
+    {
+      "id": 1,
+      "label": "Tool Input: STIX 2.1 Bundle",
+      "description": "Structured CTI ingestion format used by most threat intel platforms"
+    }
+  ],
+  "targeted_assets": [
+    {
+      "id": "A0001",
+      "name": "Workstation",
+      "description": "Workstations are devices used by human operators or engineers to perform various configuration, programming, maintenance, diagnostic, or operational tasks. Workstations typically utilize standard desktop or laptop hardware and operating systems (e.g., MS Windows), but run dedicated control system applications or diagnostic/management software     to support interfacing with the control servers or field devices. Some workstations have a fixed location within the network architecture, while others are transient devices that are directly connected to various field devices to support local management activities."
+    },
+    {
+      "id": "A0002",
+      "name": "Human-Machine Interface (HMI)",
+      "description": "Human-Machine Interfaces (HMIs) are systems used by an operator to monitor the real-time status of an operational process and to perform necessary control functions, including the adjustment of device parameters. An HMI can take various forms, including a dedicated screen or control panel integrated with a specific device/controller, or a customizable software GUI application running on a standard operating system (e.g., MS Windows) that interfaces with a control/SCADA server. The HMI is critical to ensuring operators have sufficient visibility and control over the operational process."
+    },
+    {
+      "id": "A0003",
+      "name": "Programmable Logic Controller (PLC)",
+      "description": "A Programmable Logic Controller (PLC) is an embedded programmable control device. PLCs typically utilize a modular architecture with separate modules used to support its processing capabilities, communication mediums, and I/O interfaces. PLCs allow for the deployment of customized programs/logic to control or monitor an operational process. This logic is defined using industry specific programming languages, such as IEC 61131 (Citation: IEC February 2013), which define the set of tasks and program organizational units (POUs) included in the device\u2019s programs.  PLCs also typically have distinct operating modes (e.g., Remote, Run, Program, Stop) which are used to determine when the device can be programmed or whether it should execute the custom logic."
+    },
+    {
+      "id": "A0004",
+      "name": "Remote Terminal Unit (RTU)",
+      "description": "A Remote Terminal Unit (RTU) is a device that typically resides between field devices (e.g., PLCs, IEDs) and control/SCADA servers and supports various communication interfacing and data aggregation functions. RTUs are typically responsible for forwarding commands from the control server and the collection of telemetry, events, and alerts from the field devices. An RTU can be implemented as a dedicated embedded device, as software platform that runs on a hardened/ruggedized computer, or using a custom application program on a PLC."
+    },
+    {
+      "id": "A0005",
+      "name": "Intelligent Electronic Device (IED)",
+      "description": "An Intelligent Electronic Device (IED) is a type of specialized field device that is designed to perform specific operational functions, frequently for protection, monitoring, or control within the electric sector. IEDs are typically used to both acquire telemetry and execute tailored control algorithms/actions based on customizable parameters/settings. An IED is usually implemented as a dedicated embedded device and supports various network automation protocols to communicate with RTUs and Control Servers."
+    },
+    {
+      "id": "A0006",
+      "name": "Data Historian",
+      "description": "Data historians, or historian, are systems used to collect and store data, including telemetry, events, alerts, and alarms about the operational process and supporting devices. The historian typically utilizes a database to store this data, and commonly provide tools and interfaces to support the analysis of the data. Data historians are often used to support various engineering or business analysis functions and therefore commonly needs access from the corporate network. Data historians often work in a hierarchical paradigm where lower/site level historians collect and store data which is then aggregated into a site/plant level historian. Therefore, data historians often have remote services that can be accessed externally from the ICS network."
+    },
+    {
+      "id": "A0007",
+      "name": "Control Server",
+      "description": "Control servers are typically a software platform that runs on a modern server operating system (e.g., MS Windows Server). The server typically uses one or more automation protocols (e.g., Modbus, DNP3) to communicate with the various low-level control devices such as Remote Terminal Units (RTUs) and Programmable Logic Controllers (PLCs). The control server also usually provides an interface/network service to connect with an HMI."
+    },
+    {
+      "id": "A0008",
+      "name": "Application Server",
+      "description": "Application servers are used across many different sectors to host various diverse software applications necessary to supporting the ICS. Example functions can include data analytics and reporting, alarm management, and the management/coordination of different control servers.  The application server typically runs on a modern server operating system (e.g., MS Windows Server)."
+    },
+    {
+      "id": "A0009",
+      "name": "Data Gateway",
+      "description": "Data Gateway is a device that supports the communication and exchange of data between different systems, networks, or protocols within the ICS. Different types of data gateways are used to perform various functions, including:\n\n *  <u>Protocol Translation:</u> Enable communication to devices that support different or incompatible protocols by translating information from one protocol to another. \n *  <u>Media Converter:</u> Convert data across different Layer 1 and 2 network protocols / mediums, for example, converting from Serial to Ethernet. \n *  <u>Data Aggregation:</u> Collect and combine data from different devices into one consistent format and protocol interface. \n\nData gateways are often critical to the forwarding/transmission of critical control or monitoring data within the ICS. Further, these devices often have remote various network services that are used to communicate across different zones or networks.  \n\nThese assets may focus on a single function listed below or combinations of these functions to best fit the industry use-case. \n"
+    },
+    {
+      "id": "A0010",
+      "name": "Safety Controller",
+      "description": "Safety controllers are typically a type of field device used to perform the safety critical function. Safety controllers often support the deployment of custom programs/logic, similar to a PLC, but can also be tailored for sector specific functions/applications. The safety controllers typically utilize redundant hardware and processors to ensure they operate reliably if a component fails."
+    },
+    {
+      "id": "A0011",
+      "name": "Virtual Private Network (VPN) Server",
+      "description": "A VPN server is a device that is used to establish a secure network tunnel between itself and other remote VPN devices, including field VPNs. VPN servers can be used to establish a secure connection with a single remote device, or to securely bridge all traffic between two separate networks together by encapsulating all data between those networks. VPN servers typically support remote network services that are used by field VPNs to initiate the establishment of the secure VPN tunnel between the field device and server."
+    },
+    {
+      "id": "A0012",
+      "name": "Jump Host",
+      "description": "Jump hosts are devices used to support remote management sessions into ICS networks or devices. The system is used to access the ICS environment securely from external networks, such as the corporate network. The user must first remote into the jump host before they can access ICS devices. The jump host may be a customized Windows server using common remote access protocols (e.g., RDP) or a dedicated access management device. The jump host typically performs various security functions to ensure the authenticity of remote sessions, including authentication, enforcing access controls/permissions, and auditing all access attempts.  "
+    },
+    {
+      "id": "A0013",
+      "name": "Field I/O",
+      "description": "Field I/O are devices that communicate with a controller or data aggregator to either send input data or receive output data. Input data may include readings about a given environment/device state from sensors, while output data may include data sent back to actuators for them to either undertake actions or change parameter values.(Citation: Guidance - NIST SP800-82) These devices are frequently embedded devices running on lightweight embedded operating systems or RTOSes. "
+    },
+    {
+      "id": "A0014",
+      "name": "Routers",
+      "description": "A computer that is a gateway between two networks at OSI layer 3 and that relays and directs data packets through that inter-network. The most common form of router operates on IP packets.(Citation: IETF RFC4949 2007)"
+    }
+  ],
+  "related_cases": [
+    {
+      "case_id": "C0028",
+      "case_name": "2015 Ukraine Electric Power Attack",
+      "descriptions": [
+        {
+          "tech_id": "T0885",
+          "tech_name": "Commonly Used Port",
+          "case_description": "During the [2015 Ukraine Electric Power Attack](https://attack.mitre.org/campaigns/C0028), [Sandworm Team](https://attack.mitre.org/groups/G0034) used port 443 to communicate with their C2 servers. (Citation: Booz Allen Hamilton)"
+        }
+      ]
+    },
+    {
+      "case_id": "C0030",
+      "case_name": "Triton Safety Instrumented System Attack",
+      "descriptions": [
+        {
+          "tech_id": "T0830",
+          "tech_name": "Adversary-in-the-Middle",
+          "case_description": "In the [Triton Safety Instrumented System Attack](https://attack.mitre.org/campaigns/C0030), [TEMP.Veles](https://attack.mitre.org/groups/G0088) changed phone numbers tied to certain specific accounts in a designated contact list. They then used the changed phone numbers to redirect network traffic to websites controlled by them, thereby allowing them to capture and use any login codes sent to the devices via text message.(Citation: Triton-EENews-2017)"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR003",
+      "case_name": "NIGHT DRAGON CAMPAIGN (2007 TO 2011) TARGETING A U.S.-BASED OIL AND GAS FIRM",
+      "descriptions": [
+        {
+          "tech_id": "T0885",
+          "tech_name": "Commonly Used Port",
+          "case_description": "Anomalous Network Traffic: From Supervisory Control and Data Acquisition (SCADA) System to External Remote Server: Simple Mail Transfer Protocol (SMTP) Over TCP Port 25: Containing Local File Information: Operational Technology (OT) Information: Associated with Anomalous Executable: zwShell.exe"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR004",
+      "case_name": "BAKU-TBILISI-CEYHAN (BTC) PIPELINE EXPLOSION IN REFAHIYE, TURKEY 2008",
+      "descriptions": [
+        {
+          "tech_id": "T0840",
+          "tech_name": "Network Connection Enumeration",
+          "case_description": "Loss of Revenue: $3-4 Billion in Export Revenue"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR005",
+      "case_name": "HAVEX MALWARE IN A U.S. MANUFACTURING FACILITY 2014",
+      "descriptions": [
+        {
+          "tech_id": "T0885",
+          "tech_name": "Commonly Used Port",
+          "case_description": "Anomalous System Behavior on Local Host: Rollback to Last Safe Backup"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR006",
+      "case_name": "Cyber Attack on Thyssenkrupp Blast Furnace 2014",
+      "descriptions": [
+        {
+          "tech_id": "T0885",
+          "tech_name": "Commonly Used Port",
+          "case_description": "Anomalous Loss of Productivity: Extensive Delays in Planned Outage Cycle: 30 Additional Days in Outage Cycle"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR007",
+      "case_name": "UKRAINE ENERGY SECTOR CYBER ATTACK 2015 (BlackEnergy)",
+      "descriptions": [
+        {
+          "tech_id": "T0840",
+          "tech_name": "Network Connection Enumeration",
+          "case_description": "Anomalous System Behavior on Local Host: Windows is Shutting Down (Windows Event ID 4609)"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR008",
+      "case_name": "INDUSTROYER TARGETING UKRAINE ELECTRIC POWER TRANSPORT UTILITY (UKRENERGO) 2016",
+      "descriptions": [
+        {
+          "tech_id": "T0840",
+          "tech_name": "Network Connection Enumeration",
+          "case_description": "Anomalous System Behavior on Local Host: Anomalous Failure to Reboot Operating System (OS)"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR009",
+      "case_name": "CONFICKER INFECTION OF GUNDREMMINGEN NUCLEAR POWER PLANT 2016",
+      "descriptions": [
+        {
+          "tech_id": "T0885",
+          "tech_name": "Commonly Used Port",
+          "case_description": "Anomalous System Behavior on Local Host: Rollback to Last Safe Backup"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR011",
+      "case_name": "WANNACRY RANSOMWARE ATTACK ON RENAULT-NISSAN",
+      "descriptions": [
+        {
+          "tech_id": "T0840",
+          "tech_name": "Network Connection Enumeration",
+          "case_description": "Files Anomalously Missing on User Host"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR012",
+      "case_name": "TRITON MALWARE ATTACK AGAINST PETRO RABIGH",
+      "descriptions": [
+        {
+          "tech_id": "T0885",
+          "tech_name": "Commonly Used Port",
+          "case_description": "Anomalous Loss of Revenue: Approximately $938,000"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR016",
+      "case_name": "2020 SOLARWINDS SUPPLY CHAIN COMPROMISE AGAINST A U.S. ENERGY PROVIDER",
+      "descriptions": [
+        {
+          "tech_id": "T0885",
+          "tech_name": "Commonly Used Port",
+          "case_description": "Anomalous Loss of Revenue: Cost Associated With Reputational Damage"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR017",
+      "case_name": "DOPPELPAYMER RANSOMWARE ATTACK ON PETROLEOS MEXICANOS (PEMEX) 2019",
+      "descriptions": [
+        {
+          "tech_id": "T0885",
+          "tech_name": "Commonly Used Port",
+          "case_description": "Anomalous Loss of Productivity: Business Processes Inaccessible: Billing"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR018",
+      "case_name": "EKANS RANSOMWARE ATTACK ON HONDA",
+      "descriptions": [
+        {
+          "tech_id": "T0840",
+          "tech_name": "Network Connection Enumeration",
+          "case_description": "Loss of Revenue"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR019",
+      "case_name": "MUMBAI 2020 POWER OUTAGE-RELIABILITY FAILURE EXPOSES MALWARE INTRUSION",
+      "descriptions": [
+        {
+          "tech_id": "T0885",
+          "tech_name": "Commonly Used Port",
+          "case_description": "Anomalous Behavior of Controlled Process: Generation Loss: 1375 MW"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR020",
+      "case_name": "RYUK RANSOMWARE ATTACK ON UNIVERSAL HEALTH SERVICES 2020",
+      "descriptions": [
+        {
+          "tech_id": "T0885",
+          "tech_name": "Commonly Used Port",
+          "case_description": "Anomalous Loss of Revenue: $67 Million"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR022",
+      "case_name": "JBS FOODS RANSOMWARE ATTACK 2021",
+      "descriptions": [
+        {
+          "tech_id": "T0885",
+          "tech_name": "Commonly Used Port",
+          "case_description": "Anomalous Loss of Revenue: Company Stock Valuation Decrease"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR023",
+      "case_name": "CONTI RANSOMWARE ATTACK ON THE HEALTH SERVICE EXECUTIVE OF IRELAND 2021",
+      "descriptions": [
+        {
+          "tech_id": "T0840",
+          "tech_name": "Network Connection Enumeration",
+          "case_description": "Anomalous Loss of Productivity: Extended Recovery Period: 130 Days of Corporate and Operational Service Full Recovery"
+        },
+        {
+          "tech_id": "T0885",
+          "tech_name": "Commonly Used Port",
+          "case_description": "Anomalous Loss of Productivity: Extended Recovery Period: 130 Days of Corporate and Operational Service Full Recovery"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR025",
+      "case_name": "BLACKMATTER RANSOMWARE ATTACK ON NEW COOPERATIVE 2021",
+      "descriptions": [
+        {
+          "tech_id": "T0885",
+          "tech_name": "Commonly Used Port",
+          "case_description": "Anomalous System Behavior on Local Host: Anomalous Interruption of Automated Processes: Information Technology (IT) Systems: Production Systems: For Eight Weeks"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR026",
+      "case_name": "INDUSTROYER2 AND WIPER MALWARE TARGETING UKRAINIAN ENERGY PROVIDER 2022",
+      "descriptions": [
+        {
+          "tech_id": "T0840",
+          "tech_name": "Network Connection Enumeration",
+          "case_description": "Anomalous System Behavior on Local Host: Anomalous Modification of Data: Within GUID Partition Table (GPT): Overwriting Existing Data: Overwriting with Null Bytes"
+        },
+        {
+          "tech_id": "T0885",
+          "tech_name": "Commonly Used Port",
+          "case_description": "Anomalous System Behavior on Local Host: Anomalous Modification of Data: Within GUID Partition Table (GPT): Overwriting Existing Data: Overwriting with Null Bytes"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR027",
+      "case_name": "OPERATIONAL TECHNOLOGY MALWARE FRAMEWORKS BASED ON INCONTROLLER",
+      "descriptions": [
+        {
+          "tech_id": "T0885",
+          "tech_name": "Commonly Used Port",
+          "case_description": "Anomalous Behavior of Controlled Process: Sustained Loss of Control"
+        }
+      ]
+    },
+    {
+      "case_id": "S0603",
+      "case_name": "Stuxnet",
+      "descriptions": [
+        {
+          "tech_id": "T0885",
+          "tech_name": "Commonly Used Port",
+          "case_description": "[Stuxnet](https://attack.mitre.org/software/S0603) attempts to contact command and control servers on port 80 to send basic information about the computer it has compromised. (Citation: Nicolas Falliere, Liam O Murchu, Eric Chien February 2011)"
+        }
+      ]
+    },
+    {
+      "case_id": "S0604",
+      "case_name": "Industroyer",
+      "descriptions": [
+        {
+          "tech_id": "T0840",
+          "tech_name": "Network Connection Enumeration",
+          "case_description": "[Industroyer](https://attack.mitre.org/software/S0604) contains an IEC 61850 module that enumerates all connected network adapters to determine their TCP/IP subnet masks. (Citation: Anton Cherepanov, ESET June 2017)"
+        }
+      ]
+    },
+    {
+      "case_id": "S0605",
+      "case_name": "EKANS",
+      "descriptions": [
+        {
+          "tech_id": "T0840",
+          "tech_name": "Network Connection Enumeration",
+          "case_description": "[EKANS](https://attack.mitre.org/software/S0605) performs a DNS lookup of an internal domain name associated with its target network to identify if it was deployed on the intended system. (Citation: Ben Hunter and Fred Gutierrez July 2020)"
+        }
+      ]
+    },
+    {
+      "case_id": "S1009",
+      "case_name": "Triton",
+      "descriptions": [
+        {
+          "tech_id": "T0885",
+          "tech_name": "Commonly Used Port",
+          "case_description": "[Triton](https://attack.mitre.org/software/S1009) uses TriStations default UDP port, 1502, to communicate with devices. (Citation: MDudek-ICS)"
+        }
+      ]
+    },
+    {
+      "case_id": "S1010",
+      "case_name": "VPNFilter",
+      "descriptions": [
+        {
+          "tech_id": "T0830",
+          "tech_name": "Adversary-in-the-Middle",
+          "case_description": "The [VPNFilter](https://attack.mitre.org/software/S1010)'s ssler module configures the device's iptables to redirect all traffic destined for port 80 to its local service listening on port 8888. Any outgoing web requests on port 80 are now intercepted by ssler and can be inspected by the ps module and manipulated before being sent to the legitimate HTTP service. (Citation: William Largent June 2018) (Citation: Carl Hurd March 2019)"
+        }
+      ]
+    },
+    {
+      "case_id": "S1165",
+      "case_name": "FrostyGoop",
+      "descriptions": [
+        {
+          "tech_id": "T0885",
+          "tech_name": "Commonly Used Port",
+          "case_description": "[FrostyGoop](https://attack.mitre.org/software/S1165) communicates using the Modbus protocol over the standard port of TCP 502.(Citation: Dragos FROSTYGOOP 2024)"
+        }
+      ]
+    }
+  ],
+  "example_usage": "Test 4",
+  "github": "Test 4",
+  "factsheet": "Test"
+}

@@ -1,0 +1,303 @@
+{
+  "tool_name": "Test",
+  "description": "Test",
+  "user_roles": [
+    {
+      "name": "OT Cybersecurity"
+    }
+  ],
+  "tactics_supported": [
+    "TA0100 - Collection",
+    "TA0103 - Evasion",
+    "TA0104 - Execution",
+    "TA0105 - Impact"
+  ],
+  "techniques_supported": [
+    {
+      "id": "T0820",
+      "name": "Exploitation for Evasion",
+      "description": "Adversaries may exploit a software vulnerability to take advantage of a programming error in a program, service, or within the operating system software or kernel itself to evade detection. Vulnerabilities may exist in software that can be used to disable or circumvent security features.  \n\nAdversaries may have prior knowledge through [Remote System Information Discovery](https://attack.mitre.org/techniques/T0888) about security features implemented on control devices. These device security features will likely be targeted directly for exploitation. There are examples of firmware RAM/ROM consistency checks on control devices being targeted by adversaries to enable the installation of malicious [System Firmware](https://attack.mitre.org/techniques/T0857)."
+    },
+    {
+      "id": "T0872",
+      "name": "Indicator Removal on Host",
+      "description": "Adversaries may attempt to remove indicators of their presence on a system in an effort to cover their tracks. In cases where an adversary may feel detection is imminent, they may try to overwrite, delete, or cover up changes they have made to the device."
+    },
+    {
+      "id": "T0849",
+      "name": "Masquerading",
+      "description": "Adversaries may use masquerading to disguise a malicious application or executable as another file, to avoid operator and engineer suspicion. Possible disguises of these masquerading files can include commonly found programs, expected vendor executables and configuration files, and other commonplace application and naming conventions. By impersonating expected and vendor-relevant files and applications, operators and engineers may not notice the presence of the underlying malicious content and possibly end up running those masquerading as legitimate functions. \n\nApplications and other files commonly found on Windows systems or in engineering workstations have been impersonated before. This can be as simple as renaming a file to effectively disguise it in the ICS environment."
+    },
+    {
+      "id": "T0851",
+      "name": "Rootkit",
+      "description": "Adversaries may deploy rootkits to hide the presence of programs, files, network connections, services, drivers, and other system components. Rootkits are programs that hide the existence of malware by intercepting and modifying operating-system API calls that supply system information. Rootkits or rootkit-enabling functionality may reside at the user or kernel level in the operating system, or lower. (Citation: Enterprise ATT&CK January 2018)   \n\nFirmware rootkits that affect the operating system yield nearly full control of the system. While firmware rootkits are normally developed for the main processing board, they can also be developed for the I/O that is attached to an asset. Compromise of this firmware allows the modification of all of the process variables and functions the module engages in. This may result in commands being disregarded and false information being fed to the main device. By tampering with device processes, an adversary may inhibit its expected response functions and possibly enable [Impact](https://attack.mitre.org/tactics/TA0105)."
+    },
+    {
+      "id": "T0856",
+      "name": "Spoof Reporting Message",
+      "description": "Adversaries may spoof reporting messages in control system environments for evasion and to impair process control. In control systems, reporting messages contain telemetry data (e.g., I/O values) pertaining to the current state of equipment and the industrial process. Reporting messages are important for monitoring the normal operation of a system or identifying important events such as deviations from expected values. \n\nIf an adversary has the ability to Spoof Reporting Messages, they can impact the control system in many ways. The adversary can Spoof Reporting Messages that state that the process is operating normally, as a form of evasion. The adversary could also Spoof Reporting Messages to make the defenders and operators think that other errors are occurring in order to distract them from the actual source of a problem. (Citation: Bonnie Zhu, Anthony Joseph, Shankar Sastry 2011) "
+    },
+    {
+      "id": "T0894",
+      "name": "System Binary Proxy Execution",
+      "description": "Adversaries may bypass process and/or signature-based defenses by proxying execution of malicious content with signed, or otherwise trusted, binaries. Binaries used in this technique are often Microsoft-signed files, indicating that they have been either downloaded from Microsoft or are already native in the operating system. (Citation: LOLBAS Project) Binaries signed with trusted digital certificates can typically execute on Windows systems protected by digital signature validation. Several Microsoft signed binaries that are default on Windows installations can be used to proxy execution of other files or commands. Similarly, on Linux systems adversaries may abuse trusted binaries such as split to proxy execution of malicious commands. (Citation: split man page)(Citation: GTFO split)\n\nAdversaries may abuse application binaries installed on a system for proxy execution of malicious code or domain-specific commands. These commands could be used to target local resources on the device or networked devices within the environment through defined APIs ([Execution through API](https://attack.mitre.org/techniques/T0871)) or application-specific programming languages (e.g., MicroSCADA SCIL). Application binaries may be signed by the developer or generally trusted by the operators, analysts, and monitoring tools accustomed to the environment. These applications may be developed and/or directly provided by the device vendor to enable configuration, management, and operation of their devices without many alternatives. \n\nAdversaries may seek to target these trusted application binaries to execute or send commands without the development of custom malware. For example, adversaries may target a SCADA server binary which has the existing ability to send commands to substation devices, such as through IEC 104 command messages. Proxy execution may still require the development of custom tools to hook into the application binary\u2019s execution.\n\n"
+    },
+    {
+      "id": "T0895",
+      "name": "Autorun Image",
+      "description": "Adversaries may leverage AutoRun functionality or scripts to execute malicious code. Devices configured to enable AutoRun functionality or legacy operating systems may be susceptible to abuse of these features to run malicious code stored on various forms of removeable media (i.e., USB, Disk Images [.ISO]). Commonly, AutoRun or AutoPlay are disabled in many operating systems configurations to mitigate against this technique. If a device is configured to enable AutoRun or AutoPlay, adversaries may execute code on the device by mounting the removable media to the device, either through physical or virtual means. This may be especially relevant for virtual machine environments where disk images may be dynamically mapped to a guest system on a hypervisor.  \n\nAn example could include an adversary gaining access to a hypervisor through the management interface to modify a virtual machine\u2019s hardware configuration. They could then deploy an iso image with a malicious AutoRun script to cause the virtual machine to automatically execute the code contained on the disk image. This would enable the execution of malicious code within a virtual machine without needing any prior remote access to that system.\n"
+    },
+    {
+      "id": "T0858",
+      "name": "Change Operating Mode",
+      "description": "Adversaries may change the operating mode of a controller to gain additional access to engineering functions such as Program Download.   Programmable controllers typically have several modes of operation that control the state of the user program and control access to the controllers API. Operating modes can be physically selected using a key switch on the face of the controller but may also be selected with calls to the controllers API. Operating modes and the mechanisms by which they are selected often vary by vendor and product line. Some commonly implemented operating modes are described below:  \n\n* Program - This mode must be enabled before changes can be made to a devices program. This allows program uploads and downloads between the device and an engineering workstation. Often the PLCs logic Is halted, and all outputs may be forced off. (Citation: N.A. October 2017)  \n* Run - Execution of the devices program occurs in this mode. Input and output (values, points, tags, elements, etc.) are monitored and used according to the programs logic. [Program Upload](https://attack.mitre.org/techniques/T0845) and [Program Download](https://attack.mitre.org/techniques/T0843) are disabled while in this mode. (Citation: Omron) (Citation: Machine Information Systems 2007)  (Citation: N.A. October 2017) (Citation: PLCgurus 2021)   \n* Remote - Allows for remote changes to a PLCs operation mode. (Citation: PLCgurus 2021)    \n* Stop - The PLC and program is stopped, while in this mode, outputs are forced off. (Citation: Machine Information Systems 2007)   \n* Reset - Conditions on the PLC are reset to their original states. Warm resets may retain some memory while cold resets will reset all I/O and data registers. (Citation: Machine Information Systems 2007)   \n* Test / Monitor mode - Similar to run mode, I/O is processed, although this mode allows for monitoring, force set, resets, and more generally tuning or debugging of the system. Often monitor mode may be used as a trial for initialization. (Citation: Omron)"
+    },
+    {
+      "id": "T0807",
+      "name": "Command-Line Interface",
+      "description": "Adversaries may utilize command-line interfaces (CLIs) to interact with systems and execute commands. CLIs provide a means of interacting with computer systems and are a common feature across many types of platforms and devices within control systems environments. (Citation: Enterprise ATT&CK January 2018) Adversaries may also use CLIs to install and run new software, including malicious tools that may be installed over the course of an operation.\n\nCLIs are typically accessed locally, but can also be exposed via services, such as SSH, Telnet, and RDP.  Commands that are executed in the CLI execute with the current permissions level of the process running the terminal emulator, unless the command specifies a change in permissions context. Many controllers have CLI interfaces for management purposes."
+    },
+    {
+      "id": "T0871",
+      "name": "Execution through API",
+      "description": "Adversaries may attempt to leverage Application Program Interfaces (APIs) used for communication between control software and the hardware. Specific functionality is often coded into APIs which can be called by software to engage specific functions on a device or other software."
+    },
+    {
+      "id": "T0823",
+      "name": "Graphical User Interface",
+      "description": "Adversaries may attempt to gain access to a machine via a Graphical User Interface (GUI) to enhance execution capabilities. Access to a GUI allows a user to interact with a computer in a more visual manner than a CLI. A GUI allows users to move a cursor and click on interface objects, with a mouse and keyboard as the main input devices, as opposed to just using the keyboard.\n\nIf physical access is not an option, then access might be possible via protocols such as VNC on Linux-based and Unix-based operating systems, and RDP on Windows operating systems. An adversary can use this access to execute programs and applications on the target machine."
+    },
+    {
+      "id": "T0879",
+      "name": "Damage to Property",
+      "description": "Adversaries may cause damage and destruction of property to infrastructure, equipment, and the surrounding environment when attacking control systems. This technique may result in device and operational equipment breakdown, or represent tangential damage from other techniques used in an attack. Depending on the severity of physical damage and disruption caused to control processes and systems, this technique may result in [Loss of Safety](https://attack.mitre.org/techniques/T0880). Operations that result in [Loss of Control](https://attack.mitre.org/techniques/T0827) may also cause damage to property, which may be directly or indirectly motivated by an adversary seeking to cause impact in the form of [Loss of Productivity and Revenue](https://attack.mitre.org/techniques/T0828). \n\n\nThe German Federal Office for Information Security (BSI) reported a targeted attack on a steel mill under an incidents affecting business section of its 2014 IT Security Report. (Citation: BSI State of IT Security 2014)  These targeted attacks affected industrial operations and resulted in breakdowns of control system components and even entire installations. As a result of these breakdowns, massive impact and damage resulted from the uncontrolled shutdown of a blast furnace. \n\nA Polish student used a remote controller device to interface with the Lodz city tram system in Poland. (Citation: John Bill May 2017) (Citation: Shelley Smith February 2008) (Citation: Bruce Schneier January 2008) Using this remote, the student was able to capture and replay legitimate tram signals. This resulted in damage to impacted trams, people, and the surrounding property. Reportedly, four trams were derailed and were forced to make emergency stops. (Citation: Shelley Smith February 2008) Commands issued by the student may have also resulted in tram collisions, causing harm to those on board and the environment outside. (Citation: Bruce Schneier January 2008)"
+    },
+    {
+      "id": "T0813",
+      "name": "Denial of Control",
+      "description": "Adversaries may cause a denial of control to temporarily prevent operators and engineers from interacting with process controls. An adversary may attempt to deny process control access to cause a temporary loss of communication with the control device or to prevent operator adjustment of process controls. An affected process may still be operating during the period of control loss, but not necessarily in a desired state. (Citation: Corero) (Citation: Michael J. Assante and Robert M. Lee) (Citation: Tyson Macaulay)\n\nIn the 2017 Dallas Siren incident operators were unable to disable the false alarms from the Office of Emergency Management headquarters. (Citation: Mark Loveless April 2017)"
+    },
+    {
+      "id": "T0826",
+      "name": "Loss of Availability",
+      "description": "Adversaries may attempt to disrupt essential components or systems to prevent owner and operator from delivering products or services. (Citation: Corero) (Citation: Michael J. Assante and Robert M. Lee) (Citation: Tyson Macaulay) \n\nAdversaries may leverage malware to delete or encrypt critical data on HMIs, workstations, or databases.\n\nIn the 2021 Colonial Pipeline ransomware incident, pipeline operations were temporally halted on May 7th and were not fully restarted until May 12th. (Citation: Colonial Pipeline Company May 2021)"
+    }
+  ],
+  "data_sources": [
+    {
+      "id": "DS0015",
+      "name": "Application Log"
+    },
+    {
+      "id": "DS0015",
+      "name": "Application Log"
+    },
+    {
+      "id": "DS0039",
+      "name": "Asset"
+    },
+    {
+      "id": "DS0039",
+      "name": "Asset"
+    },
+    {
+      "id": "DS0039",
+      "name": "Asset"
+    }
+  ],
+  "observable_types": [
+    {
+      "category": "Host",
+      "name": "Firmware"
+    },
+    {
+      "category": "Host",
+      "name": "Firmware: Firmware Modification"
+    },
+    {
+      "category": "Host",
+      "name": "User Account"
+    },
+    {
+      "category": "Host",
+      "name": "User Account: User Account Authentication"
+    },
+    {
+      "category": "Host",
+      "name": "Scheduled Job"
+    },
+    {
+      "category": "Host",
+      "name": "Scheduled Job: Scheduled Job Creation"
+    }
+  ],
+  "use_cases": [
+    {
+      "id": 5,
+      "name": "Govern: Oversight"
+    },
+    {
+      "id": 8,
+      "name": "Identify: Risk Assessment"
+    },
+    {
+      "id": 12,
+      "name": "Protect: Data Security"
+    },
+    {
+      "id": 17,
+      "name": "Detect: Anomalies and Events"
+    },
+    {
+      "id": 21,
+      "name": "Respond: Communications"
+    },
+    {
+      "id": 26,
+      "name": "Recover: Improvements"
+    }
+  ],
+  "deployment_context": [
+    {
+      "id": 1,
+      "label": "Tool Input: STIX 2.1 Bundle",
+      "description": "Structured CTI ingestion format used by most threat intel platforms"
+    },
+    {
+      "id": 4,
+      "label": "Tool Input: CSV File",
+      "description": "Tabular indicators, logs, or IOCs in a spreadsheet-compatible format"
+    },
+    {
+      "id": 7,
+      "label": "Tool Output: STIX 2.1 Bundle",
+      "description": "Enriched CTI output compatible with OpenCTI or MISP"
+    },
+    {
+      "id": 10,
+      "label": "Tool Output: CSV Export",
+      "description": "Human-readable structured report of tool results"
+    },
+    {
+      "id": 12,
+      "label": "Tool Output: TXT Log",
+      "description": "Plain text logging of tool activity or scan results"
+    },
+    {
+      "id": 13,
+      "label": "Format: STIX 2.1",
+      "description": "Structured Threat Intelligence format by OASIS used in CTI exchanges"
+    },
+    {
+      "id": 14,
+      "label": "Format: JSON",
+      "description": "Standard structured data format for input/output between tools"
+    },
+    {
+      "id": 17,
+      "label": "Format: TXT",
+      "description": "Raw plaintext format"
+    },
+    {
+      "id": 21,
+      "label": "Hosted: Containerized (Docker)",
+      "description": "Runs in a portable containerized environment"
+    },
+    {
+      "id": 24,
+      "label": "Hosted: Web Service Application",
+      "description": "Tool is deployed as a browser-accessible web service hosted internally or in the cloud"
+    },
+    {
+      "id": 25,
+      "label": "Hosted: Local Application Executable",
+      "description": "Tool runs as a native GUI application installed on a local system"
+    },
+    {
+      "id": 27,
+      "label": "User Input: Form Fields (GUI)",
+      "description": "Tool provides form fields for entering observables, filters, or parameters"
+    },
+    {
+      "id": 31,
+      "label": "Interface: Web Dashboard",
+      "description": "Browser-based interface for search, configuration, and results visualization"
+    }
+  ],
+  "targeted_assets": [
+    {
+      "id": "A0001",
+      "name": "Workstation",
+      "description": "Workstations are devices used by human operators or engineers to perform various configuration, programming, maintenance, diagnostic, or operational tasks. Workstations typically utilize standard desktop or laptop hardware and operating systems (e.g., MS Windows), but run dedicated control system applications or diagnostic/management software     to support interfacing with the control servers or field devices. Some workstations have a fixed location within the network architecture, while others are transient devices that are directly connected to various field devices to support local management activities."
+    },
+    {
+      "id": "A0002",
+      "name": "Human-Machine Interface (HMI)",
+      "description": "Human-Machine Interfaces (HMIs) are systems used by an operator to monitor the real-time status of an operational process and to perform necessary control functions, including the adjustment of device parameters. An HMI can take various forms, including a dedicated screen or control panel integrated with a specific device/controller, or a customizable software GUI application running on a standard operating system (e.g., MS Windows) that interfaces with a control/SCADA server. The HMI is critical to ensuring operators have sufficient visibility and control over the operational process."
+    },
+    {
+      "id": "A0006",
+      "name": "Data Historian",
+      "description": "Data historians, or historian, are systems used to collect and store data, including telemetry, events, alerts, and alarms about the operational process and supporting devices. The historian typically utilizes a database to store this data, and commonly provide tools and interfaces to support the analysis of the data. Data historians are often used to support various engineering or business analysis functions and therefore commonly needs access from the corporate network. Data historians often work in a hierarchical paradigm where lower/site level historians collect and store data which is then aggregated into a site/plant level historian. Therefore, data historians often have remote services that can be accessed externally from the ICS network."
+    },
+    {
+      "id": "A0007",
+      "name": "Control Server",
+      "description": "Control servers are typically a software platform that runs on a modern server operating system (e.g., MS Windows Server). The server typically uses one or more automation protocols (e.g., Modbus, DNP3) to communicate with the various low-level control devices such as Remote Terminal Units (RTUs) and Programmable Logic Controllers (PLCs). The control server also usually provides an interface/network service to connect with an HMI."
+    },
+    {
+      "id": "A0008",
+      "name": "Application Server",
+      "description": "Application servers are used across many different sectors to host various diverse software applications necessary to supporting the ICS. Example functions can include data analytics and reporting, alarm management, and the management/coordination of different control servers.  The application server typically runs on a modern server operating system (e.g., MS Windows Server)."
+    },
+    {
+      "id": "A0009",
+      "name": "Data Gateway",
+      "description": "Data Gateway is a device that supports the communication and exchange of data between different systems, networks, or protocols within the ICS. Different types of data gateways are used to perform various functions, including:\n\n *  <u>Protocol Translation:</u> Enable communication to devices that support different or incompatible protocols by translating information from one protocol to another. \n *  <u>Media Converter:</u> Convert data across different Layer 1 and 2 network protocols / mediums, for example, converting from Serial to Ethernet. \n *  <u>Data Aggregation:</u> Collect and combine data from different devices into one consistent format and protocol interface. \n\nData gateways are often critical to the forwarding/transmission of critical control or monitoring data within the ICS. Further, these devices often have remote various network services that are used to communicate across different zones or networks.  \n\nThese assets may focus on a single function listed below or combinations of these functions to best fit the industry use-case. \n"
+    },
+    {
+      "id": "A0012",
+      "name": "Jump Host",
+      "description": "Jump hosts are devices used to support remote management sessions into ICS networks or devices. The system is used to access the ICS environment securely from external networks, such as the corporate network. The user must first remote into the jump host before they can access ICS devices. The jump host may be a customized Windows server using common remote access protocols (e.g., RDP) or a dedicated access management device. The jump host typically performs various security functions to ensure the authenticity of remote sessions, including authentication, enforcing access controls/permissions, and auditing all access attempts.  "
+    },
+    {
+      "id": "A0003",
+      "name": "Programmable Logic Controller (PLC)",
+      "description": "A Programmable Logic Controller (PLC) is an embedded programmable control device. PLCs typically utilize a modular architecture with separate modules used to support its processing capabilities, communication mediums, and I/O interfaces. PLCs allow for the deployment of customized programs/logic to control or monitor an operational process. This logic is defined using industry specific programming languages, such as IEC 61131 (Citation: IEC February 2013), which define the set of tasks and program organizational units (POUs) included in the device\u2019s programs.  PLCs also typically have distinct operating modes (e.g., Remote, Run, Program, Stop) which are used to determine when the device can be programmed or whether it should execute the custom logic."
+    },
+    {
+      "id": "A0005",
+      "name": "Intelligent Electronic Device (IED)",
+      "description": "An Intelligent Electronic Device (IED) is a type of specialized field device that is designed to perform specific operational functions, frequently for protection, monitoring, or control within the electric sector. IEDs are typically used to both acquire telemetry and execute tailored control algorithms/actions based on customizable parameters/settings. An IED is usually implemented as a dedicated embedded device and supports various network automation protocols to communicate with RTUs and Control Servers."
+    },
+    {
+      "id": "A0010",
+      "name": "Safety Controller",
+      "description": "Safety controllers are typically a type of field device used to perform the safety critical function. Safety controllers often support the deployment of custom programs/logic, similar to a PLC, but can also be tailored for sector specific functions/applications. The safety controllers typically utilize redundant hardware and processors to ensure they operate reliably if a component fails."
+    },
+    {
+      "id": "A0011",
+      "name": "Virtual Private Network (VPN) Server",
+      "description": "A VPN server is a device that is used to establish a secure network tunnel between itself and other remote VPN devices, including field VPNs. VPN servers can be used to establish a secure connection with a single remote device, or to securely bridge all traffic between two separate networks together by encapsulating all data between those networks. VPN servers typically support remote network services that are used by field VPNs to initiate the establishment of the secure VPN tunnel between the field device and server."
+    },
+    {
+      "id": "A0014",
+      "name": "Routers",
+      "description": "A computer that is a gateway between two networks at OSI layer 3 and that relays and directs data packets through that inter-network. The most common form of router operates on IP packets.(Citation: IETF RFC4949 2007)"
+    },
+    {
+      "id": "A0013",
+      "name": "Field I/O",
+      "description": "Field I/O are devices that communicate with a controller or data aggregator to either send input data or receive output data. Input data may include readings about a given environment/device state from sensors, while output data may include data sent back to actuators for them to either undertake actions or change parameter values.(Citation: Guidance - NIST SP800-82) These devices are frequently embedded devices running on lightweight embedded operating systems or RTOSes. "
+    },
+    {
+      "id": "A0004",
+      "name": "Remote Terminal Unit (RTU)",
+      "description": "A Remote Terminal Unit (RTU) is a device that typically resides between field devices (e.g., PLCs, IEDs) and control/SCADA servers and supports various communication interfacing and data aggregation functions. RTUs are typically responsible for forwarding commands from the control server and the collection of telemetry, events, and alerts from the field devices. An RTU can be implemented as a dedicated embedded device, as software platform that runs on a hardened/ruggedized computer, or using a custom application program on a PLC."
+    }
+  ],
+  "example_usage": "Test",
+  "github": "Test",
+  "factsheet": "Test"
+}

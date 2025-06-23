@@ -1,0 +1,21 @@
+id,name,description
+1,STIX 2.1,"Structured Threat Intelligence format (OASIS) for sharing CTI with tools like OpenCTI, MISP"
+2,JSON,"General-purpose structured format for config, logs, telemetry, or API response data"
+3,CSV,"Tabular data format for structured logs, observables, indicators, or reports"
+4,PDF,"Human-readable output for briefings, summaries, or deliverables"
+5,TXT,Raw log export or plain text data for analyst review
+6,PCAP,Packet capture export for replay or further network analysis
+7,YAML,"Human-readable structured format for config files, policy export, or AI/ML pipelines"
+8,XML,Machine-readable hierarchical format used in legacy CTI tools or policy frameworks
+9,Markdown (.md),Lightweight export format for documentation or README-style auto-generated summaries
+10,HTML Report,Rendered output for browser-based result viewing or reporting portals
+11,GraphML,"Graph structure export for knowledge graphs or visualization platforms (e.g., Gephi, Cytoscape)"
+12,DOT (Graphviz),Exported adversary emulation paths or system diagrams in Graphviz DOT format
+13,MITRE Attack Flow (JSON),Standardized adversary sequence format for ATT&CK Flow-based modeling
+14,Sigma Rules (.yml),Detection rule export format for SIEM platforms
+15,Suricata Rules (.rules),Network detection rule export for IDS systems
+16,Zeek Scripts (.zeek),Behavioral detection logic or parsing modules for Zeek NIDS
+17,Custom Binary Format,Proprietary format used for model artifacts or compressed data packages
+18,Docker Image (tar.gz),Full system export as a container for reproducible experiments
+19,Executable (.exe / .bin),Compiled binary artifacts for deployment in test environments
+20,SBOM (CycloneDX / SPDX),"Software Bill of Materials export for compliance, provenance, or audit"

@@ -1,0 +1,4094 @@
+{
+  "tool_name": "CyOTE Catch",
+  "description": "Detection capability for OT environments. Collect events based upon detection rules related to specific MITRE ATT&CK for ICS Techniques. After the collection happens the tool outputs STIX 2.1 compliant json bundles.",
+  "user_roles": [],
+  "tactics_supported": [
+    {
+      "name": "Collection",
+      "matrix": "Enterprise"
+    },
+    {
+      "name": "Collection",
+      "matrix": "ICS"
+    },
+    {
+      "name": "Command and Control",
+      "matrix": "Enterprise"
+    },
+    {
+      "name": "Command and Control",
+      "matrix": "ICS"
+    },
+    {
+      "name": "Credential Access",
+      "matrix": "Enterprise"
+    },
+    {
+      "name": "Defense Evasion",
+      "matrix": "Enterprise"
+    },
+    {
+      "name": "Discovery",
+      "matrix": "Enterprise"
+    },
+    {
+      "name": "Discovery",
+      "matrix": "ICS"
+    },
+    {
+      "name": "Evasion",
+      "matrix": "ICS"
+    },
+    {
+      "name": "Execution",
+      "matrix": "Enterprise"
+    },
+    {
+      "name": "Execution",
+      "matrix": "ICS"
+    },
+    {
+      "name": "Exfiltration",
+      "matrix": "Enterprise"
+    },
+    {
+      "name": "Impact",
+      "matrix": "Enterprise"
+    },
+    {
+      "name": "Impact",
+      "matrix": "ICS"
+    },
+    {
+      "name": "Impair Process Control",
+      "matrix": "ICS"
+    },
+    {
+      "name": "Inhibit Response Function",
+      "matrix": "ICS"
+    },
+    {
+      "name": "Initial Access",
+      "matrix": "Enterprise"
+    },
+    {
+      "name": "Initial Access",
+      "matrix": "ICS"
+    },
+    {
+      "name": "Lateral Movement",
+      "matrix": "Enterprise"
+    },
+    {
+      "name": "Lateral Movement",
+      "matrix": "ICS"
+    },
+    {
+      "name": "Persistence",
+      "matrix": "Enterprise"
+    },
+    {
+      "name": "Persistence",
+      "matrix": "ICS"
+    },
+    {
+      "name": "Privilege Escalation",
+      "matrix": "Enterprise"
+    },
+    {
+      "name": "Privilege Escalation",
+      "matrix": "ICS"
+    },
+    {
+      "name": "Reconnaissance",
+      "matrix": "Enterprise"
+    },
+    {
+      "name": "Resource Development",
+      "matrix": "Enterprise"
+    }
+  ],
+  "techniques_supported": [
+    {
+      "id": "T1548",
+      "name": "Abuse Elevation Control Mechanism",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1548.002",
+      "name": "Abuse Elevation Control Mechanism: Bypass User Account Control",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1548.004",
+      "name": "Abuse Elevation Control Mechanism: Elevated Execution with Prompt",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1548.001",
+      "name": "Abuse Elevation Control Mechanism: Setuid and Setgid",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1548.003",
+      "name": "Abuse Elevation Control Mechanism: Sudo and Sudo Caching",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1548.006",
+      "name": "Abuse Elevation Control Mechanism: TCC Manipulation",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1548.005",
+      "name": "Abuse Elevation Control Mechanism: Temporary Elevated Cloud Access",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1134",
+      "name": "Access Token Manipulation",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1134.002",
+      "name": "Access Token Manipulation: Create Process with Token",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1134.003",
+      "name": "Access Token Manipulation: Make and Impersonate Token",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1134.004",
+      "name": "Access Token Manipulation: Parent PID Spoofing",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1134.005",
+      "name": "Access Token Manipulation: SID-History Injection",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1134.001",
+      "name": "Access Token Manipulation: Token Impersonation/Theft",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1531",
+      "name": "Account Access Removal",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1087",
+      "name": "Account Discovery",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1087.004",
+      "name": "Account Discovery: Cloud Account",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1087.002",
+      "name": "Account Discovery: Domain Account",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1087.003",
+      "name": "Account Discovery: Email Account",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1087.001",
+      "name": "Account Discovery: Local Account",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1098",
+      "name": "Account Manipulation",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1098.001",
+      "name": "Account Manipulation: Additional Cloud Credentials",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1098.003",
+      "name": "Account Manipulation: Additional Cloud Roles",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1098.006",
+      "name": "Account Manipulation: Additional Container Cluster Roles",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1098.002",
+      "name": "Account Manipulation: Additional Email Delegate Permissions",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1098.007",
+      "name": "Account Manipulation: Additional Local or Domain Groups",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1098.005",
+      "name": "Account Manipulation: Device Registration",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1098.004",
+      "name": "Account Manipulation: SSH Authorized Keys",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1650",
+      "name": "Acquire Access",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1583",
+      "name": "Acquire Infrastructure",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1583.005",
+      "name": "Acquire Infrastructure: Botnet",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1583.002",
+      "name": "Acquire Infrastructure: DNS Server",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1583.001",
+      "name": "Acquire Infrastructure: Domains",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1583.008",
+      "name": "Acquire Infrastructure: Malvertising",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1583.004",
+      "name": "Acquire Infrastructure: Server",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1583.007",
+      "name": "Acquire Infrastructure: Serverless",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1583.003",
+      "name": "Acquire Infrastructure: Virtual Private Server",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1583.006",
+      "name": "Acquire Infrastructure: Web Services",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0800",
+      "name": "Activate Firmware Update Mode",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1595",
+      "name": "Active Scanning",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1595.001",
+      "name": "Active Scanning: Scanning IP Blocks",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1595.002",
+      "name": "Active Scanning: Vulnerability Scanning",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1595.003",
+      "name": "Active Scanning: Wordlist Scanning",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1557",
+      "name": "Adversary-in-the-Middle",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0830",
+      "name": "Adversary-in-the-Middle",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1557.002",
+      "name": "Adversary-in-the-Middle: ARP Cache Poisoning",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1557.003",
+      "name": "Adversary-in-the-Middle: DHCP Spoofing",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1557.004",
+      "name": "Adversary-in-the-Middle: Evil Twin",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1557.001",
+      "name": "Adversary-in-the-Middle: LLMNR/NBT-NS Poisoning and SMB Relay",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0878",
+      "name": "Alarm Suppression",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1071",
+      "name": "Application Layer Protocol",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1071.004",
+      "name": "Application Layer Protocol: DNS",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1071.002",
+      "name": "Application Layer Protocol: File Transfer Protocols",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1071.003",
+      "name": "Application Layer Protocol: Mail Protocols",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1071.005",
+      "name": "Application Layer Protocol: Publish/Subscribe Protocols",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1071.001",
+      "name": "Application Layer Protocol: Web Protocols",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1010",
+      "name": "Application Window Discovery",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1560",
+      "name": "Archive Collected Data",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1560.003",
+      "name": "Archive Collected Data: Archive via Custom Method",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1560.002",
+      "name": "Archive Collected Data: Archive via Library",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1560.001",
+      "name": "Archive Collected Data: Archive via Utility",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1123",
+      "name": "Audio Capture",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1119",
+      "name": "Automated Collection",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0802",
+      "name": "Automated Collection",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1020",
+      "name": "Automated Exfiltration",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1020.001",
+      "name": "Automated Exfiltration: Traffic Duplication",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0895",
+      "name": "Autorun Image",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1197",
+      "name": "BITS Jobs",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0803",
+      "name": "Block Command Message",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T0804",
+      "name": "Block Reporting Message",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T0805",
+      "name": "Block Serial COM",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1547",
+      "name": "Boot or Logon Autostart Execution",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1547.014",
+      "name": "Boot or Logon Autostart Execution: Active Setup",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1547.002",
+      "name": "Boot or Logon Autostart Execution: Authentication Package",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1547.006",
+      "name": "Boot or Logon Autostart Execution: Kernel Modules and Extensions",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1547.008",
+      "name": "Boot or Logon Autostart Execution: LSASS Driver",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1547.015",
+      "name": "Boot or Logon Autostart Execution: Login Items",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1547.010",
+      "name": "Boot or Logon Autostart Execution: Port Monitors",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1547.012",
+      "name": "Boot or Logon Autostart Execution: Print Processors",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1547.007",
+      "name": "Boot or Logon Autostart Execution: Re-opened Applications",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1547.001",
+      "name": "Boot or Logon Autostart Execution: Registry Run Keys / Startup Folder",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1547.005",
+      "name": "Boot or Logon Autostart Execution: Security Support Provider",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1547.009",
+      "name": "Boot or Logon Autostart Execution: Shortcut Modification",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1547.003",
+      "name": "Boot or Logon Autostart Execution: Time Providers",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1547.004",
+      "name": "Boot or Logon Autostart Execution: Winlogon Helper DLL",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1547.013",
+      "name": "Boot or Logon Autostart Execution: XDG Autostart Entries",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1037",
+      "name": "Boot or Logon Initialization Scripts",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1037.002",
+      "name": "Boot or Logon Initialization Scripts: Login Hook",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1037.001",
+      "name": "Boot or Logon Initialization Scripts: Logon Script (Windows)",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1037.003",
+      "name": "Boot or Logon Initialization Scripts: Network Logon Script",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1037.004",
+      "name": "Boot or Logon Initialization Scripts: RC Scripts",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1037.005",
+      "name": "Boot or Logon Initialization Scripts: Startup Items",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1217",
+      "name": "Browser Information Discovery",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1185",
+      "name": "Browser Session Hijacking",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1110",
+      "name": "Brute Force",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0806",
+      "name": "Brute Force I/O",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1110.004",
+      "name": "Brute Force: Credential Stuffing",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1110.002",
+      "name": "Brute Force: Password Cracking",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1110.001",
+      "name": "Brute Force: Password Guessing",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1110.003",
+      "name": "Brute Force: Password Spraying",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1612",
+      "name": "Build Image on Host",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0892",
+      "name": "Change Credential",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T0858",
+      "name": "Change Operating Mode",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1115",
+      "name": "Clipboard Data",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1651",
+      "name": "Cloud Administration Command",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1671",
+      "name": "Cloud Application Integration",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1580",
+      "name": "Cloud Infrastructure Discovery",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1538",
+      "name": "Cloud Service Dashboard",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1526",
+      "name": "Cloud Service Discovery",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1619",
+      "name": "Cloud Storage Object Discovery",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1059",
+      "name": "Command and Scripting Interpreter",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1059.002",
+      "name": "Command and Scripting Interpreter: AppleScript",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1059.010",
+      "name": "Command and Scripting Interpreter: AutoHotKey & AutoIT",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1059.009",
+      "name": "Command and Scripting Interpreter: Cloud API",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1059.012",
+      "name": "Command and Scripting Interpreter: Hypervisor CLI",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1059.007",
+      "name": "Command and Scripting Interpreter: JavaScript",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1059.011",
+      "name": "Command and Scripting Interpreter: Lua",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1059.008",
+      "name": "Command and Scripting Interpreter: Network Device CLI",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1059.001",
+      "name": "Command and Scripting Interpreter: PowerShell",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1059.006",
+      "name": "Command and Scripting Interpreter: Python",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1059.004",
+      "name": "Command and Scripting Interpreter: Unix Shell",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1059.005",
+      "name": "Command and Scripting Interpreter: Visual Basic",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1059.003",
+      "name": "Command and Scripting Interpreter: Windows Command Shell",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0807",
+      "name": "Command-Line Interface",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T0885",
+      "name": "Commonly Used Port",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1092",
+      "name": "Communication Through Removable Media",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1586",
+      "name": "Compromise Accounts",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1586.003",
+      "name": "Compromise Accounts: Cloud Accounts",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1586.002",
+      "name": "Compromise Accounts: Email Accounts",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1586.001",
+      "name": "Compromise Accounts: Social Media Accounts",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1554",
+      "name": "Compromise Host Software Binary",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1584",
+      "name": "Compromise Infrastructure",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1584.005",
+      "name": "Compromise Infrastructure: Botnet",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1584.002",
+      "name": "Compromise Infrastructure: DNS Server",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1584.001",
+      "name": "Compromise Infrastructure: Domains",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1584.008",
+      "name": "Compromise Infrastructure: Network Devices",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1584.004",
+      "name": "Compromise Infrastructure: Server",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1584.007",
+      "name": "Compromise Infrastructure: Serverless",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1584.003",
+      "name": "Compromise Infrastructure: Virtual Private Server",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1584.006",
+      "name": "Compromise Infrastructure: Web Services",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0884",
+      "name": "Connection Proxy",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1609",
+      "name": "Container Administration Command",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1613",
+      "name": "Container and Resource Discovery",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1659",
+      "name": "Content Injection",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1136",
+      "name": "Create Account",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1136.003",
+      "name": "Create Account: Cloud Account",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1136.002",
+      "name": "Create Account: Domain Account",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1136.001",
+      "name": "Create Account: Local Account",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1543",
+      "name": "Create or Modify System Process",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1543.005",
+      "name": "Create or Modify System Process: Container Service",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1543.001",
+      "name": "Create or Modify System Process: Launch Agent",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1543.004",
+      "name": "Create or Modify System Process: Launch Daemon",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1543.002",
+      "name": "Create or Modify System Process: Systemd Service",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1543.003",
+      "name": "Create or Modify System Process: Windows Service",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1555",
+      "name": "Credentials from Password Stores",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1555.006",
+      "name": "Credentials from Password Stores: Cloud Secrets Management Stores",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1555.003",
+      "name": "Credentials from Password Stores: Credentials from Web Browsers",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1555.001",
+      "name": "Credentials from Password Stores: Keychain",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1555.005",
+      "name": "Credentials from Password Stores: Password Managers",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1555.002",
+      "name": "Credentials from Password Stores: Securityd Memory",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1555.004",
+      "name": "Credentials from Password Stores: Windows Credential Manager",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0879",
+      "name": "Damage to Property",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1485",
+      "name": "Data Destruction",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0809",
+      "name": "Data Destruction",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1485.001",
+      "name": "Data Destruction: Lifecycle-Triggered Deletion",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1132",
+      "name": "Data Encoding",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1132.002",
+      "name": "Data Encoding: Non-Standard Encoding",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1132.001",
+      "name": "Data Encoding: Standard Encoding",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1486",
+      "name": "Data Encrypted for Impact",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1565",
+      "name": "Data Manipulation",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1565.003",
+      "name": "Data Manipulation: Runtime Data Manipulation",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1565.001",
+      "name": "Data Manipulation: Stored Data Manipulation",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1565.002",
+      "name": "Data Manipulation: Transmitted Data Manipulation",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1001",
+      "name": "Data Obfuscation",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1001.001",
+      "name": "Data Obfuscation: Junk Data",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1001.003",
+      "name": "Data Obfuscation: Protocol or Service Impersonation",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1001.002",
+      "name": "Data Obfuscation: Steganography",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1074",
+      "name": "Data Staged",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1074.001",
+      "name": "Data Staged: Local Data Staging",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1074.002",
+      "name": "Data Staged: Remote Data Staging",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1030",
+      "name": "Data Transfer Size Limits",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1530",
+      "name": "Data from Cloud Storage",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1602",
+      "name": "Data from Configuration Repository",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1602.002",
+      "name": "Data from Configuration Repository: Network Device Configuration Dump",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1602.001",
+      "name": "Data from Configuration Repository: SNMP (MIB Dump)",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1213",
+      "name": "Data from Information Repositories",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0811",
+      "name": "Data from Information Repositories",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1213.003",
+      "name": "Data from Information Repositories: Code Repositories",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1213.001",
+      "name": "Data from Information Repositories: Confluence",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1213.004",
+      "name": "Data from Information Repositories: Customer Relationship Management Software",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1213.005",
+      "name": "Data from Information Repositories: Messaging Applications",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1213.002",
+      "name": "Data from Information Repositories: Sharepoint",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1005",
+      "name": "Data from Local System",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0893",
+      "name": "Data from Local System",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1039",
+      "name": "Data from Network Shared Drive",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1025",
+      "name": "Data from Removable Media",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1622",
+      "name": "Debugger Evasion",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1491",
+      "name": "Defacement",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1491.002",
+      "name": "Defacement: External Defacement",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1491.001",
+      "name": "Defacement: Internal Defacement",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0812",
+      "name": "Default Credentials",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T0813",
+      "name": "Denial of Control",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T0814",
+      "name": "Denial of Service",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T0815",
+      "name": "Denial of View",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1140",
+      "name": "Deobfuscate/Decode Files or Information",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1610",
+      "name": "Deploy Container",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0868",
+      "name": "Detect Operating Mode",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1587",
+      "name": "Develop Capabilities",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1587.002",
+      "name": "Develop Capabilities: Code Signing Certificates",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1587.003",
+      "name": "Develop Capabilities: Digital Certificates",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1587.004",
+      "name": "Develop Capabilities: Exploits",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1587.001",
+      "name": "Develop Capabilities: Malware",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1652",
+      "name": "Device Driver Discovery",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0816",
+      "name": "Device Restart/Shutdown",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1006",
+      "name": "Direct Volume Access",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1561",
+      "name": "Disk Wipe",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1561.001",
+      "name": "Disk Wipe: Disk Content Wipe",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1561.002",
+      "name": "Disk Wipe: Disk Structure Wipe",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1482",
+      "name": "Domain Trust Discovery",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1484",
+      "name": "Domain or Tenant Policy Modification",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1484.001",
+      "name": "Domain or Tenant Policy Modification: Group Policy Modification",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1484.002",
+      "name": "Domain or Tenant Policy Modification: Trust Modification",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1189",
+      "name": "Drive-by Compromise",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0817",
+      "name": "Drive-by Compromise",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1568",
+      "name": "Dynamic Resolution",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1568.003",
+      "name": "Dynamic Resolution: DNS Calculation",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1568.002",
+      "name": "Dynamic Resolution: Domain Generation Algorithms",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1568.001",
+      "name": "Dynamic Resolution: Fast Flux DNS",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1675",
+      "name": "ESXi Administration Command",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1667",
+      "name": "Email Bombing",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1114",
+      "name": "Email Collection",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1114.003",
+      "name": "Email Collection: Email Forwarding Rule",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1114.001",
+      "name": "Email Collection: Local Email Collection",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1114.002",
+      "name": "Email Collection: Remote Email Collection",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1672",
+      "name": "Email Spoofing",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1573",
+      "name": "Encrypted Channel",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1573.002",
+      "name": "Encrypted Channel: Asymmetric Cryptography",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1573.001",
+      "name": "Encrypted Channel: Symmetric Cryptography",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1499",
+      "name": "Endpoint Denial of Service",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1499.003",
+      "name": "Endpoint Denial of Service: Application Exhaustion Flood",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1499.004",
+      "name": "Endpoint Denial of Service: Application or System Exploitation",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1499.001",
+      "name": "Endpoint Denial of Service: OS Exhaustion Flood",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1499.002",
+      "name": "Endpoint Denial of Service: Service Exhaustion Flood",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1611",
+      "name": "Escape to Host",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1585",
+      "name": "Establish Accounts",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1585.003",
+      "name": "Establish Accounts: Cloud Accounts",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1585.002",
+      "name": "Establish Accounts: Email Accounts",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1585.001",
+      "name": "Establish Accounts: Social Media Accounts",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1546",
+      "name": "Event Triggered Execution",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1546.008",
+      "name": "Event Triggered Execution: Accessibility Features",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1546.009",
+      "name": "Event Triggered Execution: AppCert DLLs",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1546.010",
+      "name": "Event Triggered Execution: AppInit DLLs",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1546.011",
+      "name": "Event Triggered Execution: Application Shimming",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1546.001",
+      "name": "Event Triggered Execution: Change Default File Association",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1546.015",
+      "name": "Event Triggered Execution: Component Object Model Hijacking",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1546.014",
+      "name": "Event Triggered Execution: Emond",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1546.012",
+      "name": "Event Triggered Execution: Image File Execution Options Injection",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1546.016",
+      "name": "Event Triggered Execution: Installer Packages",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1546.006",
+      "name": "Event Triggered Execution: LC_LOAD_DYLIB Addition",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1546.007",
+      "name": "Event Triggered Execution: Netsh Helper DLL",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1546.013",
+      "name": "Event Triggered Execution: PowerShell Profile",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1546.002",
+      "name": "Event Triggered Execution: Screensaver",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1546.005",
+      "name": "Event Triggered Execution: Trap",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1546.017",
+      "name": "Event Triggered Execution: Udev Rules",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1546.004",
+      "name": "Event Triggered Execution: Unix Shell Configuration Modification",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1546.003",
+      "name": "Event Triggered Execution: Windows Management Instrumentation Event Subscription",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1668",
+      "name": "Exclusive Control",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1480",
+      "name": "Execution Guardrails",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1480.001",
+      "name": "Execution Guardrails: Environmental Keying",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1480.002",
+      "name": "Execution Guardrails: Mutual Exclusion",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0871",
+      "name": "Execution through API",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1048",
+      "name": "Exfiltration Over Alternative Protocol",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1048.002",
+      "name": "Exfiltration Over Alternative Protocol: Exfiltration Over Asymmetric Encrypted Non-C2 Protocol",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1048.001",
+      "name": "Exfiltration Over Alternative Protocol: Exfiltration Over Symmetric Encrypted Non-C2 Protocol",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1048.003",
+      "name": "Exfiltration Over Alternative Protocol: Exfiltration Over Unencrypted Non-C2 Protocol",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1041",
+      "name": "Exfiltration Over C2 Channel",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1011",
+      "name": "Exfiltration Over Other Network Medium",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1011.001",
+      "name": "Exfiltration Over Other Network Medium: Exfiltration Over Bluetooth",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1052",
+      "name": "Exfiltration Over Physical Medium",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1052.001",
+      "name": "Exfiltration Over Physical Medium: Exfiltration over USB",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1567",
+      "name": "Exfiltration Over Web Service",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1567.004",
+      "name": "Exfiltration Over Web Service: Exfiltration Over Webhook",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1567.002",
+      "name": "Exfiltration Over Web Service: Exfiltration to Cloud Storage",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1567.001",
+      "name": "Exfiltration Over Web Service: Exfiltration to Code Repository",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1567.003",
+      "name": "Exfiltration Over Web Service: Exfiltration to Text Storage Sites",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1190",
+      "name": "Exploit Public-Facing Application",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0819",
+      "name": "Exploit Public-Facing Application",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1203",
+      "name": "Exploitation for Client Execution",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1212",
+      "name": "Exploitation for Credential Access",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1211",
+      "name": "Exploitation for Defense Evasion",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0820",
+      "name": "Exploitation for Evasion",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1068",
+      "name": "Exploitation for Privilege Escalation",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0890",
+      "name": "Exploitation for Privilege Escalation",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1210",
+      "name": "Exploitation of Remote Services",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0866",
+      "name": "Exploitation of Remote Services",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1133",
+      "name": "External Remote Services",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0822",
+      "name": "External Remote Services",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1008",
+      "name": "Fallback Channels",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1083",
+      "name": "File and Directory Discovery",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1222",
+      "name": "File and Directory Permissions Modification",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1222.002",
+      "name": "File and Directory Permissions Modification: Linux and Mac File and Directory Permissions Modification",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1222.001",
+      "name": "File and Directory Permissions Modification: Windows File and Directory Permissions Modification",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1657",
+      "name": "Financial Theft",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1495",
+      "name": "Firmware Corruption",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1187",
+      "name": "Forced Authentication",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1606",
+      "name": "Forge Web Credentials",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1606.002",
+      "name": "Forge Web Credentials: SAML Tokens",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1606.001",
+      "name": "Forge Web Credentials: Web Cookies",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1592",
+      "name": "Gather Victim Host Information",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1592.004",
+      "name": "Gather Victim Host Information: Client Configurations",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1592.003",
+      "name": "Gather Victim Host Information: Firmware",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1592.001",
+      "name": "Gather Victim Host Information: Hardware",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1592.002",
+      "name": "Gather Victim Host Information: Software",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1589",
+      "name": "Gather Victim Identity Information",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1589.001",
+      "name": "Gather Victim Identity Information: Credentials",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1589.002",
+      "name": "Gather Victim Identity Information: Email Addresses",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1589.003",
+      "name": "Gather Victim Identity Information: Employee Names",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1590",
+      "name": "Gather Victim Network Information",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1590.002",
+      "name": "Gather Victim Network Information: DNS",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1590.001",
+      "name": "Gather Victim Network Information: Domain Properties",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1590.005",
+      "name": "Gather Victim Network Information: IP Addresses",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1590.006",
+      "name": "Gather Victim Network Information: Network Security Appliances",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1590.004",
+      "name": "Gather Victim Network Information: Network Topology",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1590.003",
+      "name": "Gather Victim Network Information: Network Trust Dependencies",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1591",
+      "name": "Gather Victim Org Information",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1591.002",
+      "name": "Gather Victim Org Information: Business Relationships",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1591.001",
+      "name": "Gather Victim Org Information: Determine Physical Locations",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1591.003",
+      "name": "Gather Victim Org Information: Identify Business Tempo",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1591.004",
+      "name": "Gather Victim Org Information: Identify Roles",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0823",
+      "name": "Graphical User Interface",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1615",
+      "name": "Group Policy Discovery",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0891",
+      "name": "Hardcoded Credentials",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1200",
+      "name": "Hardware Additions",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1564",
+      "name": "Hide Artifacts",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1564.013",
+      "name": "Hide Artifacts: Bind Mounts",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1564.008",
+      "name": "Hide Artifacts: Email Hiding Rules",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1564.014",
+      "name": "Hide Artifacts: Extended Attributes",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1564.012",
+      "name": "Hide Artifacts: File/Path Exclusions",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1564.005",
+      "name": "Hide Artifacts: Hidden File System",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1564.001",
+      "name": "Hide Artifacts: Hidden Files and Directories",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1564.002",
+      "name": "Hide Artifacts: Hidden Users",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1564.003",
+      "name": "Hide Artifacts: Hidden Window",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1564.011",
+      "name": "Hide Artifacts: Ignore Process Interrupts",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1564.004",
+      "name": "Hide Artifacts: NTFS File Attributes",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1564.010",
+      "name": "Hide Artifacts: Process Argument Spoofing",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1564.009",
+      "name": "Hide Artifacts: Resource Forking",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1564.006",
+      "name": "Hide Artifacts: Run Virtual Instance",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1564.007",
+      "name": "Hide Artifacts: VBA Stomping",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1665",
+      "name": "Hide Infrastructure",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1574",
+      "name": "Hijack Execution Flow",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1574.014",
+      "name": "Hijack Execution Flow: AppDomainManager",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1574.012",
+      "name": "Hijack Execution Flow: COR_PROFILER",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1574.001",
+      "name": "Hijack Execution Flow: DLL",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1574.004",
+      "name": "Hijack Execution Flow: Dylib Hijacking",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1574.006",
+      "name": "Hijack Execution Flow: Dynamic Linker Hijacking",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1574.005",
+      "name": "Hijack Execution Flow: Executable Installer File Permissions Weakness",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1574.013",
+      "name": "Hijack Execution Flow: KernelCallbackTable",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1574.007",
+      "name": "Hijack Execution Flow: Path Interception by PATH Environment Variable",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1574.008",
+      "name": "Hijack Execution Flow: Path Interception by Search Order Hijacking",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1574.009",
+      "name": "Hijack Execution Flow: Path Interception by Unquoted Path",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1574.010",
+      "name": "Hijack Execution Flow: Services File Permissions Weakness",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1574.011",
+      "name": "Hijack Execution Flow: Services Registry Permissions Weakness",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0874",
+      "name": "Hooking",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T0877",
+      "name": "I/O Image",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1562",
+      "name": "Impair Defenses",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1562.002",
+      "name": "Impair Defenses: Disable Windows Event Logging",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1562.007",
+      "name": "Impair Defenses: Disable or Modify Cloud Firewall",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1562.008",
+      "name": "Impair Defenses: Disable or Modify Cloud Logs",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1562.012",
+      "name": "Impair Defenses: Disable or Modify Linux Audit System",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1562.004",
+      "name": "Impair Defenses: Disable or Modify System Firewall",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1562.001",
+      "name": "Impair Defenses: Disable or Modify Tools",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1562.010",
+      "name": "Impair Defenses: Downgrade Attack",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1562.003",
+      "name": "Impair Defenses: Impair Command History Logging",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1562.006",
+      "name": "Impair Defenses: Indicator Blocking",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1562.009",
+      "name": "Impair Defenses: Safe Mode Boot",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1562.011",
+      "name": "Impair Defenses: Spoof Security Alerting",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1656",
+      "name": "Impersonation",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1525",
+      "name": "Implant Internal Image",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1070",
+      "name": "Indicator Removal",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0872",
+      "name": "Indicator Removal on Host",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1070.003",
+      "name": "Indicator Removal: Clear Command History",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1070.002",
+      "name": "Indicator Removal: Clear Linux or Mac System Logs",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1070.008",
+      "name": "Indicator Removal: Clear Mailbox Data",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1070.007",
+      "name": "Indicator Removal: Clear Network Connection History and Configurations",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1070.009",
+      "name": "Indicator Removal: Clear Persistence",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1070.001",
+      "name": "Indicator Removal: Clear Windows Event Logs",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1070.004",
+      "name": "Indicator Removal: File Deletion",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1070.005",
+      "name": "Indicator Removal: Network Share Connection Removal",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1070.010",
+      "name": "Indicator Removal: Relocate Malware",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1070.006",
+      "name": "Indicator Removal: Timestomp",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1202",
+      "name": "Indirect Command Execution",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1105",
+      "name": "Ingress Tool Transfer",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1490",
+      "name": "Inhibit System Recovery",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1056",
+      "name": "Input Capture",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1056.004",
+      "name": "Input Capture: Credential API Hooking",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1056.002",
+      "name": "Input Capture: GUI Input Capture",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1056.001",
+      "name": "Input Capture: Keylogging",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1056.003",
+      "name": "Input Capture: Web Portal Capture",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1674",
+      "name": "Input Injection",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1559",
+      "name": "Inter-Process Communication",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1559.001",
+      "name": "Inter-Process Communication: Component Object Model",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1559.002",
+      "name": "Inter-Process Communication: Dynamic Data Exchange",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1559.003",
+      "name": "Inter-Process Communication: XPC Services",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1534",
+      "name": "Internal Spearphishing",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0883",
+      "name": "Internet Accessible Device",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1570",
+      "name": "Lateral Tool Transfer",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0867",
+      "name": "Lateral Tool Transfer",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1654",
+      "name": "Log Enumeration",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0826",
+      "name": "Loss of Availability",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T0827",
+      "name": "Loss of Control",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T0828",
+      "name": "Loss of Productivity and Revenue",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T0837",
+      "name": "Loss of Protection",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T0880",
+      "name": "Loss of Safety",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T0829",
+      "name": "Loss of View",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T0835",
+      "name": "Manipulate I/O Image",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T0831",
+      "name": "Manipulation of Control",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T0832",
+      "name": "Manipulation of View",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1036",
+      "name": "Masquerading",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0849",
+      "name": "Masquerading",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1036.009",
+      "name": "Masquerading: Break Process Trees",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1036.007",
+      "name": "Masquerading: Double File Extension",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1036.001",
+      "name": "Masquerading: Invalid Code Signature",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1036.010",
+      "name": "Masquerading: Masquerade Account Name",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1036.008",
+      "name": "Masquerading: Masquerade File Type",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1036.004",
+      "name": "Masquerading: Masquerade Task or Service",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1036.005",
+      "name": "Masquerading: Match Legitimate Resource Name or Location",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1036.011",
+      "name": "Masquerading: Overwrite Process Arguments",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1036.003",
+      "name": "Masquerading: Rename Legitimate Utilities",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1036.002",
+      "name": "Masquerading: Right-to-Left Override",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1036.006",
+      "name": "Masquerading: Space after Filename",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0838",
+      "name": "Modify Alarm Settings",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1556",
+      "name": "Modify Authentication Process",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1556.009",
+      "name": "Modify Authentication Process: Conditional Access Policies",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1556.001",
+      "name": "Modify Authentication Process: Domain Controller Authentication",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1556.007",
+      "name": "Modify Authentication Process: Hybrid Identity",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1556.006",
+      "name": "Modify Authentication Process: Multi-Factor Authentication",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1556.004",
+      "name": "Modify Authentication Process: Network Device Authentication",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1556.008",
+      "name": "Modify Authentication Process: Network Provider DLL",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1556.002",
+      "name": "Modify Authentication Process: Password Filter DLL",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1556.003",
+      "name": "Modify Authentication Process: Pluggable Authentication Modules",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1556.005",
+      "name": "Modify Authentication Process: Reversible Encryption",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1578",
+      "name": "Modify Cloud Compute Infrastructure",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1578.002",
+      "name": "Modify Cloud Compute Infrastructure: Create Cloud Instance",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1578.001",
+      "name": "Modify Cloud Compute Infrastructure: Create Snapshot",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1578.003",
+      "name": "Modify Cloud Compute Infrastructure: Delete Cloud Instance",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1578.005",
+      "name": "Modify Cloud Compute Infrastructure: Modify Cloud Compute Configurations",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1578.004",
+      "name": "Modify Cloud Compute Infrastructure: Revert Cloud Instance",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1666",
+      "name": "Modify Cloud Resource Hierarchy",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0821",
+      "name": "Modify Controller Tasking",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T0836",
+      "name": "Modify Parameter",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T0889",
+      "name": "Modify Program",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1112",
+      "name": "Modify Registry",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1601",
+      "name": "Modify System Image",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1601.002",
+      "name": "Modify System Image: Downgrade System Image",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1601.001",
+      "name": "Modify System Image: Patch System Image",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0839",
+      "name": "Module Firmware",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T0801",
+      "name": "Monitor Process State",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1111",
+      "name": "Multi-Factor Authentication Interception",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1621",
+      "name": "Multi-Factor Authentication Request Generation",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1104",
+      "name": "Multi-Stage Channels",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1106",
+      "name": "Native API",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0834",
+      "name": "Native API",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1599",
+      "name": "Network Boundary Bridging",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1599.001",
+      "name": "Network Boundary Bridging: Network Address Translation Traversal",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0840",
+      "name": "Network Connection Enumeration",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1498",
+      "name": "Network Denial of Service",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1498.001",
+      "name": "Network Denial of Service: Direct Network Flood",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1498.002",
+      "name": "Network Denial of Service: Reflection Amplification",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1046",
+      "name": "Network Service Discovery",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1135",
+      "name": "Network Share Discovery",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1040",
+      "name": "Network Sniffing",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0842",
+      "name": "Network Sniffing",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1095",
+      "name": "Non-Application Layer Protocol",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1571",
+      "name": "Non-Standard Port",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1003",
+      "name": "OS Credential Dumping",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1003.008",
+      "name": "OS Credential Dumping: /etc/passwd and /etc/shadow",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1003.005",
+      "name": "OS Credential Dumping: Cached Domain Credentials",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1003.006",
+      "name": "OS Credential Dumping: DCSync",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1003.004",
+      "name": "OS Credential Dumping: LSA Secrets",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1003.001",
+      "name": "OS Credential Dumping: LSASS Memory",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1003.003",
+      "name": "OS Credential Dumping: NTDS",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1003.007",
+      "name": "OS Credential Dumping: Proc Filesystem",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1003.002",
+      "name": "OS Credential Dumping: Security Account Manager",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1027",
+      "name": "Obfuscated Files or Information",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1027.001",
+      "name": "Obfuscated Files or Information: Binary Padding",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1027.010",
+      "name": "Obfuscated Files or Information: Command Obfuscation",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1027.004",
+      "name": "Obfuscated Files or Information: Compile After Delivery",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1027.015",
+      "name": "Obfuscated Files or Information: Compression",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1027.007",
+      "name": "Obfuscated Files or Information: Dynamic API Resolution",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1027.009",
+      "name": "Obfuscated Files or Information: Embedded Payloads",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1027.013",
+      "name": "Obfuscated Files or Information: Encrypted/Encoded File",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1027.011",
+      "name": "Obfuscated Files or Information: Fileless Storage",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1027.006",
+      "name": "Obfuscated Files or Information: HTML Smuggling",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1027.005",
+      "name": "Obfuscated Files or Information: Indicator Removal from Tools",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1027.016",
+      "name": "Obfuscated Files or Information: Junk Code Insertion",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1027.012",
+      "name": "Obfuscated Files or Information: LNK Icon Smuggling",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1027.014",
+      "name": "Obfuscated Files or Information: Polymorphic Code",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1027.017",
+      "name": "Obfuscated Files or Information: SVG Smuggling",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1027.002",
+      "name": "Obfuscated Files or Information: Software Packing",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1027.003",
+      "name": "Obfuscated Files or Information: Steganography",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1027.008",
+      "name": "Obfuscated Files or Information: Stripped Payloads",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1588",
+      "name": "Obtain Capabilities",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1588.007",
+      "name": "Obtain Capabilities: Artificial Intelligence",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1588.003",
+      "name": "Obtain Capabilities: Code Signing Certificates",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1588.004",
+      "name": "Obtain Capabilities: Digital Certificates",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1588.005",
+      "name": "Obtain Capabilities: Exploits",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1588.001",
+      "name": "Obtain Capabilities: Malware",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1588.002",
+      "name": "Obtain Capabilities: Tool",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1588.006",
+      "name": "Obtain Capabilities: Vulnerabilities",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1137",
+      "name": "Office Application Startup",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1137.006",
+      "name": "Office Application Startup: Add-ins",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1137.001",
+      "name": "Office Application Startup: Office Template Macros",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1137.002",
+      "name": "Office Application Startup: Office Test",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1137.003",
+      "name": "Office Application Startup: Outlook Forms",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1137.004",
+      "name": "Office Application Startup: Outlook Home Page",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1137.005",
+      "name": "Office Application Startup: Outlook Rules",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1201",
+      "name": "Password Policy Discovery",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1120",
+      "name": "Peripheral Device Discovery",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1069",
+      "name": "Permission Groups Discovery",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1069.003",
+      "name": "Permission Groups Discovery: Cloud Groups",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1069.002",
+      "name": "Permission Groups Discovery: Domain Groups",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1069.001",
+      "name": "Permission Groups Discovery: Local Groups",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1566",
+      "name": "Phishing",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1598",
+      "name": "Phishing for Information",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1598.002",
+      "name": "Phishing for Information: Spearphishing Attachment",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1598.003",
+      "name": "Phishing for Information: Spearphishing Link",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1598.001",
+      "name": "Phishing for Information: Spearphishing Service",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1598.004",
+      "name": "Phishing for Information: Spearphishing Voice",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1566.001",
+      "name": "Phishing: Spearphishing Attachment",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1566.002",
+      "name": "Phishing: Spearphishing Link",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1566.004",
+      "name": "Phishing: Spearphishing Voice",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1566.003",
+      "name": "Phishing: Spearphishing via Service",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1647",
+      "name": "Plist File Modification",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0861",
+      "name": "Point & Tag Identification",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1653",
+      "name": "Power Settings",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1542",
+      "name": "Pre-OS Boot",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1542.003",
+      "name": "Pre-OS Boot: Bootkit",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1542.002",
+      "name": "Pre-OS Boot: Component Firmware",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1542.004",
+      "name": "Pre-OS Boot: ROMMONkit",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1542.001",
+      "name": "Pre-OS Boot: System Firmware",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1542.005",
+      "name": "Pre-OS Boot: TFTP Boot",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1057",
+      "name": "Process Discovery",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1055",
+      "name": "Process Injection",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1055.004",
+      "name": "Process Injection: Asynchronous Procedure Call",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1055.001",
+      "name": "Process Injection: Dynamic-link Library Injection",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1055.011",
+      "name": "Process Injection: Extra Window Memory Injection",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1055.015",
+      "name": "Process Injection: ListPlanting",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1055.002",
+      "name": "Process Injection: Portable Executable Injection",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1055.009",
+      "name": "Process Injection: Proc Memory",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1055.013",
+      "name": "Process Injection: Process Doppelg\ufffdnging",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1055.012",
+      "name": "Process Injection: Process Hollowing",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1055.008",
+      "name": "Process Injection: Ptrace System Calls",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1055.003",
+      "name": "Process Injection: Thread Execution Hijacking",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1055.005",
+      "name": "Process Injection: Thread Local Storage",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1055.014",
+      "name": "Process Injection: VDSO Hijacking",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0843",
+      "name": "Program Download",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T0845",
+      "name": "Program Upload",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T0873",
+      "name": "Project File Infection",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1572",
+      "name": "Protocol Tunneling",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1090",
+      "name": "Proxy",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1090.004",
+      "name": "Proxy: Domain Fronting",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1090.002",
+      "name": "Proxy: External Proxy",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1090.001",
+      "name": "Proxy: Internal Proxy",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1090.003",
+      "name": "Proxy: Multi-hop Proxy",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1012",
+      "name": "Query Registry",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1620",
+      "name": "Reflective Code Loading",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1219",
+      "name": "Remote Access Tools",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1219.001",
+      "name": "Remote Access Tools: IDE Tunneling",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1219.003",
+      "name": "Remote Access Tools: Remote Access Hardware",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1219.002",
+      "name": "Remote Access Tools: Remote Desktop Software",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1563",
+      "name": "Remote Service Session Hijacking",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1563.002",
+      "name": "Remote Service Session Hijacking: RDP Hijacking",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1563.001",
+      "name": "Remote Service Session Hijacking: SSH Hijacking",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1021",
+      "name": "Remote Services",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0886",
+      "name": "Remote Services",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1021.007",
+      "name": "Remote Services: Cloud Services",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1021.008",
+      "name": "Remote Services: Direct Cloud VM Connections",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1021.003",
+      "name": "Remote Services: Distributed Component Object Model",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1021.001",
+      "name": "Remote Services: Remote Desktop Protocol",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1021.002",
+      "name": "Remote Services: SMB/Windows Admin Shares",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1021.004",
+      "name": "Remote Services: SSH",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1021.005",
+      "name": "Remote Services: VNC",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1021.006",
+      "name": "Remote Services: Windows Remote Management",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1018",
+      "name": "Remote System Discovery",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0846",
+      "name": "Remote System Discovery",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T0888",
+      "name": "Remote System Information Discovery",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1091",
+      "name": "Replication Through Removable Media",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0847",
+      "name": "Replication Through Removable Media",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1496",
+      "name": "Resource Hijacking",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1496.002",
+      "name": "Resource Hijacking: Bandwidth Hijacking",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1496.004",
+      "name": "Resource Hijacking: Cloud Service Hijacking",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1496.001",
+      "name": "Resource Hijacking: Compute Hijacking",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1496.003",
+      "name": "Resource Hijacking: SMS Pumping",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1207",
+      "name": "Rogue Domain Controller",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0848",
+      "name": "Rogue Master",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1014",
+      "name": "Rootkit",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0851",
+      "name": "Rootkit",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1053",
+      "name": "Scheduled Task/Job",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1053.002",
+      "name": "Scheduled Task/Job: At",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1053.007",
+      "name": "Scheduled Task/Job: Container Orchestration Job",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1053.003",
+      "name": "Scheduled Task/Job: Cron",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1053.005",
+      "name": "Scheduled Task/Job: Scheduled Task",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1053.006",
+      "name": "Scheduled Task/Job: Systemd Timers",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1029",
+      "name": "Scheduled Transfer",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1113",
+      "name": "Screen Capture",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0852",
+      "name": "Screen Capture",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T0853",
+      "name": "Scripting",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1597",
+      "name": "Search Closed Sources",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1597.002",
+      "name": "Search Closed Sources: Purchase Technical Data",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1597.001",
+      "name": "Search Closed Sources: Threat Intel Vendors",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1596",
+      "name": "Search Open Technical Databases",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1596.004",
+      "name": "Search Open Technical Databases: CDNs",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1596.001",
+      "name": "Search Open Technical Databases: DNS/Passive DNS",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1596.003",
+      "name": "Search Open Technical Databases: Digital Certificates",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1596.005",
+      "name": "Search Open Technical Databases: Scan Databases",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1596.002",
+      "name": "Search Open Technical Databases: WHOIS",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1593",
+      "name": "Search Open Websites/Domains",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1593.003",
+      "name": "Search Open Websites/Domains: Code Repositories",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1593.002",
+      "name": "Search Open Websites/Domains: Search Engines",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1593.001",
+      "name": "Search Open Websites/Domains: Social Media",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1594",
+      "name": "Search Victim-Owned Websites",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1505",
+      "name": "Server Software Component",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1505.004",
+      "name": "Server Software Component: IIS Components",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1505.001",
+      "name": "Server Software Component: SQL Stored Procedures",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1505.005",
+      "name": "Server Software Component: Terminal Services DLL",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1505.002",
+      "name": "Server Software Component: Transport Agent",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1505.003",
+      "name": "Server Software Component: Web Shell",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1505.006",
+      "name": "Server Software Component: vSphere Installation Bundles",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1648",
+      "name": "Serverless Execution",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1489",
+      "name": "Service Stop",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0881",
+      "name": "Service Stop",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1129",
+      "name": "Shared Modules",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1072",
+      "name": "Software Deployment Tools",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1518",
+      "name": "Software Discovery",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1518.001",
+      "name": "Software Discovery: Security Software Discovery",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1176",
+      "name": "Software Extensions",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1176.001",
+      "name": "Software Extensions: Browser Extensions",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1176.002",
+      "name": "Software Extensions: IDE Extensions",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0865",
+      "name": "Spearphishing Attachment",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T0856",
+      "name": "Spoof Reporting Message",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1608",
+      "name": "Stage Capabilities",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1608.004",
+      "name": "Stage Capabilities: Drive-by Target",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1608.003",
+      "name": "Stage Capabilities: Install Digital Certificate",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1608.005",
+      "name": "Stage Capabilities: Link Target",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1608.006",
+      "name": "Stage Capabilities: SEO Poisoning",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1608.001",
+      "name": "Stage Capabilities: Upload Malware",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1608.002",
+      "name": "Stage Capabilities: Upload Tool",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0869",
+      "name": "Standard Application Layer Protocol",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1528",
+      "name": "Steal Application Access Token",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1539",
+      "name": "Steal Web Session Cookie",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1649",
+      "name": "Steal or Forge Authentication Certificates",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1558",
+      "name": "Steal or Forge Kerberos Tickets",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1558.004",
+      "name": "Steal or Forge Kerberos Tickets: AS-REP Roasting",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1558.005",
+      "name": "Steal or Forge Kerberos Tickets: Ccache Files",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1558.001",
+      "name": "Steal or Forge Kerberos Tickets: Golden Ticket",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1558.003",
+      "name": "Steal or Forge Kerberos Tickets: Kerberoasting",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1558.002",
+      "name": "Steal or Forge Kerberos Tickets: Silver Ticket",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1553",
+      "name": "Subvert Trust Controls",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1553.002",
+      "name": "Subvert Trust Controls: Code Signing",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1553.006",
+      "name": "Subvert Trust Controls: Code Signing Policy Modification",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1553.001",
+      "name": "Subvert Trust Controls: Gatekeeper Bypass",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1553.004",
+      "name": "Subvert Trust Controls: Install Root Certificate",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1553.005",
+      "name": "Subvert Trust Controls: Mark-of-the-Web Bypass",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1553.003",
+      "name": "Subvert Trust Controls: SIP and Trust Provider Hijacking",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1195",
+      "name": "Supply Chain Compromise",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0862",
+      "name": "Supply Chain Compromise",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1195.003",
+      "name": "Supply Chain Compromise: Compromise Hardware Supply Chain",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1195.001",
+      "name": "Supply Chain Compromise: Compromise Software Dependencies and Development Tools",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1195.002",
+      "name": "Supply Chain Compromise: Compromise Software Supply Chain",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1218",
+      "name": "System Binary Proxy Execution",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0894",
+      "name": "System Binary Proxy Execution",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1218.003",
+      "name": "System Binary Proxy Execution: CMSTP",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1218.001",
+      "name": "System Binary Proxy Execution: Compiled HTML File",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1218.002",
+      "name": "System Binary Proxy Execution: Control Panel",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1218.015",
+      "name": "System Binary Proxy Execution: Electron Applications",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1218.004",
+      "name": "System Binary Proxy Execution: InstallUtil",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1218.014",
+      "name": "System Binary Proxy Execution: MMC",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1218.013",
+      "name": "System Binary Proxy Execution: Mavinject",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1218.005",
+      "name": "System Binary Proxy Execution: Mshta",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1218.007",
+      "name": "System Binary Proxy Execution: Msiexec",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1218.008",
+      "name": "System Binary Proxy Execution: Odbcconf",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1218.009",
+      "name": "System Binary Proxy Execution: Regsvcs/Regasm",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1218.010",
+      "name": "System Binary Proxy Execution: Regsvr32",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1218.011",
+      "name": "System Binary Proxy Execution: Rundll32",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1218.012",
+      "name": "System Binary Proxy Execution: Verclsid",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0857",
+      "name": "System Firmware",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1082",
+      "name": "System Information Discovery",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1614",
+      "name": "System Location Discovery",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1614.001",
+      "name": "System Location Discovery: System Language Discovery",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1016",
+      "name": "System Network Configuration Discovery",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1016.001",
+      "name": "System Network Configuration Discovery: Internet Connection Discovery",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1016.002",
+      "name": "System Network Configuration Discovery: Wi-Fi Discovery",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1049",
+      "name": "System Network Connections Discovery",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1033",
+      "name": "System Owner/User Discovery",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1216",
+      "name": "System Script Proxy Execution",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1216.001",
+      "name": "System Script Proxy Execution: PubPrn",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1216.002",
+      "name": "System Script Proxy Execution: SyncAppvPublishingServer",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1007",
+      "name": "System Service Discovery",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1569",
+      "name": "System Services",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1569.001",
+      "name": "System Services: Launchctl",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1569.002",
+      "name": "System Services: Service Execution",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1569.003",
+      "name": "System Services: Systemctl",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1529",
+      "name": "System Shutdown/Reboot",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1124",
+      "name": "System Time Discovery",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1080",
+      "name": "Taint Shared Content",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1221",
+      "name": "Template Injection",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0882",
+      "name": "Theft of Operational Information",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1205",
+      "name": "Traffic Signaling",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1205.001",
+      "name": "Traffic Signaling: Port Knocking",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1205.002",
+      "name": "Traffic Signaling: Socket Filters",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1537",
+      "name": "Transfer Data to Cloud Account",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0864",
+      "name": "Transient Cyber Asset",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1127",
+      "name": "Trusted Developer Utilities Proxy Execution",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1127.002",
+      "name": "Trusted Developer Utilities Proxy Execution: ClickOnce",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1127.003",
+      "name": "Trusted Developer Utilities Proxy Execution: JamPlus",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1127.001",
+      "name": "Trusted Developer Utilities Proxy Execution: MSBuild",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1199",
+      "name": "Trusted Relationship",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0855",
+      "name": "Unauthorized Command Message",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1552",
+      "name": "Unsecured Credentials",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1552.003",
+      "name": "Unsecured Credentials: Bash History",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1552.008",
+      "name": "Unsecured Credentials: Chat Messages",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1552.005",
+      "name": "Unsecured Credentials: Cloud Instance Metadata API",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1552.007",
+      "name": "Unsecured Credentials: Container API",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1552.001",
+      "name": "Unsecured Credentials: Credentials In Files",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1552.002",
+      "name": "Unsecured Credentials: Credentials in Registry",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1552.006",
+      "name": "Unsecured Credentials: Group Policy Preferences",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1552.004",
+      "name": "Unsecured Credentials: Private Keys",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1535",
+      "name": "Unused/Unsupported Cloud Regions",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1550",
+      "name": "Use Alternate Authentication Material",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1550.001",
+      "name": "Use Alternate Authentication Material: Application Access Token",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1550.002",
+      "name": "Use Alternate Authentication Material: Pass the Hash",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1550.003",
+      "name": "Use Alternate Authentication Material: Pass the Ticket",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1550.004",
+      "name": "Use Alternate Authentication Material: Web Session Cookie",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1204",
+      "name": "User Execution",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0863",
+      "name": "User Execution",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1204.004",
+      "name": "User Execution: Malicious Copy and Paste",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1204.002",
+      "name": "User Execution: Malicious File",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1204.003",
+      "name": "User Execution: Malicious Image",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1204.001",
+      "name": "User Execution: Malicious Link",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1078",
+      "name": "Valid Accounts",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0859",
+      "name": "Valid Accounts",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1078.004",
+      "name": "Valid Accounts: Cloud Accounts",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1078.001",
+      "name": "Valid Accounts: Default Accounts",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1078.002",
+      "name": "Valid Accounts: Domain Accounts",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1078.003",
+      "name": "Valid Accounts: Local Accounts",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1125",
+      "name": "Video Capture",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1673",
+      "name": "Virtual Machine Discovery",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1497",
+      "name": "Virtualization/Sandbox Evasion",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1497.001",
+      "name": "Virtualization/Sandbox Evasion: System Checks",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1497.003",
+      "name": "Virtualization/Sandbox Evasion: Time Based Evasion",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1497.002",
+      "name": "Virtualization/Sandbox Evasion: User Activity Based Checks",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1600",
+      "name": "Weaken Encryption",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1600.002",
+      "name": "Weaken Encryption: Disable Crypto Hardware",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1600.001",
+      "name": "Weaken Encryption: Reduce Key Space",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1102",
+      "name": "Web Service",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1102.002",
+      "name": "Web Service: Bidirectional Communication",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1102.001",
+      "name": "Web Service: Dead Drop Resolver",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1102.003",
+      "name": "Web Service: One-Way Communication",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1669",
+      "name": "Wi-Fi Networks",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T1047",
+      "name": "Windows Management Instrumentation",
+      "matrix": "Enterprise"
+    },
+    {
+      "id": "T0860",
+      "name": "Wireless Compromise",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T0887",
+      "name": "Wireless Sniffing",
+      "matrix": "ICS"
+    },
+    {
+      "id": "T1220",
+      "name": "XSL Script Processing",
+      "matrix": "Enterprise"
+    }
+  ],
+  "observable_types": [
+    "Process Execution",
+    "Network Connections",
+    "File System Changes",
+    "User Behavior",
+    "System Logs",
+    "Command-line Arguments",
+    "Script Execution"
+  ],
+  "use_cases": [
+    "OT based detection",
+    "OT based Threat Hunting",
+    "OT Cyber Threat Intelligence Gathering",
+    "STIX 2.1 creation"
+  ],
+  "data_sources": [
+    "Active Directory",
+    "Active Directory: Active Directory Credential Request",
+    "Active Directory: Active Directory Object Access",
+    "Active Directory: Active Directory Object Creation",
+    "Active Directory: Active Directory Object Deletion",
+    "Active Directory: Active Directory Object Modification",
+    "Application Log",
+    "Application Log: Application Log Content",
+    "Asset",
+    "Asset: Asset Inventory",
+    "Asset: Software",
+    "Certificate",
+    "Certificate: Certificate Registration",
+    "Cloud Service",
+    "Cloud Service: Cloud Service Disable",
+    "Cloud Service: Cloud Service Enumeration",
+    "Cloud Service: Cloud Service Metadata",
+    "Cloud Service: Cloud Service Modification",
+    "Cloud Storage",
+    "Cloud Storage: Cloud Storage Access",
+    "Cloud Storage: Cloud Storage Creation",
+    "Cloud Storage: Cloud Storage Deletion",
+    "Cloud Storage: Cloud Storage Enumeration",
+    "Cloud Storage: Cloud Storage Metadata",
+    "Cloud Storage: Cloud Storage Modification",
+    "Command",
+    "Command: Command Execution",
+    "Container",
+    "Container: Container Creation",
+    "Container: Container Enumeration",
+    "Container: Container Start",
+    "Domain Name",
+    "Domain Name: Active DNS",
+    "Domain Name: Domain Registration",
+    "Domain Name: Passive DNS",
+    "Drive",
+    "Drive: Drive Access",
+    "Drive: Drive Creation",
+    "Drive: Drive Modification",
+    "Driver",
+    "Driver: Driver Load",
+    "Driver: Driver Metadata",
+    "File",
+    "File: File Access",
+    "File: File Creation",
+    "File: File Deletion",
+    "File: File Metadata",
+    "File: File Modification",
+    "Firewall",
+    "Firewall: Firewall Disable",
+    "Firewall: Firewall Enumeration",
+    "Firewall: Firewall Metadata",
+    "Firewall: Firewall Rule Modification",
+    "Firmware",
+    "Firmware: Firmware Modification",
+    "Group",
+    "Group: Group Enumeration",
+    "Group: Group Metadata",
+    "Group: Group Modification",
+    "Image",
+    "Image: Image Creation",
+    "Image: Image Deletion",
+    "Image: Image Metadata",
+    "Image: Image Modification",
+    "Instance",
+    "Instance: Instance Creation",
+    "Instance: Instance Deletion",
+    "Instance: Instance Enumeration",
+    "Instance: Instance Metadata",
+    "Instance: Instance Modification",
+    "Instance: Instance Start",
+    "Instance: Instance Stop",
+    "Internet Scan",
+    "Internet Scan: Response Content",
+    "Internet Scan: Response Metadata",
+    "Kernel",
+    "Kernel: Kernel Module Load",
+    "Logon Session",
+    "Logon Session: Logon Session Creation",
+    "Logon Session: Logon Session Metadata",
+    "Malware Repository",
+    "Malware Repository: Malware Content",
+    "Malware Repository: Malware Metadata",
+    "Module",
+    "Module: Module Load",
+    "Named Pipe",
+    "Named Pipe: Named Pipe Metadata",
+    "Network Share",
+    "Network Share: Network Share Access",
+    "Network Traffic",
+    "Network Traffic: Network Connection Creation",
+    "Network Traffic: Network Traffic Content",
+    "Network Traffic: Network Traffic Flow",
+    "Operational Databases",
+    "Operational Databases: Device Alarm",
+    "Operational Databases: Process History/Live Data",
+    "Operational Databases: Process/Event Alarm",
+    "Persona",
+    "Persona: Social Media",
+    "Pod",
+    "Pod: Pod Creation",
+    "Pod: Pod Enumeration",
+    "Pod: Pod Modification",
+    "Process",
+    "Process: OS API Execution",
+    "Process: Process Access",
+    "Process: Process Creation",
+    "Process: Process Metadata",
+    "Process: Process Modification",
+    "Process: Process Termination",
+    "Scheduled Job",
+    "Scheduled Job: Scheduled Job Creation",
+    "Scheduled Job: Scheduled Job Metadata",
+    "Scheduled Job: Scheduled Job Modification",
+    "Script",
+    "Script: Script Execution",
+    "Sensor Health",
+    "Sensor Health: Host Status",
+    "Service",
+    "Service: Service Creation",
+    "Service: Service Metadata",
+    "Service: Service Modification",
+    "Snapshot",
+    "Snapshot: Snapshot Creation",
+    "Snapshot: Snapshot Deletion",
+    "Snapshot: Snapshot Enumeration",
+    "Snapshot: Snapshot Metadata",
+    "Snapshot: Snapshot Modification",
+    "User Account",
+    "User Account: User Account Authentication",
+    "User Account: User Account Creation",
+    "User Account: User Account Deletion",
+    "User Account: User Account Metadata",
+    "User Account: User Account Modification",
+    "Volume",
+    "Volume: Volume Creation",
+    "Volume: Volume Deletion",
+    "Volume: Volume Enumeration",
+    "Volume: Volume Metadata",
+    "Volume: Volume Modification",
+    "WMI",
+    "WMI: WMI Creation",
+    "Web Credential",
+    "Web Credential: Web Credential Creation",
+    "Web Credential: Web Credential Usage",
+    "Windows Registry",
+    "Windows Registry: Windows Registry Key Access",
+    "Windows Registry: Windows Registry Key Creation",
+    "Windows Registry: Windows Registry Key Deletion",
+    "Windows Registry: Windows Registry Key Modification"
+  ],
+  "deployment_context": "Usually deployed on an Engineering workstation in an OT environment.",
+  "example_usage": "OT Cybersecurity Detection Engineer wants to detects specific behaviors related to MITRE ATT&CK for ICS Techniques",
+  "github": "inl.gov/github/catch",
+  "factsheet": "inl.gov/github/catch"
+}

@@ -1,0 +1,107 @@
+{
+  "tool_name": "Test",
+  "description": "Test",
+  "user_roles": [
+    "OT Cybersecurity"
+  ],
+  "tactics_supported": [
+    "TA0100 - Collection",
+    "TA0101 - Command and Control",
+    "TA0102 - Discovery",
+    "TA0103 - Evasion",
+    "TA0104 - Execution",
+    "TA0105 - Impact",
+    "TA0106 - Impair Process Control",
+    "TA0107 - Inhibit Response Function",
+    "TA0108 - Initial Access",
+    "TA0109 - Lateral Movement",
+    "TA0110 - Persistence",
+    "TA0111 - Privilege Escalation"
+  ],
+  "techniques_supported": [
+    {
+      "id": "T0885",
+      "name": "Commonly Used Port",
+      "description": "Adversaries may communicate over a commonly used port to bypass firewalls or network detection systems and to blend in with normal network activity, to avoid more detailed inspection. They may use the protocol associated with the port, or a completely different protocol. They may use commonly open ports, such as the examples provided below. \n \n * TCP:80 (HTTP) \n * TCP:443 (HTTPS) \n * TCP/UDP:53 (DNS) \n * TCP:1024-4999 (OPC on XP/Win2k3) \n * TCP:49152-65535 (OPC on Vista and later) \n * TCP:23 (TELNET) \n * UDP:161 (SNMP) \n * TCP:502 (MODBUS) \n * TCP:102 (S7comm/ISO-TSAP) \n * TCP:20000 (DNP3) \n * TCP:44818 (Ethernet/IP)"
+    },
+    {
+      "id": "T0840",
+      "name": "Network Connection Enumeration",
+      "description": "Adversaries may perform network connection enumeration to discover information about device communication patterns. If an adversary can inspect the state of a network connection with tools, such as Netstat(Citation: Netstat), in conjunction with [System Firmware](https://attack.mitre.org/techniques/T0857), then they can determine the role of certain devices on the network  (Citation: MITRE). The adversary can also use [Network Sniffing](https://attack.mitre.org/techniques/T0842) to watch network traffic for details about the source, destination, protocol, and content."
+    },
+    {
+      "id": "T0858",
+      "name": "Change Operating Mode",
+      "description": "Adversaries may change the operating mode of a controller to gain additional access to engineering functions such as Program Download.   Programmable controllers typically have several modes of operation that control the state of the user program and control access to the controllers API. Operating modes can be physically selected using a key switch on the face of the controller but may also be selected with calls to the controllers API. Operating modes and the mechanisms by which they are selected often vary by vendor and product line. Some commonly implemented operating modes are described below:  \n\n* Program - This mode must be enabled before changes can be made to a devices program. This allows program uploads and downloads between the device and an engineering workstation. Often the PLCs logic Is halted, and all outputs may be forced off. (Citation: N.A. October 2017)  \n* Run - Execution of the devices program occurs in this mode. Input and output (values, points, tags, elements, etc.) are monitored and used according to the programs logic. [Program Upload](https://attack.mitre.org/techniques/T0845) and [Program Download](https://attack.mitre.org/techniques/T0843) are disabled while in this mode. (Citation: Omron) (Citation: Machine Information Systems 2007)  (Citation: N.A. October 2017) (Citation: PLCgurus 2021)   \n* Remote - Allows for remote changes to a PLCs operation mode. (Citation: PLCgurus 2021)    \n* Stop - The PLC and program is stopped, while in this mode, outputs are forced off. (Citation: Machine Information Systems 2007)   \n* Reset - Conditions on the PLC are reset to their original states. Warm resets may retain some memory while cold resets will reset all I/O and data registers. (Citation: Machine Information Systems 2007)   \n* Test / Monitor mode - Similar to run mode, I/O is processed, although this mode allows for monitoring, force set, resets, and more generally tuning or debugging of the system. Often monitor mode may be used as a trial for initialization. (Citation: Omron)"
+    },
+    {
+      "id": "T0895",
+      "name": "Autorun Image",
+      "description": "Adversaries may leverage AutoRun functionality or scripts to execute malicious code. Devices configured to enable AutoRun functionality or legacy operating systems may be susceptible to abuse of these features to run malicious code stored on various forms of removeable media (i.e., USB, Disk Images [.ISO]). Commonly, AutoRun or AutoPlay are disabled in many operating systems configurations to mitigate against this technique. If a device is configured to enable AutoRun or AutoPlay, adversaries may execute code on the device by mounting the removable media to the device, either through physical or virtual means. This may be especially relevant for virtual machine environments where disk images may be dynamically mapped to a guest system on a hypervisor.  \n\nAn example could include an adversary gaining access to a hypervisor through the management interface to modify a virtual machine\u2019s hardware configuration. They could then deploy an iso image with a malicious AutoRun script to cause the virtual machine to automatically execute the code contained on the disk image. This would enable the execution of malicious code within a virtual machine without needing any prior remote access to that system.\n"
+    },
+    {
+      "id": "T0879",
+      "name": "Damage to Property",
+      "description": "Adversaries may cause damage and destruction of property to infrastructure, equipment, and the surrounding environment when attacking control systems. This technique may result in device and operational equipment breakdown, or represent tangential damage from other techniques used in an attack. Depending on the severity of physical damage and disruption caused to control processes and systems, this technique may result in [Loss of Safety](https://attack.mitre.org/techniques/T0880). Operations that result in [Loss of Control](https://attack.mitre.org/techniques/T0827) may also cause damage to property, which may be directly or indirectly motivated by an adversary seeking to cause impact in the form of [Loss of Productivity and Revenue](https://attack.mitre.org/techniques/T0828). \n\n\nThe German Federal Office for Information Security (BSI) reported a targeted attack on a steel mill under an incidents affecting business section of its 2014 IT Security Report. (Citation: BSI State of IT Security 2014)  These targeted attacks affected industrial operations and resulted in breakdowns of control system components and even entire installations. As a result of these breakdowns, massive impact and damage resulted from the uncontrolled shutdown of a blast furnace. \n\nA Polish student used a remote controller device to interface with the Lodz city tram system in Poland. (Citation: John Bill May 2017) (Citation: Shelley Smith February 2008) (Citation: Bruce Schneier January 2008) Using this remote, the student was able to capture and replay legitimate tram signals. This resulted in damage to impacted trams, people, and the surrounding property. Reportedly, four trams were derailed and were forced to make emergency stops. (Citation: Shelley Smith February 2008) Commands issued by the student may have also resulted in tram collisions, causing harm to those on board and the environment outside. (Citation: Bruce Schneier January 2008)"
+    },
+    {
+      "id": "T0806",
+      "name": "Brute Force I/O",
+      "description": "Adversaries may repetitively or successively change I/O point values to perform an action. Brute Force I/O may be achieved by changing either a range of I/O point values or a single point value repeatedly to manipulate a process function. The adversary's goal and the information they have about the target environment will influence which of the options they choose. In the case of brute forcing a range of point values, the adversary may be able to achieve an impact without targeting a specific point. In the case where a single point is targeted, the adversary may be able to generate instability on the process function associated with that particular point. \n\nAdversaries may use Brute Force I/O to cause failures within various industrial processes. These failures could be the result of wear on equipment or damage to downstream equipment."
+    },
+    {
+      "id": "T0800",
+      "name": "Activate Firmware Update Mode",
+      "description": "Adversaries may activate firmware update mode on devices to prevent expected response functions from engaging in reaction to an emergency or process malfunction. For example, devices such as protection relays may have an operation mode designed for firmware installation. This mode may halt process monitoring and related functions to allow new firmware to be loaded. A device left in update mode may be placed in an inactive holding state if no firmware is provided to it. By entering and leaving a device in this mode, the adversary may deny its usual functionalities."
+    },
+    {
+      "id": "T0817",
+      "name": "Drive-by Compromise",
+      "description": "Adversaries may gain access to a system during a drive-by compromise, when a user visits a website as part of a regular browsing session. With this technique, the user's web browser is targeted and exploited simply by visiting the compromised website. \n\nThe adversary may target a specific community, such as trusted third party suppliers or other industry specific groups, which often visit the target website. This kind of targeted attack relies on a common interest, and is known as a strategic web compromise or watering hole attack. \n\nThe National Cyber Awareness System (NCAS) has issued a Technical Alert (TA) regarding Russian government cyber activity targeting critical infrastructure sectors. (Citation: Cybersecurity & Infrastructure Security Agency March 2018) Analysis by DHS and FBI has noted two distinct categories of victims in the Dragonfly campaign on the Western energy sector: staging and intended targets. The adversary targeted the less secure networks of staging targets, including trusted third-party suppliers and related peripheral organizations. Initial access to the intended targets used watering hole attacks to target process control, ICS, and critical infrastructure related trade publications and informational websites."
+    },
+    {
+      "id": "T0812",
+      "name": "Default Credentials",
+      "description": "Adversaries may leverage manufacturer or supplier set default credentials on control system devices. These default credentials may have administrative permissions and may be necessary for initial configuration of the device. It is general best practice to change the passwords for these accounts as soon as possible, but some manufacturers may have devices that have passwords or usernames that cannot be changed. (Citation: Keith Stouffer May 2015)\n\nDefault credentials are normally documented in an instruction manual that is either packaged with the device, published online through official means, or published online through unofficial means. Adversaries may leverage default credentials that have not been properly modified or disabled."
+    },
+    {
+      "id": "T0891",
+      "name": "Hardcoded Credentials",
+      "description": "Adversaries may leverage credentials that are hardcoded in software or firmware to gain an unauthorized interactive user session to an asset. Examples credentials that may be hardcoded in an asset include:\n\n* Username/Passwords\n* Cryptographic keys/Certificates\n* API tokens\n\nUnlike [Default Credentials](https://attack.mitre.org/techniques/T0812), these credentials are built into the system in a way that they either cannot be changed by the asset owner, or may be infeasible to change because of the impact it would cause to the control system operation. These credentials may be reused across whole product lines or device models and are often not published or known to the owner and operators of the asset. \n\nAdversaries may utilize these hardcoded credentials to move throughout the control system environment or provide reliable access for their tools to interact with industrial assets. \n"
+    },
+    {
+      "id": "T0890",
+      "name": "Exploitation for Privilege Escalation",
+      "description": "Adversaries may exploit software vulnerabilities in an attempt to elevate privileges. Exploitation of a software vulnerability occurs when an adversary takes advantage of a programming error in a program, service, or within the operating system software or kernel itself to execute adversary-controlled code. Security constructs such as permission levels will often hinder access to information and use of certain techniques, so adversaries will likely need to perform privilege escalation to include use of software exploitation to circumvent those restrictions. (Citation: The MITRE Corporation) \n\nWhen initially gaining access to a system, an adversary may be operating within a lower privileged process which will prevent them from accessing certain resources on the system. Vulnerabilities may exist, usually in operating system components and software commonly running at higher permissions, that can be exploited to gain higher levels of access on the system. This could enable someone to move from unprivileged or user level permissions to SYSTEM or root permissions depending on the component that is vulnerable. This may be a necessary step for an adversary compromising an endpoint system that has been properly configured and limits other privilege escalation methods. (Citation: The MITRE Corporation)"
+    }
+  ],
+  "data_sources": [
+    "DS0015 - Application Log"
+  ],
+  "observable_types": [
+    "Host - Firmware"
+  ],
+  "use_cases": [
+    8,
+    16,
+    17,
+    18,
+    19,
+    20,
+    22,
+    23,
+    25
+  ],
+  "deployment_context": [
+    1,
+    7,
+    13,
+    17,
+    24,
+    27,
+    31
+  ],
+  "example_usage": "test",
+  "github": "test",
+  "factsheet": "test"
+}

@@ -1,0 +1,79 @@
+{
+  "tool_name": "",
+  "description": "",
+  "user_roles": [],
+  "tactics_supported": [],
+  "techniques_supported": [],
+  "data_sources": [],
+  "observable_types": [],
+  "use_cases": [],
+  "deployment_context": {
+    "trl": {
+      "id": 1,
+      "level": 1,
+      "name": "Basic Principles Observed and Reported",
+      "description": "Foundational scientific research; basic scientific principles are observed and reported.",
+      "deliverables": "['Peer‑reviewed literature or whitepapers', 'Experimental data validating basic principles', 'Lab notes or internal reports']",
+      "users": "['Academic researchers', 'National lab scientists']",
+      "environment": "Controlled lab/office theoretical or experimental setting",
+      "scale": "Paper (theoretical or conceptual studies)",
+      "commercial_viable": false,
+      "label": "Basic Principles Observed and Reported",
+      "commercial_viable_label": "No"
+    },
+    "hosting_env": [
+      {
+        "id": 1,
+        "label": "Local CLI",
+        "description": "Tool runs as a command-line application on a user’s local machine or testbed."
+      }
+    ],
+    "interfaces": [
+      {
+        "id": 1,
+        "label": "Command-Line Interface (CLI)",
+        "description": "Interaction via shell or terminal using typed commands for configuration or execution."
+      }
+    ],
+    "access_methods": [
+      {
+        "id": 1,
+        "label": "Access: Website",
+        "description": "Tool or service is accessed via a public or internal website URL."
+      }
+    ],
+    "input_types": [
+      {
+        "id": 1,
+        "label": "CSV File",
+        "description": "Tabular indicators, logs, or IOCs in a spreadsheet-compatible format"
+      }
+    ],
+    "output_types": [
+      {
+        "id": 3,
+        "label": "CSV Export",
+        "description": "Tabular data for analysis in tools like Excel, pandas, or SOC dashboards"
+      }
+    ],
+    "import_formats": [
+      {
+        "id": 1,
+        "label": "STIX 2.1 Bundle",
+        "description": "Structured CTI ingestion format used in threat intelligence systems (e.g., OpenCTI, MISP)"
+      }
+    ],
+    "export_formats": [
+      {
+        "id": 1,
+        "label": "STIX 2.1",
+        "description": "Structured Threat Intelligence format (OASIS) for sharing CTI with tools like OpenCTI, MISP"
+      }
+    ]
+  },
+  "targeted_assets": [],
+  "related_cases": [],
+  "example_usage": "",
+  "github": null,
+  "factsheet": null
+}

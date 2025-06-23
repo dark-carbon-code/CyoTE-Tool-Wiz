@@ -1,0 +1,17 @@
+id,name,description
+1,STIX 2.1 Bundle,"Structured CTI ingestion format used in threat intelligence systems (e.g., OpenCTI, MISP)"
+2,JSON File,"Generic structured data input format used for configurations, enrichment, or model-based inputs"
+3,CSV File,"Spreadsheet-compatible format used for importing indicators, logs, or IOC lists"
+4,PCAP File,Packet capture file for ingesting raw network traffic for analysis
+5,PDF Document,Narrative reports or fact sheets used for NLP-based entity extraction or contextual ingestion
+6,TXT Log,Unstructured logs or plain-text alerts
+7,YAML Config,Model or agent configuration input in YAML format
+8,Excel File (XLSX),"Formatted Excel spreadsheet input, often used in structured observables or use case templates"
+9,Image File (PNG/JPG),Screenshot or visual input used for OCR or image-based observables
+10,Binary Executable,Executable files for behavioral analysis or reverse engineering
+11,ELF/PE File,Compiled Linux (ELF) or Windows (PE) binaries for sandbox or malware analysis
+12,Syslog/CEF/LEEF Stream,"Machine-generated logs for SIEM ingestion, used for log-based parsing and detection"
+13,API Request (JSON Payload),JSON-based API calls used to ingest task instructions or observable bundles
+14,Container Image (Docker),Pulled Docker image for ingesting tool environments or agent deployment contexts
+15,ZIP Archive,Packaged artifacts or multi-file submissions for batch processing
+16,Markdown File (MD),"Documentation, readme files, or templated narratives used in LLM-enhanced tools"

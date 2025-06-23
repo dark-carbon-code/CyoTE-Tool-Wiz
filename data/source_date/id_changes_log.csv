@@ -1,0 +1,54 @@
+original_id,new_id,name
+DS0015,DS0015,Application Log
+DS0015,DS0015.1,Application Log: Application Log Content
+DS0039,DS0039,Asset
+DS0039,DS0039.1,Asset: Asset Inventory
+DS0039,DS0039.2,Asset: Software
+DS0017,DS0017,Command
+DS0017,DS0017.1,Command: Command Execution
+DS0016,DS0016,Drive
+DS0016,DS0016.1,Drive: Drive Creation
+DS0016,DS0016.2,Drive: Drive Modification
+DS0022,DS0022,File
+DS0022,DS0022.1,File: File Access
+DS0022,DS0022.2,File: File Creation
+DS0022,DS0022.3,File: File Deletion
+DS0022,DS0022.4,File: File Metadata
+DS0022,DS0022.5,File: File Modification
+DS0001,DS0001,Firmware
+DS0001,DS0001.1,Firmware: Firmware Modification
+DS0028,DS0028,Logon Session
+DS0028,DS0028.1,Logon Session: Logon Session Creation
+DS0028,DS0028.2,Logon Session: Logon Session Metadata
+DS0011,DS0011,Module
+DS0011,DS0011.1,Module: Module Load
+DS0033,DS0033,Network Share
+DS0033,DS0033.1,Network Share: Network Share Access
+DS0029,DS0029,Network Traffic
+DS0029,DS0029.1,Network Traffic: Network Connection Creation
+DS0029,DS0029.2,Network Traffic: Network Traffic Content
+DS0029,DS0029.3,Network Traffic: Network Traffic Flow
+DS0040,DS0040,Operational Databases
+DS0040,DS0040.1,Operational Databases: Device Alarm
+DS0040,DS0040.2,Operational Databases: Process History/Live Data
+DS0040,DS0040.3,Operational Databases: Process/Event Alarm
+DS0009,DS0009,Process
+DS0009,DS0009.1,Process: OS API Execution
+DS0009,DS0009.2,Process: Process Creation
+DS0009,DS0009.3,Process: Process Metadata
+DS0009,DS0009.4,Process: Process Termination
+DS0003,DS0003,Scheduled Job
+DS0003,DS0003.1,Scheduled Job: Scheduled Job Creation
+DS0003,DS0003.2,Scheduled Job: Scheduled Job Metadata
+DS0003,DS0003.3,Scheduled Job: Scheduled Job Modification
+DS0012,DS0012,Script
+DS0012,DS0012.1,Script: Script Execution
+DS0019,DS0019,Service
+DS0019,DS0019.1,Service: Service Creation
+DS0019,DS0019.2,Service: Service Metadata
+DS0019,DS0019.3,Service: Service Modification
+DS0002,DS0002,User Account
+DS0002,DS0002.1,User Account: User Account Authentication
+DS0024,DS0024,Windows Registry
+DS0024,DS0024.1,Windows Registry: Windows Registry Key Deletion
+DS0024,DS0024.2,Windows Registry: Windows Registry Key Modification

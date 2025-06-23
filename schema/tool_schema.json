@@ -1,0 +1,53 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "CyOTE Tool Capability",
+    "type": "object",
+    "required": ["tool_name", "description", "user_roles", "tactics_supported", "techniques_supported"],
+    "properties": {
+      "tool_name": { "type": "string" },
+      "description": { "type": "string" },
+      "user_roles": {
+        "type": "array",
+        "items": { "type": "string" }
+      },
+      "tactics_supported": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "matrix": { "type": "string", "enum": ["Enterprise", "ICS"] }
+          },
+          "required": ["name", "matrix"]
+        }
+      },
+      "techniques_supported": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": { "type": "string" },
+            "name": { "type": "string" },
+            "matrix": { "type": "string", "enum": ["Enterprise", "ICS"] }
+          },
+          "required": ["id", "name", "matrix"]
+        }
+      },
+      "observable_types": {
+        "type": "array",
+        "items": { "type": "string" }
+      },
+      "use_cases": {
+        "type": "array",
+        "items": { "type": "string" }
+      },
+      "data_sources": {
+        "type": "array",
+        "items": { "type": "string" }
+      },
+      "deployment_context": { "type": "string" },
+      "example_usage": { "type": "string" },
+      "github": { "type": "string" },
+      "factsheet": { "type": "string" }
+    }
+  }

@@ -1,0 +1,16 @@
+{
+  "tool_name": "Test 7",
+  "description": "Test 7",
+  "user_roles": [],
+  "tactics_supported": [],
+  "techniques_supported": [],
+  "data_sources": [],
+  "observable_types": [],
+  "use_cases": [],
+  "deployment_context": [],
+  "targeted_assets": [],
+  "related_cases": [],
+  "example_usage": "",
+  "github": null,
+  "factsheet": null
+}

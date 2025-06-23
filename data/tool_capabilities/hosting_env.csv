@@ -1,0 +1,11 @@
+id,label,description
+1,Local CLI,"Tool runs as a command-line application on a user’s local machine or testbed."
+2,Local GUI Application,"Tool runs as a native graphical application on a local workstation (e.g., Windows .exe or macOS .app)."
+3,Virtual Machine,"Tool is deployed as a VM image requiring a hypervisor such as VirtualBox, VMware, or Hyper-V."
+4,Containerized (Docker),"Tool is deployed in a Docker or Podman container, either standalone or as part of a multi-container stack."
+5,Cloud-hosted Service,Tool is deployed on cloud infrastructure and accessed via a secure public or private endpoint.
+6,Web Application,Tool is accessible via browser and hosted either internally or externally; may be single-page apps or full dashboards.
+7,SaaS Platform,"Fully managed software-as-a-service offering, typically licensed via subscription and accessed via login."
+8,API Endpoint Only,Tool is hosted as a backend model or service accessible only via API calls—no user interface is exposed.
+9,Edge Device / Appliance,"Tool is embedded in a field-deployable device or hardware appliance (e.g., sensor box, industrial gateway)."
+10,Hybrid Deployment,"Tool has both local and remote components, such as a local collector with cloud-based analytics or coordination."

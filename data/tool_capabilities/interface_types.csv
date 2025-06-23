@@ -1,0 +1,16 @@
+id,label,description
+1,Command-Line Interface (CLI),Interaction via shell or terminal using typed commands for configuration or execution.
+2,Graphical User Interface (GUI),"Visual interface with forms, buttons, and input fields, accessible via desktop or web."
+3,Web Dashboard,"Web-accessible UI offering dashboards, charts, or configuration pages."
+4,REST API,"Exposes endpoints for programmatic interaction using HTTP requests (GET, POST, etc.)."
+5,GraphQL API,"Offers a query-based API for flexible data retrieval and mutation, often over HTTP."
+6,gRPC Interface,Uses Protocol Buffers over HTTP/2 for high-performance service communication.
+7,SDK/Library Integration,Provides a software development kit (SDK) or libraries for embedding functionality into code.
+8,Drag-and-Drop Upload,Allows users to upload artifacts directly via file drag-and-drop in GUI or browser interface.
+9,File Path or Directory Selection,Requires the user to provide a file path or folder input during tool configuration.
+10,Interactive Form (Input Fields),"Form-driven input where users fill out fields like observables, filters, or configs."
+11,Interactive CLI Prompt,CLI interface that prompts user input step-by-step instead of batch execution.
+12,Config File-Based (YAML/INI/JSON),User provides structured config files that guide tool behavior during runtime.
+13,TUI (Text-Based UI),"Uses terminal-based, semi-graphical interfaces (e.g., ncurses) to present navigation options."
+14,Messaging Bot Interface,"Users interact through Slack, Discord, or other chat interfaces where the tool responds to input."
+15,Voice or Natural Language Interface,"Accepts input via spoken or typed natural language commands, often LLM-enabled."

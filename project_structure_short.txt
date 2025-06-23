@@ -1,0 +1,194 @@
+📂 Project Structure (filtered): C:\Projects\cyote_tool_wiz
+
+├── cli.py
+├── data
+│   ├── chunks
+│   │   ├── RAG_Ready_Test_chunks.jsonl
+│   │   └── Test_for_chunking__20250608220625_chunks.jsonl
+│   ├── deployment_context_inspect
+│   │   └── tool_deployment_context.csv
+│   ├── source_date
+│   │   ├── NICE Framework to CSF Mapping - v2.0.0 to V2 - March 2025.xlsx
+│   │   ├── all_case_study_observables_corrected.csv
+│   │   ├── all_case_study_observables_w_d_notation_group_phase_terminal_final_v2.csv
+│   │   ├── cleaned_datasources.csv
+│   │   ├── csf-export.json
+│   │   ├── cyote_par_observerables.csv
+│   │   ├── cyote_par_observerables_06JUN25.csv
+│   │   ├── cyote_par_observerables_clean.csv
+│   │   ├── cyote_par_observerables_normalized.csv
+│   │   ├── cyote_par_observerables_terminal_only.csv
+│   │   ├── cyote_schema.sql
+│   │   ├── enterprise-attack-v17.1-datasources.csv
+│   │   ├── enterprise-attack-v17.1-tactics.csv
+│   │   ├── enterprise-attack-v17.1-techniques.csv
+│   │   ├── ics-attack-v17.1-assets.csv
+│   │   ├── ics-attack-v17.1-datasources.csv
+│   │   ├── ics-attack-v17.1-tactics.csv
+│   │   ├── ics-attack-v17.1-techniques-procedure-example.csv
+│   │   ├── ics-attack-v17.1-techniques-procedure-example.enriched.csv
+│   │   ├── ics-attack-v17.1-techniques-targeted-assets.csv
+│   │   ├── ics-attack-v17.1-techniques.csv
+│   │   ├── ics-attack-v17.1-techniques_data_sources.csv
+│   │   ├── id_changes_log.csv
+│   │   ├── observable_types_descriptions_filled.csv
+│   │   ├── observable_types_descriptions_template.csv
+│   │   ├── par_case_technique_descriptions_deduped.csv
+│   │   ├── par_case_technique_descriptions_terminal_only.csv
+│   │   ├── test_datasources_output.json
+│   │   └── v2_nf_components.json
+│   ├── tool_capabilities
+│   │   ├── BAM_20250604203529.json
+│   │   ├── BAM_20250606121158.json
+│   │   ├── CyOTE_Attack_Chain_Estimator_(ACE)_20250606100202.json
+│   │   ├── CyOTE_BAM_20250605183645.json
+│   │   ├── CyOTE_Catch_20250604174356.json
+│   │   ├── CyOTE_OPTIC_20250605181935.json
+│   │   ├── RAG_Ready_Test_20250608223833.json
+│   │   ├── Test_10__20250607114232.json
+│   │   ├── Test_12_20250607193551.json
+│   │   ├── Test_13_20250607202302.json
+│   │   ├── Test_15_20250607204241.json
+│   │   ├── Test_16_20250607210109.json
+│   │   ├── Test_17_20250607221458.json
+│   │   ├── Test_18__20250608011941.json
+│   │   ├── Test_1_20250606203700.json
+│   │   ├── Test_1a_20250607184552.json
+│   │   ├── Test_20250606150413.json
+│   │   ├── Test_20250606152517.json
+│   │   ├── Test_20250606202012.json
+│   │   ├── Test_2_20250606210818.json
+│   │   ├── Test_3_20250606212901.json
+│   │   ├── Test_4_20250606213238.json
+│   │   ├── Test_5_20250606213435.json
+│   │   ├── Test_6_20250606220747.json
+│   │   ├── Test_7_20250606221121.json
+│   │   ├── Test_8_20250606221157.json
+│   │   ├── Test_9__20250607112021.json
+│   │   ├── Test_for_chunking__20250608220625.json
+│   │   ├── Tool_19_20250608014230.json
+│   │   ├── Tool_20__20250608020506.json
+│   │   ├── Tool_22_20250608151552.json
+│   │   ├── Tool_23_20250608172225.json
+│   │   ├── _20250608022921.json
+│   │   ├── _20250608024508.json
+│   │   ├── _20250608180637.json
+│   │   ├── _20250608182221.json
+│   │   ├── _20250608182759.json
+│   │   ├── _20250608183858.json
+│   │   ├── _20250608185033.json
+│   │   ├── _20250608185820.json
+│   │   ├── access_methods.csv
+│   │   ├── export_formats.csv
+│   │   ├── hosting_env.csv
+│   │   ├── import_formats.csv
+│   │   ├── input_types.csv
+│   │   ├── interface_types.csv
+│   │   ├── output_types.csv
+│   │   ├── trl_doe.json
+│   │   └── trl_levels.csv
+│   └── tool_knowledge.db
+├── notebooks
+│   └── cyote_assistant.ipynb
+├── project_structure.txt
+├── requirements.txt
+├── schema
+│   └── tool_schema.json
+├── scripts
+│   ├── add_external_effects_datasource.py
+│   ├── append_observables_to_procedures.py
+│   ├── check_alignment.py
+│   ├── check_assets_table.py
+│   ├── check_case_descriptions_csv.py
+│   ├── check_csv_headers.py
+│   ├── check_db_contents.py
+│   ├── check_db_tables.py
+│   ├── check_db_tool_datasources_table.py
+│   ├── check_obs_types_content.py
+│   ├── check_par_alignment.py
+│   ├── check_par_cases_db.py
+│   ├── check_table_data_sources_contents.py
+│   ├── check_table_techniques_data_sources_contents.py
+│   ├── check_technique_tactics.py
+│   ├── check_tool_datasources_completeness.py
+│   ├── check_tool_deployment_context.py
+│   ├── check_tool_use_cases.py
+│   ├── check_tools_table.py
+│   ├── compare_list_missing_case_descriptions.py
+│   ├── correc_case_id_csv.py
+│   ├── correct_id.py
+│   ├── create_and_populate_tool_deployment_context.py
+│   ├── create_and_populate_tool_use_cases.py
+│   ├── create_cases_tables.py
+│   ├── create_data_source_observable_types.py
+│   ├── create_nice_csf_tables.py
+│   ├── create_nice_roles_table.py
+│   ├── create_obs_types_table.py
+│   ├── create_pop_use_cases.py
+│   ├── create_technique_assets.py
+│   ├── create_tool_roles_table.py
+│   ├── diagnose_case_description_csv.py
+│   ├── drop_columns.py
+│   ├── enrich.py
+│   ├── explore_csf.py
+│   ├── export_obs_type.py
+│   ├── fill_missing_case_descriptions.py
+│   ├── fill_missing_data_sources.py
+│   ├── filter_terminal_observables.py
+│   ├── import_enriched_cases.py
+│   ├── import_obs_descriptions.py
+│   ├── import_par_case_descriptions.py
+│   ├── init_db.py
+│   ├── inspect_use_cases_table.py
+│   ├── json_output_preview.py
+│   ├── list_data_sources_from_csv.py
+│   ├── map_tool_roles.py
+│   ├── migrate_create_technique_data_sources.py
+│   ├── migrate_create_technique_observable_types.py
+│   ├── migrate_remove_tactic_id_from_techniques.py
+│   ├── normalize_case_ids.py
+│   ├── normalize_techniques_data_sources.py
+│   ├── populate_data_sources_observable_types.py
+│   ├── populate_observable_types.py
+│   ├── populate_technique_observable_types.py
+│   ├── populate_technique_tactics.py
+│   ├── populate_technique_tactics_bulk.py
+│   ├── populate_techniques_data_sources.py
+│   ├── populate_tool_knowledge_db.py
+│   ├── quick.py
+│   ├── quickie.py
+│   ├── rebuild_data_sources_table.py
+│   ├── summarize_uc_table.py
+│   ├── sync_data_sources_from_csv.py
+│   ├── validate_database_integrity.py
+│   ├── validate_technique_migration.py
+│   ├── validate_tool_deployment_context.py
+│   ├── verify_case_descriptions.py
+│   └── verify_db.py
+├── simulated_tool_entry_from_pars.json
+├── tools
+│   ├── interactive_create(workingreference).py
+│   ├── interactive_create_v1.py
+│   ├── interactive_create_v2.1.py
+│   ├── interactive_create_v2.py
+│   ├── interactive_create_v3.py
+│   ├── interactive_create_v4.py
+│   ├── interactive_create_v5.py
+│   ├── interactive_create_v6.py
+│   ├── interactive_create_v7.py
+│   └── interactive_create_v8.py
+├── utils
+│   ├── __init__.py
+│   ├── chunker.py
+│   ├── csf_use_case_selector.py
+│   ├── csv_loader.py
+│   ├── db.py
+│   ├── deployment_context.py
+│   ├── file_utils.py
+│   ├── nice_to_csf_usecase.py
+│   └── tool_role_selector.py
+└── wizard
+    ├── __init__.py
+    ├── ascii_art.py
+    ├── interactive_create.py
+    └── interactive_update.py

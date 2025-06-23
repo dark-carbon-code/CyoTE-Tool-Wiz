@@ -1,0 +1,2763 @@
+{
+  "tool_name": "Test 3",
+  "description": "Test 3",
+  "user_roles": [
+    {
+      "name": "OT Cybersecurity"
+    }
+  ],
+  "tactics_supported": [
+    "TA0100 - Collection",
+    "TA0101 - Command and Control",
+    "TA0102 - Discovery",
+    "TA0103 - Evasion",
+    "TA0104 - Execution",
+    "TA0105 - Impact",
+    "TA0106 - Impair Process Control",
+    "TA0107 - Inhibit Response Function",
+    "TA0108 - Initial Access"
+  ],
+  "techniques_supported": [
+    {
+      "id": "T0830",
+      "name": "Adversary-in-the-Middle",
+      "description": "Adversaries with privileged network access may seek to modify network traffic in real time using adversary-in-the-middle (AiTM) attacks. (Citation: Gabriel Sanchez October 2017) This type of attack allows the adversary to intercept traffic to and/or from a particular device on the network. If a AiTM attack is established, then the adversary has the ability to block, log, modify, or inject traffic into the communication stream. There are several ways to accomplish this attack, but some of the most-common are Address Resolution Protocol (ARP) poisoning and the use of a proxy. (Citation: Bonnie Zhu, Anthony Joseph, Shankar Sastry 2011)  \n\nAn AiTM attack may allow an adversary to perform the following attacks:  \n[Block Reporting Message](https://attack.mitre.org/techniques/T0804), [Spoof Reporting Message](https://attack.mitre.org/techniques/T0856), [Modify Parameter](https://attack.mitre.org/techniques/T0836), [Unauthorized Command Message](https://attack.mitre.org/techniques/T0855)"
+    },
+    {
+      "id": "T0802",
+      "name": "Automated Collection",
+      "description": "Adversaries may automate collection of industrial environment information using tools or scripts. This automated collection may leverage native control protocols and tools available in the control systems environment. For example, the OPC protocol may be used to enumerate and gather information. Access to a system or interface with these native protocols may allow collection and enumeration of other attached, communicating servers and devices."
+    },
+    {
+      "id": "T0885",
+      "name": "Commonly Used Port",
+      "description": "Adversaries may communicate over a commonly used port to bypass firewalls or network detection systems and to blend in with normal network activity, to avoid more detailed inspection. They may use the protocol associated with the port, or a completely different protocol. They may use commonly open ports, such as the examples provided below. \n \n * TCP:80 (HTTP) \n * TCP:443 (HTTPS) \n * TCP/UDP:53 (DNS) \n * TCP:1024-4999 (OPC on XP/Win2k3) \n * TCP:49152-65535 (OPC on Vista and later) \n * TCP:23 (TELNET) \n * UDP:161 (SNMP) \n * TCP:502 (MODBUS) \n * TCP:102 (S7comm/ISO-TSAP) \n * TCP:20000 (DNP3) \n * TCP:44818 (Ethernet/IP)"
+    },
+    {
+      "id": "T0840",
+      "name": "Network Connection Enumeration",
+      "description": "Adversaries may perform network connection enumeration to discover information about device communication patterns. If an adversary can inspect the state of a network connection with tools, such as Netstat(Citation: Netstat), in conjunction with [System Firmware](https://attack.mitre.org/techniques/T0857), then they can determine the role of certain devices on the network  (Citation: MITRE). The adversary can also use [Network Sniffing](https://attack.mitre.org/techniques/T0842) to watch network traffic for details about the source, destination, protocol, and content."
+    },
+    {
+      "id": "T0858",
+      "name": "Change Operating Mode",
+      "description": "Adversaries may change the operating mode of a controller to gain additional access to engineering functions such as Program Download.   Programmable controllers typically have several modes of operation that control the state of the user program and control access to the controllers API. Operating modes can be physically selected using a key switch on the face of the controller but may also be selected with calls to the controllers API. Operating modes and the mechanisms by which they are selected often vary by vendor and product line. Some commonly implemented operating modes are described below:  \n\n* Program - This mode must be enabled before changes can be made to a devices program. This allows program uploads and downloads between the device and an engineering workstation. Often the PLCs logic Is halted, and all outputs may be forced off. (Citation: N.A. October 2017)  \n* Run - Execution of the devices program occurs in this mode. Input and output (values, points, tags, elements, etc.) are monitored and used according to the programs logic. [Program Upload](https://attack.mitre.org/techniques/T0845) and [Program Download](https://attack.mitre.org/techniques/T0843) are disabled while in this mode. (Citation: Omron) (Citation: Machine Information Systems 2007)  (Citation: N.A. October 2017) (Citation: PLCgurus 2021)   \n* Remote - Allows for remote changes to a PLCs operation mode. (Citation: PLCgurus 2021)    \n* Stop - The PLC and program is stopped, while in this mode, outputs are forced off. (Citation: Machine Information Systems 2007)   \n* Reset - Conditions on the PLC are reset to their original states. Warm resets may retain some memory while cold resets will reset all I/O and data registers. (Citation: Machine Information Systems 2007)   \n* Test / Monitor mode - Similar to run mode, I/O is processed, although this mode allows for monitoring, force set, resets, and more generally tuning or debugging of the system. Often monitor mode may be used as a trial for initialization. (Citation: Omron)"
+    },
+    {
+      "id": "T0895",
+      "name": "Autorun Image",
+      "description": "Adversaries may leverage AutoRun functionality or scripts to execute malicious code. Devices configured to enable AutoRun functionality or legacy operating systems may be susceptible to abuse of these features to run malicious code stored on various forms of removeable media (i.e., USB, Disk Images [.ISO]). Commonly, AutoRun or AutoPlay are disabled in many operating systems configurations to mitigate against this technique. If a device is configured to enable AutoRun or AutoPlay, adversaries may execute code on the device by mounting the removable media to the device, either through physical or virtual means. This may be especially relevant for virtual machine environments where disk images may be dynamically mapped to a guest system on a hypervisor.  \n\nAn example could include an adversary gaining access to a hypervisor through the management interface to modify a virtual machine\u2019s hardware configuration. They could then deploy an iso image with a malicious AutoRun script to cause the virtual machine to automatically execute the code contained on the disk image. This would enable the execution of malicious code within a virtual machine without needing any prior remote access to that system.\n"
+    },
+    {
+      "id": "T0879",
+      "name": "Damage to Property",
+      "description": "Adversaries may cause damage and destruction of property to infrastructure, equipment, and the surrounding environment when attacking control systems. This technique may result in device and operational equipment breakdown, or represent tangential damage from other techniques used in an attack. Depending on the severity of physical damage and disruption caused to control processes and systems, this technique may result in [Loss of Safety](https://attack.mitre.org/techniques/T0880). Operations that result in [Loss of Control](https://attack.mitre.org/techniques/T0827) may also cause damage to property, which may be directly or indirectly motivated by an adversary seeking to cause impact in the form of [Loss of Productivity and Revenue](https://attack.mitre.org/techniques/T0828). \n\n\nThe German Federal Office for Information Security (BSI) reported a targeted attack on a steel mill under an incidents affecting business section of its 2014 IT Security Report. (Citation: BSI State of IT Security 2014)  These targeted attacks affected industrial operations and resulted in breakdowns of control system components and even entire installations. As a result of these breakdowns, massive impact and damage resulted from the uncontrolled shutdown of a blast furnace. \n\nA Polish student used a remote controller device to interface with the Lodz city tram system in Poland. (Citation: John Bill May 2017) (Citation: Shelley Smith February 2008) (Citation: Bruce Schneier January 2008) Using this remote, the student was able to capture and replay legitimate tram signals. This resulted in damage to impacted trams, people, and the surrounding property. Reportedly, four trams were derailed and were forced to make emergency stops. (Citation: Shelley Smith February 2008) Commands issued by the student may have also resulted in tram collisions, causing harm to those on board and the environment outside. (Citation: Bruce Schneier January 2008)"
+    },
+    {
+      "id": "T0806",
+      "name": "Brute Force I/O",
+      "description": "Adversaries may repetitively or successively change I/O point values to perform an action. Brute Force I/O may be achieved by changing either a range of I/O point values or a single point value repeatedly to manipulate a process function. The adversary's goal and the information they have about the target environment will influence which of the options they choose. In the case of brute forcing a range of point values, the adversary may be able to achieve an impact without targeting a specific point. In the case where a single point is targeted, the adversary may be able to generate instability on the process function associated with that particular point. \n\nAdversaries may use Brute Force I/O to cause failures within various industrial processes. These failures could be the result of wear on equipment or damage to downstream equipment."
+    },
+    {
+      "id": "T0800",
+      "name": "Activate Firmware Update Mode",
+      "description": "Adversaries may activate firmware update mode on devices to prevent expected response functions from engaging in reaction to an emergency or process malfunction. For example, devices such as protection relays may have an operation mode designed for firmware installation. This mode may halt process monitoring and related functions to allow new firmware to be loaded. A device left in update mode may be placed in an inactive holding state if no firmware is provided to it. By entering and leaving a device in this mode, the adversary may deny its usual functionalities."
+    },
+    {
+      "id": "T0817",
+      "name": "Drive-by Compromise",
+      "description": "Adversaries may gain access to a system during a drive-by compromise, when a user visits a website as part of a regular browsing session. With this technique, the user's web browser is targeted and exploited simply by visiting the compromised website. \n\nThe adversary may target a specific community, such as trusted third party suppliers or other industry specific groups, which often visit the target website. This kind of targeted attack relies on a common interest, and is known as a strategic web compromise or watering hole attack. \n\nThe National Cyber Awareness System (NCAS) has issued a Technical Alert (TA) regarding Russian government cyber activity targeting critical infrastructure sectors. (Citation: Cybersecurity & Infrastructure Security Agency March 2018) Analysis by DHS and FBI has noted two distinct categories of victims in the Dragonfly campaign on the Western energy sector: staging and intended targets. The adversary targeted the less secure networks of staging targets, including trusted third-party suppliers and related peripheral organizations. Initial access to the intended targets used watering hole attacks to target process control, ICS, and critical infrastructure related trade publications and informational websites."
+    }
+  ],
+  "data_sources": [
+    {
+      "id": "DS0015",
+      "name": "Application Log"
+    }
+  ],
+  "observable_types": [
+    {
+      "category": "Host",
+      "name": "Firmware"
+    }
+  ],
+  "use_cases": [
+    {
+      "id": 1,
+      "name": "Govern: Organizational Context"
+    }
+  ],
+  "deployment_context": [
+    {
+      "id": 1,
+      "label": "Tool Input: STIX 2.1 Bundle",
+      "description": "Structured CTI ingestion format used by most threat intel platforms"
+    }
+  ],
+  "targeted_assets": [
+    {
+      "id": "A0002",
+      "name": "Human-Machine Interface (HMI)",
+      "description": "Human-Machine Interfaces (HMIs) are systems used by an operator to monitor the real-time status of an operational process and to perform necessary control functions, including the adjustment of device parameters. An HMI can take various forms, including a dedicated screen or control panel integrated with a specific device/controller, or a customizable software GUI application running on a standard operating system (e.g., MS Windows) that interfaces with a control/SCADA server. The HMI is critical to ensuring operators have sufficient visibility and control over the operational process."
+    },
+    {
+      "id": "A0003",
+      "name": "Programmable Logic Controller (PLC)",
+      "description": "A Programmable Logic Controller (PLC) is an embedded programmable control device. PLCs typically utilize a modular architecture with separate modules used to support its processing capabilities, communication mediums, and I/O interfaces. PLCs allow for the deployment of customized programs/logic to control or monitor an operational process. This logic is defined using industry specific programming languages, such as IEC 61131 (Citation: IEC February 2013), which define the set of tasks and program organizational units (POUs) included in the device\u2019s programs.  PLCs also typically have distinct operating modes (e.g., Remote, Run, Program, Stop) which are used to determine when the device can be programmed or whether it should execute the custom logic."
+    },
+    {
+      "id": "A0004",
+      "name": "Remote Terminal Unit (RTU)",
+      "description": "A Remote Terminal Unit (RTU) is a device that typically resides between field devices (e.g., PLCs, IEDs) and control/SCADA servers and supports various communication interfacing and data aggregation functions. RTUs are typically responsible for forwarding commands from the control server and the collection of telemetry, events, and alerts from the field devices. An RTU can be implemented as a dedicated embedded device, as software platform that runs on a hardened/ruggedized computer, or using a custom application program on a PLC."
+    },
+    {
+      "id": "A0005",
+      "name": "Intelligent Electronic Device (IED)",
+      "description": "An Intelligent Electronic Device (IED) is a type of specialized field device that is designed to perform specific operational functions, frequently for protection, monitoring, or control within the electric sector. IEDs are typically used to both acquire telemetry and execute tailored control algorithms/actions based on customizable parameters/settings. An IED is usually implemented as a dedicated embedded device and supports various network automation protocols to communicate with RTUs and Control Servers."
+    },
+    {
+      "id": "A0009",
+      "name": "Data Gateway",
+      "description": "Data Gateway is a device that supports the communication and exchange of data between different systems, networks, or protocols within the ICS. Different types of data gateways are used to perform various functions, including:\n\n *  <u>Protocol Translation:</u> Enable communication to devices that support different or incompatible protocols by translating information from one protocol to another. \n *  <u>Media Converter:</u> Convert data across different Layer 1 and 2 network protocols / mediums, for example, converting from Serial to Ethernet. \n *  <u>Data Aggregation:</u> Collect and combine data from different devices into one consistent format and protocol interface. \n\nData gateways are often critical to the forwarding/transmission of critical control or monitoring data within the ICS. Further, these devices often have remote various network services that are used to communicate across different zones or networks.  \n\nThese assets may focus on a single function listed below or combinations of these functions to best fit the industry use-case. \n"
+    },
+    {
+      "id": "A0010",
+      "name": "Safety Controller",
+      "description": "Safety controllers are typically a type of field device used to perform the safety critical function. Safety controllers often support the deployment of custom programs/logic, similar to a PLC, but can also be tailored for sector specific functions/applications. The safety controllers typically utilize redundant hardware and processors to ensure they operate reliably if a component fails."
+    },
+    {
+      "id": "A0013",
+      "name": "Field I/O",
+      "description": "Field I/O are devices that communicate with a controller or data aggregator to either send input data or receive output data. Input data may include readings about a given environment/device state from sensors, while output data may include data sent back to actuators for them to either undertake actions or change parameter values.(Citation: Guidance - NIST SP800-82) These devices are frequently embedded devices running on lightweight embedded operating systems or RTOSes. "
+    },
+    {
+      "id": "A0006",
+      "name": "Data Historian",
+      "description": "Data historians, or historian, are systems used to collect and store data, including telemetry, events, alerts, and alarms about the operational process and supporting devices. The historian typically utilizes a database to store this data, and commonly provide tools and interfaces to support the analysis of the data. Data historians are often used to support various engineering or business analysis functions and therefore commonly needs access from the corporate network. Data historians often work in a hierarchical paradigm where lower/site level historians collect and store data which is then aggregated into a site/plant level historian. Therefore, data historians often have remote services that can be accessed externally from the ICS network."
+    },
+    {
+      "id": "A0007",
+      "name": "Control Server",
+      "description": "Control servers are typically a software platform that runs on a modern server operating system (e.g., MS Windows Server). The server typically uses one or more automation protocols (e.g., Modbus, DNP3) to communicate with the various low-level control devices such as Remote Terminal Units (RTUs) and Programmable Logic Controllers (PLCs). The control server also usually provides an interface/network service to connect with an HMI."
+    },
+    {
+      "id": "A0001",
+      "name": "Workstation",
+      "description": "Workstations are devices used by human operators or engineers to perform various configuration, programming, maintenance, diagnostic, or operational tasks. Workstations typically utilize standard desktop or laptop hardware and operating systems (e.g., MS Windows), but run dedicated control system applications or diagnostic/management software     to support interfacing with the control servers or field devices. Some workstations have a fixed location within the network architecture, while others are transient devices that are directly connected to various field devices to support local management activities."
+    },
+    {
+      "id": "A0008",
+      "name": "Application Server",
+      "description": "Application servers are used across many different sectors to host various diverse software applications necessary to supporting the ICS. Example functions can include data analytics and reporting, alarm management, and the management/coordination of different control servers.  The application server typically runs on a modern server operating system (e.g., MS Windows Server)."
+    },
+    {
+      "id": "A0011",
+      "name": "Virtual Private Network (VPN) Server",
+      "description": "A VPN server is a device that is used to establish a secure network tunnel between itself and other remote VPN devices, including field VPNs. VPN servers can be used to establish a secure connection with a single remote device, or to securely bridge all traffic between two separate networks together by encapsulating all data between those networks. VPN servers typically support remote network services that are used by field VPNs to initiate the establishment of the secure VPN tunnel between the field device and server."
+    },
+    {
+      "id": "A0012",
+      "name": "Jump Host",
+      "description": "Jump hosts are devices used to support remote management sessions into ICS networks or devices. The system is used to access the ICS environment securely from external networks, such as the corporate network. The user must first remote into the jump host before they can access ICS devices. The jump host may be a customized Windows server using common remote access protocols (e.g., RDP) or a dedicated access management device. The jump host typically performs various security functions to ensure the authenticity of remote sessions, including authentication, enforcing access controls/permissions, and auditing all access attempts.  "
+    },
+    {
+      "id": "A0014",
+      "name": "Routers",
+      "description": "A computer that is a gateway between two networks at OSI layer 3 and that relays and directs data packets through that inter-network. The most common form of router operates on IP packets.(Citation: IETF RFC4949 2007)"
+    }
+  ],
+  "related_cases": [
+    {
+      "case_id": "C0020",
+      "descriptions": [
+        {
+          "tech_id": "T0879",
+          "case_description": ""
+        }
+      ]
+    },
+    {
+      "case_id": "C0028",
+      "descriptions": [
+        {
+          "tech_id": "T0885",
+          "case_description": ""
+        }
+      ]
+    },
+    {
+      "case_id": "C0030",
+      "descriptions": [
+        {
+          "tech_id": "T0830",
+          "case_description": ""
+        }
+      ]
+    },
+    {
+      "case_id": "C0034",
+      "descriptions": [
+        {
+          "tech_id": "T0895",
+          "case_description": ""
+        }
+      ]
+    },
+    {
+      "case_id": "G0035",
+      "descriptions": [
+        {
+          "tech_id": "T0817",
+          "case_description": ""
+        }
+      ]
+    },
+    {
+      "case_id": "G0049",
+      "descriptions": [
+        {
+          "tech_id": "T0817",
+          "case_description": ""
+        }
+      ]
+    },
+    {
+      "case_id": "G0088",
+      "descriptions": [
+        {
+          "tech_id": "T0817",
+          "case_description": ""
+        }
+      ]
+    },
+    {
+      "case_id": "G1000",
+      "descriptions": [
+        {
+          "tech_id": "T0817",
+          "case_description": ""
+        }
+      ]
+    },
+    {
+      "case_id": "PAR001",
+      "descriptions": [
+        {
+          "tech_id": "T0879",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0879",
+          "case_description": "Anomalous Behavior of Controlled Process: Anomalous Pump Station Behavior: At Boomba Street: Controlled Process Failure: Overflow of Untreated Sewage: Approximately 211,337 Gallons of Sewage Overflowed Into the Surrounding Open Drain and Creek"
+        },
+        {
+          "tech_id": "T0879",
+          "case_description": "Anomalous Environmental Factors: Anomalous Raw Sewage Smell in the Community: Reported to Maroochy Shire Council: Increase in Complaints"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR003",
+      "descriptions": [
+        {
+          "tech_id": "T0802",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Command Issued Via Command-Line: Associated with Execution of Anomalous Executable: gsecdump.exe: Command-Line Arguments (#{gsecdump_exe})"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous System Behavior on Local Host: A Handle to An Object Was Closed (Windows Event ID 4658): Associated with Execution of Anomalous Executable on Local Host: Cain & Abel"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous System Behavior on Local Host: A Handle to An Object Was Closed (Windows Event ID 4658): Associated with Execution of Anomalous Executable on Local Host: gsecdump.exe"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous System Behavior on Local Host: A Handle to An Object Was Requested (Windows Event ID 4656): Associated with Execution of Anomalous Executable on Local Host: Cain & Abel"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous System Behavior on Local Host: A Handle to An Object Was Requested (Windows Event ID 4656): Associated with Execution of Anomalous Executable on Local Host: gsecdump.exe"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous System Behavior on Local Host: A New Process Has Been Created (Windows Event ID 4688): Associated with Execution of Anomalous Executable on Local Host: Cain & Abel"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous System Behavior on Local Host: A New Process Has Been Created (Windows Event ID 4688): Associated with Execution of Anomalous Executable on Local Host: gsecdump.exe"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous System Behavior on Local Host: Access of Security Account Manager (SAM) Database File: Associated with Execution of Anomalous Executable on Local Host: Cain & Abel"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous System Behavior on Local Host: An Attempt Was Made to Access an Object (Windows Event ID 4663):  Associated with Execution of Anomalous Executable on Local Host: Cain & Abel"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous System Behavior on Local Host: An Attempt Was Made to Access an Object (Windows Event ID 4663):  Associated with Execution of Anomalous Executable on Local Host: gsecdump.exe"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous System Behavior on Local Host: Anomalous Increase in System Resource Utilization: Associated with Execution of Anomalous Executable on Local Host: Cain & Abel"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous System Behavior on Local Host: File Created (Sysmon Event ID 11): Associated with Execution of Anomalous Executable: Cain & Abel"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous System Behavior on Local Host: File Created (Sysmon Event ID 11): Associated with Execution of Anomalous Executable: gsecdump.exe"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous System Behavior on Local Host: Process Accessed (Sysmon Event ID 10): Associated with Execution of Anomalous Executable: Cain & Abel"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous System Behavior on Local Host: Process Accessed (Sysmon Event ID 10): Associated with Execution of Anomalous Executable: gsecdump.exe"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous System Behavior on Local Host: Process Creation (Sysmon Event ID 1): Associated with Execution of Anomalous Executable: Cain & Abel"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous System Behavior on Local Host: Process Creation (Sysmon Event ID 1): Associated with Execution of Anomalous Executable: gsecdump.exe"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous System Behavior on Local Host: Process Terminated (Sysmon Event ID 5): Associated with Execution of Anomalous Executable: gsecdump.exe"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous System Behavior on Local Host: Windows Process Terminated (Windows Event ID 4689): Associated with Execution of Anomalous Executable: gsecdump.exe"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Execution of Anomalous Executable on Local Host: Cain & Abel"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Execution of Anomalous Executable on Local Host: gsecdump.exe"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Presence of Anomalous Binary on Local Host: Dynamic Link Library (DLL): In %systemroot%\\system32 Directory: wminotify.dll"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Presence of Anomalous Executable on Local Host: Cain & Abel"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Presence of Anomalous Executable on Local Host: gsecdump.exe"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Presence of Anomalous Script on Local Host: Batch Script: Install.bat"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Presence of Anomalous Script on Local Host: Batch Script: Readlog.bat"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Presence of Anomalous Script on Local Host: Batch Script: Uninstall.bat"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Termination of Anomalous Executable on Local Host: gsecdump.exe"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to Domain Server: Domain Name Service (DNS) Over UDP Port 53: Request to Anomalous Domain: is-a-chef.com, thruhere.net, office-on-the.net, and selfip.com: Requests to Multiple Anomalous Domains"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to Web Server: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: Containing Packets with Plain Text Signature: Hw$: Five-Second Interval Beacons (TCP Keep-Alive (ACK) Packets)"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to Web Server: Simple Mail Transfer Protocol (SMTP) Over TCP Port 25"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR004",
+      "descriptions": [
+        {
+          "tech_id": "T0840",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous Network Traffic: From External Host to Local Host: From External Host to IP Camera: Network Session Established"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous Network Traffic: From External Host to Local Host: From External Host to IP Camera: Real Time Streaming Protocol (RTSP) Network Traffic Over TCP Port 554: POST Request: Containing Default Administrator Credentials"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous Network Traffic: From Internal Database to Internal Local Hosts: From Microsoft (MS) Structured Query Language (SQL) Server Camera Storage Database to All 200 Connected Internal Devices: Over TCP Port 1433"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous Network Traffic: From Internal Database to Internal Local Hosts: From Microsoft (MS) Structured Query Language (SQL) Server Camera Storage Database to All 63 Connected Remote Terminal Units (RTUs): Over TCP Port 1433"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous Network Traffic: From Internal Database to Internal Local Hosts: From Microsoft (MS) Structured Query Language (SQL) Server Camera Storage Database to Local Engineering Workstation (EWS): Over TCP Port 1433"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous Network Traffic: From Internal Database to Internal Local Hosts: From Microsoft (MS) Structured Query Language (SQL) Server Camera Storage Database to Local Engineering Workstation (EWS): Over TCP Port 1434"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Default Administrator Credentials Used to Logon to Local Host: IP Camera"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Default Administrator Credentials Used to Logon to Local Host: Microsoft (MS) Structured Query Language (SQL) Server Camera Storage Database"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Default Administrator Credentials Used to Logon to Local Host: Security Camera Control Server"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Logon with Explicit Credentials (Windows Event ID 4648): Default Administrator Credentials Used to Logon to Local Host: IP Camera"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Logon with Explicit Credentials (Windows Event ID 4648): Default Administrator Credentials Used to Logon to Local Host: Microsoft (MS) Structured Query Language (SQL) Server Camera Storage Database"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Logon with Explicit Credentials (Windows Event ID 4648): Default Administrator Credentials Used to Logon to Local Host: Security Camera Control Server"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Network Traffic: From Local Host to Internal Database: From Security Camera Control Server to Microsoft (MS) Structured Query Language (SQL) Server Camera Storage Database: Over TCP Port 1433: Containing Default Administrator Credentials"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Network Traffic: From Local Host to Internal Database: From Security Camera Control Server to Microsoft (MS) Structured Query Language (SQL) Server Camera Storage Database: Over UDP Port 1434: Containing Default Administrator Credentials"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Network Traffic: From Local Host to Internal Local Host: From IP Camera to Local Security Camera Control Server: Real Time Streaming Protocol (RTSP) Network Traffic Over TCP Port 554: POST Request Containing Default Administrator Credentials"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Network Traffic: From Local Host to Internal Local Host: From Local Security Camera Control Server to All 63 Connected IP Cameras: Real Time Streaming Protocol (RTSP) Network Traffic Over TCP Port 554"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Special Privileges Assigned to Logon (Windows Event ID 4672): Default Administrator Credentials Used to Logon to Local Host: IP Camera"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Special Privileges Assigned to Logon (Windows Event ID 4672): Default Administrator Credentials Used to Logon to Local Host: Security Camera Control Server"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Special Privileges Assigned to New Logon (Windows Event ID 4672): Default Administrator Credentials Used to Logon to Local Host: Microsoft (MS) Structured Query Language (SQL) Server Camera Storage Database"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Successful Logon to Device (Windows Event ID 4624): Default Administrator Credentials Used to Logon to Local Host: IP Camera"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Successful Logon to Device (Windows Event ID 4624): Default Administrator Credentials Used to Logon to Local Host: Microsoft (MS) Structured Query Language (SQL) Server Camera Storage Database"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Successful Logon to Device (Windows Event ID 4624): Default Administrator Credentials Used to Logon to Local Host: Security Camera Control Server"
+        },
+        {
+          "tech_id": "T0879",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0879",
+          "case_description": "Anomalous Behavior of Controlled Process: Block Valve: Block Valve 30: Anomalous Explosion"
+        },
+        {
+          "tech_id": "T0879",
+          "case_description": "Anomalous Behavior of Controlled Process: Block Valve: Block Valve 30: Anomalous Fire Along Midstream Pipeline"
+        },
+        {
+          "tech_id": "T0879",
+          "case_description": "Anomalous Behavior of Controlled Process: Block Valve: Block Valve 30: Anomalous Increase in Flow Pressure"
+        },
+        {
+          "tech_id": "T0879",
+          "case_description": "Anomalous Behavior of Controlled Process: Block Valve: Block Valve 30: Anomalous Leak"
+        },
+        {
+          "tech_id": "T0879",
+          "case_description": "Anomalous Behavior of Controlled Process: Block Valve: Block Valve 30: Damaged Midstream Pipeline"
+        },
+        {
+          "tech_id": "T0879",
+          "case_description": "Anomalous Behavior of Controlled Process: Block Valve: Block Valve 30: Destroyed Block Valve"
+        },
+        {
+          "tech_id": "T0879",
+          "case_description": "Anomalous Behavior of Controlled Process: Block Valve: Block Valve 30: Destroyed Remote Terminal Unit (RTU)"
+        },
+        {
+          "tech_id": "T0879",
+          "case_description": "Anomalous Behavior of Controlled Process: Block Valve: Block Valve 30: Valve Anomalously Closed: Closed for Sustained Period"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR005",
+      "descriptions": [
+        {
+          "tech_id": "T0802",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Control Device to Internal Host:  International Electrotechnical Commission (IEC) 61850 Over TCP Port 102"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Control Device to Internal Host: Component Object Model (COM)/Distributed Component Object Model (DCOM) Traffic Over TCP Port 135"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Control Device to Internal Host: Distributed Computing Environment (DCE)/Remote Procedure Call (RPC) Traffic Over TCP Port 135"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Control Device to Internal Host: Modbus Over TCP Port 502"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Control Device to Internal Host: Open Platform Communications (OPC) Host to Open Platform Communications (OPC) Client"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Control Device to Internal Host: Open Platform Communications Data Access (OPC DA) Over TCP Port 135"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Control Device to Internal Host: Over TCP Port 11234"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Control Device to Internal Host: Over TCP Port 12401: Requesting Connection with Control System Devices: Manufactured by 7-Technologies Graphical SCADA, GE Proficy License Server Manager, and WellinTech KingSCADA"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Control Device to Internal Host: Over TCP Port 44818: Requesting Connection with Control System Devices: Manufactured by Rockwell Automation Software, Tec4Data Smartcooler, and Cisco IOS Common Industrial Protocol Processor"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Internal Host to Control Device: Component Object Model (COM)/Distributed Component Object Model (DCOM) Traffic Over TCP Port 135"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Internal Host to Control Device: Distributed Computing Environment (DCE)/Remote Procedure Call (RPC) Traffic Over TCP Port 135"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Internal Host to Control Device: International Electrotechnical Commission (IEC) 61850 Over TCP Port 102"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Internal Host to Control Device: Modbus Over TCP Port 502"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Internal Host to Control Device: Open Platform Communications Data Access (OPC DA) Over TCP Port 135"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Internal Host to Control Device: Over TCP Port 11234"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Internal Host to Control Device: Over TCP Port 12401: Requesting Connection with Control System Devices: Manufactured by 7-Technologies Graphical SCADA, GE Proficy License Server Manager, and WellinTech KingSCADA"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Internal Host to Control Device: Over TCP Port 44818: Requesting Connection with Control System Devices: Manufactured by Rockwell Automation Software, Tec4Data Smartcooler, and Cisco IOS Common Industrial Protocol Processor"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous System Behavior on Local Host: Anomalous Autostart Registry Key Created (Windows Event ID 4657)"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous System Behavior on Local Host: Creation of Anomalous Files on Local Host: Encrypted Files: .yls Files"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous System Behavior on Local Host: Creation of Anomalous Files on Local Host: Raw Text Files"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Anomalous Network Traffic: From External Web Server to Local Host: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: Hypertext Transfer Protocol (HTTP) GET Request"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Anomalous Network Traffic: From External Web Server to Local Host: Hypertext Transfer Protocol Secure (HTTPS) Over TCP Port 443: Hypertext Transfer Protocol (HTTP) GET Request"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Web Server: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: Hypertext Transfer Protocol (HTTP) GET Request"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Web Server: Hypertext Transfer Protocol Secure (HTTPS) Over TCP Port 443: Hypertext Transfer Protocol (HTTP) GET Request"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "End User Interaction with Anomalous Hyperlink: Redirected to Anomalous Website: Website Contains Anomalous Iframe"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From External Web Server to Internal Host: Hypertext Transfer Protocol (HTTP) Traffic over TCP Port 80: Downloads Received from Anomalous External Server"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Internal Host to External Web Server: Hypertext Transfer Protocol (HTTP) Traffic over TCP Port 80: Data Files Sent to Anomalous External Server"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Internal Host to External Web Server: Hypertext Transfer Protocol (HTTP) Traffic over TCP Port 80: Hypertext Transfer Protocol (HTTP) GET Requests to Anomalous External Server"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Internal Host to External Web Server: Hypertext Transfer Protocol (HTTP) Traffic over TCP Port 80: Hypertext Transfer Protocol (HTTP) POST Requests to Anomalous External Server"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR006",
+      "descriptions": [
+        {
+          "tech_id": "T0802",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "A Registry Value was Modified (Windows Event ID 4657): Associated with Creation of Multiple Autostart Registry Keys: HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run,| HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\RunOnce,| HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Run,| HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\RunOnce"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Local Routers to Internal Hosts: Over Common Networking Protocol for Mapping Dynamic Internet Protocol (IP) Addresses: Address Resolution Protocol (ARP) SYN ACK Requests"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Local Routers to Internal Hosts: Over Common Networking Protocol for Mapping Dynamic Internet Protocol (IP) Addresses: Address Resolution Protocol (ARP) SYN Requests"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Other Internal Hosts to Local Host: Over Common Remote Client to Server Protocol: Remote Procedure Call (RPC) Over TCP Port 135: Component Object Model (COM) Connections"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Other Internal Hosts to Local Host: Over Common Remote Client to Server Protocol: Remote Procedure Call (RPC) Over TCP Port 135: Distributed Component Object Model (DCOM) Connections"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Other Internal Hosts to Local Host: Over Common Remote Client to Server Protocol: Remote Procedure Call (RPC) Over TCP Port 135: Distributed Computing Environment/Remote Procedure Calls (DCE/RPC) Connections"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Other Internal Hosts to Local Host: Over Common Remote Client to Server Protocol: Remote Procedure Call (RPC) Over TCP Port 135: Object Linking and Embedding (OLE) for Open Platform Communications (OPC) Data Access (DA)"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Other Internal Hosts to Local Host: Over Ephemeral Network Ports and Protocols: TCP Ports 1024-65535"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Other Internal Hosts to Local Host: Over Industrial Application Networking Protocol: 7-Technologies Interactive Graphical Scada System (IGSS) Over TCP Port 12401"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Other Internal Hosts to Local Host: Over Industrial Application Networking Protocol: Cisco Internetworking Operating System (IOS) Common Industrial Protocol (CIP) Messaging Over TCP Port 44819"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Other Internal Hosts to Local Host: Over Industrial Application Networking Protocol: Ethernet Industrial Protocol (IP) Over TCP Port 44818"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Other Internal Hosts to Local Host: Over Industrial Application Networking Protocol: General Electric (GE) Proficy Server License Manager Over TCP Port 12401"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Other Internal Hosts to Local Host: Over Industrial Application Networking Protocol: ISO-TAP/Siemens S7Com Over TCP Port 102"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Other Internal Hosts to Local Host: Over Industrial Application Networking Protocol: Measuresoft ScadaPRO Monitoring Over TCP Port 11234"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Other Internal Hosts to Local Host: Over Industrial Application Networking Protocol: Modbus Over TCP Port 502"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Other Internal Hosts to Local Host: Over Industrial Application Networking Protocol: Rockwell Automation ControlLogix Messaging Over TCP Port 44820"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Other Internal Hosts to Local Host: Over Industrial Application Networking Protocol: WellinTech KingSCADA Monitoring Over TCP Port 12401"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous System Behavior on Local Host: Creation of Registry Key on Local Host: Autostart Key: HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run,| HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\RunOnce,| HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\Run,| HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\RunOnce: Multiple Autostart Keys: A Registry Value was Modified (Windows Event ID 4657)"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Presence of Anomalous File on Local Host: <filename>.txt: Containing Network Information"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Presence of Anomalous File on Local Host: <filename>.yls: Containing Encrypted Outputs"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Presence of Anomalous File on Local Host: In %TEMP% Directory: tracedscn.yls"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Anomalous Network Traffic: From External Web Server to Local Host: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: Hypertext Transfer Protocol (HTTP) POST Response: Comment Tags within Hypertext Transfer Protocol (HTTP) Request/Response: <!--havex (encrypted code) havex-->"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Anomalous Network Traffic: From External Web Server to Local Host: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: Hypertext Transfer Protocol (HTTP) POST Response: From Domain <html> <head> <mega httpequiv=\u2019CACHE-CONTROL\u2019content=\u2019NO-CACHE\u2019></head><body>Nodata!<!--havexQlpoOTFBWS<additionaldata removed>lIwg==havex--></body></head>"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Anomalous Network Traffic: From Local Host to External IP Address: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: Associated with Anomalous Universal Resource Locator (URL): http://adultfriendfrance.com/wp-includes/pomo/src.php"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Anomalous Network Traffic: From Local Host to External IP Address: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: Associated with Anomalous Universal Resource Locator (URL): http://adultfrienditaly.com/wp-includes/pomo/src.php"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Anomalous Network Traffic: From Local Host to External IP Address: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: Associated with Anomalous Universal Resource Locator (URL): http://disney.freesexycomics.com/"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: Domain Name System (DNS) Over UDP/TCP Port 53: Request for Anomalous Domain: Yell[.]ge/buddypress/bp-settings/bpsettings-src.php?id=18554534288436177420090FD80-c8a7af419640516616c342b13efab&v1=043&v2=170393861&q=45474bca5c3a10c8e94e56543c2bd"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: 104.239.157.210"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: 23.253.126.58"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: 85.17.156.37"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: 91.239.206"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: Hypertext Transfer Protocol (HTTP) GET Request: http://Yell[.]ge/blogs/wp-content/plugins"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Anomalous Network Traffic: From Local Host to Local Server: Hypertext Transfer Protocol (HTTP) Over TCP Port 80"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Anomalous Network Traffic: From Local Host to Local Server: Hypertext Transfer Protocol Secure (HTTPS) Over TCP Port 443"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Presence of Anomalous Binary on Local Host: Database Extension File (DBX): In %TEMP% Directory: qln.dbx"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Presence of Anomalous Binary on Local Host: Dynamic Link Library (DLL): In %ALLUSERSAPPDATA% Directory: TMPprovider038.dll"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Presence of Anomalous Binary on Local Host: Dynamic Link Library (DLL): In %ALLUSERSAPPDATA% Directory: svcprocess043.dll"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Presence of Anomalous Binary on Local Host: Dynamic Link Library (DLL): In %APPDATA% Directory: sydmain.dll"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Presence of Anomalous Binary on Local Host: Dynamic Link Library (DLL): In %SYSTEM32% Directory: TMPprovider038.dll"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Presence of Anomalous Binary on Local Host: Dynamic Link Library (DLL): In %SYSTEM32% Directory: svcprocess043.dll"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Presence of Anomalous Binary on Local Host: Dynamic Link Library (DLL): In %TEMP% Directory: TmProvider.dll"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Presence of Anomalous Binary on Local Host: Dynamic Link Library (DLL): In %TEMP% Directory: mbcheck.dll"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Presence of Anomalous Binary on Local Host: Dynamic Link Library (DLL): In %TEMP% Directory: setup_1.0.1.dll"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Presence of Anomalous Binary on Local Host: Dynamic Link Library (DLL): In %TEMP% Directory: tmp687.dll"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Presence of Anomalous Email on Local Host: Spam Email with Anomalous Universal Resource Locator (URL): http://adultfriendfrance.com/wp-includes/pomo/src.php"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Presence of Anomalous Email on Local Host: Spam Email with Anomalous Universal Resource Locator (URL): http://adultfrienditaly.com/wp-includes/pomo/src.php"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Presence of Anomalous Email on Local Host: Spam Email with Anomalous Universal Resource Locator (URL): http://disney.freesexycomics.com/"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Presence of Anomalous Executable on Local Host: In %TEMP% Directory: setup.exe"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Presence of Anomalous Executable on Local Host: In %TEMP% Directory: setup_1.0.1.exe"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Presence of Anomalous Executable on Local Host: SwissrangerSetup1.0.14.706.exe"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Presence of Anomalous Executable on Local Host: egrabitsetup.exe"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "User Interaction with Anomalous Email on Local Host: Selects Anomalous Universal Resource Locator (URL): http://adultfriendfrance.com/wp-includes/pomo/src.php"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "User Interaction with Anomalous Email on Local Host: Selects Anomalous Universal Resource Locator (URL): http://adultfrienditaly.com/wp-includes/pomo/src.php"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "User Interaction with Anomalous Email on Local Host: Selects Anomalous Universal Resource Locator (URL): http://disney.freesexycomics.com/"
+        },
+        {
+          "tech_id": "T0879",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0879",
+          "case_description": "Anomalous Behavior of Controlled Process: Uncontrolled Molten Metal Escaping from Blast Furnace"
+        },
+        {
+          "tech_id": "T0879",
+          "case_description": "Anomalous Environmental Factors: In the Operational Environment: Heat Damage to Surrounding Structures: Structural Integrity Compromised: Collapse of Physical Structures"
+        },
+        {
+          "tech_id": "T0879",
+          "case_description": "Anomalous Environmental Factors: In the Operational Environment: Plant Equipment Damaged: Blast Furnace Inoperable"
+        },
+        {
+          "tech_id": "T0879",
+          "case_description": "Anomalous Environmental Factors: In the Operational Environment: Plant Equipment Destroyed"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "An Account Failed to Logon (Windows Event ID 4625): Associated with Unsuccessful Logon Attempt from Remote Server"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "An Account was Successfully Logged On (Windows Event ID 4624 Type 10): Associated with Successful Logon from Remote Server"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Web Server: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: Hypertext Transfer Protocol (HTTP) GET Request"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Web Server: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: Hypertext Transfer Protocol (HTTP) POST Response: Containing Encrypted Files: .yls File"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Web Server: Hypertext Transfer Protocol Secure (HTTPS) Over TCP Port 443: Hypertext Transfer Protocol Secure (HTTPS) GET Request"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Web Server: Hypertext Transfer Protocol Secure (HTTPS) Over TCP Port 443: Hypertext Transfer Protocol Secure (HTTPS) POST Response: Containing Encrypted Files: .yls File"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Web Server: NetBIOS/Server Message Block (SMB) Over TCP Port 139: Connection Request"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Web Server: NetBIOS/Server Message Block (SMB) Over TCP Port 445: Connection Request"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous System Behavior on Local Host: Deletion of Anomalous File on Local Host: .tmp File: Containing Enterprise Address Book"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous System Behavior on Local Host: Deletion of Anomalous File on Local Host: .yls File,| .dat File,| .tmp File: Multiple Files"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous System Behavior on Local Host: Successful Logon with Valid User Accounts: From Remote Server: An Account was Successfully Logged On (Windows Event ID 4624 Type 10)"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous System Behavior on Local Host: Unsuccessful Login Attempt: From Remote Server: An Account Failed to Logon (Windows Event ID 4625)"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Creation of Anomalous Temporary File on Local Host: <filename>.tmp: Contents Include Enterprise Address Book"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Presence of Anomalous File on Local Host: In %TEMP% Directory: tracedscn.yls"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR007",
+      "descriptions": [
+        {
+          "tech_id": "T0840",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous Network Traffic: From Local Host to Other Internal Hosts: Connections to Sequential Ports"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous Network Traffic: From Local Host to Other Internal Hosts: High Destination to Source Port Communication Ratio"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous Network Traffic: From Local Host to Other Internal Hosts: High Quantity of Partial Connections"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous System Behavior on Local Host: Anomalous Execution of PsExec Command"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous System Behavior on Remote Host: Anomalous Execution of PsExec Command"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Presence of Anomalous Binary on Local Host: Dynamic Link Library (DLL): BS.dll"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Presence of Anomalous Binary on Local Host: Dynamic Link Library (DLL): DC.dll"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Presence of Anomalous Binary on Local Host: Dynamic Link Library (DLL): DSTR.dll"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Presence of Anomalous Binary on Local Host: Dynamic Link Library (DLL): FS.dll"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Presence of Anomalous Binary on Local Host: Dynamic Link Library (DLL): JN.dll"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Presence of Anomalous Binary on Local Host: Dynamic Link Library (DLL): KL.dll"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Presence of Anomalous Binary on Local Host: Dynamic Link Library (DLL): PS.dll"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Presence of Anomalous Binary on Local Host: Dynamic Link Library (DLL): RD.dll"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Presence of Anomalous Binary on Local Host: Dynamic Link Library (DLL): SCAN.dll"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Presence of Anomalous Binary on Local Host: Dynamic Link Library (DLL): SI.dll"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Presence of Anomalous Binary on Local Host: Dynamic Link Library (DLL): SS.dll"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Presence of Anomalous Binary on Local Host: Dynamic Link Library (DLL): TV.dll"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Presence of Anomalous Binary on Local Host: Dynamic Link Library (DLL): UP.dll"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Presence of Anomalous Binary on Local Host: Dynamic Link Library (DLL): VS.dll"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR008",
+      "descriptions": [
+        {
+          "tech_id": "T0800",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0800",
+          "case_description": "Anomalous Behavior of Controlled Process: Controlled Process Unresponsive: Protective Relays Unresponsive"
+        },
+        {
+          "tech_id": "T0800",
+          "case_description": "Anomalous Network Traffic: From Local Client to Controller: Over UDP Port 50000: Access to Controller Firmware Functionality: Protective Relay Firmware: SIPROTEC: Anomalous Packet Contents: 0x11 49 00 00 00 00 00 00 00 00 00 00 00 00 00 00 28 9E"
+        },
+        {
+          "tech_id": "T0800",
+          "case_description": "Anomalous Network Traffic: Invalid IP Address Configuration"
+        },
+        {
+          "tech_id": "T0800",
+          "case_description": "Presence of Anomalous Executable on Client: dos.exe: With Hash 4587ccfecc9a1ff5c5538a3475409ca1687d304bcde252077a119c436296857b"
+        },
+        {
+          "tech_id": "T0800",
+          "case_description": "Presence of Known Vulnerability on Controller: SIPROTEC Vulnerability (CVE-2015-5374)"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Command Issued Via Command-Line: Anomalous Interface Command on Local Open Platform Communications (OPC) Server: IOPCBrowseServerAddressSpace Function: \"ctlSelOn\", \"ctlSelOff\", \"ctlOperOn\", \"ctlOperOff\", and \"stVal\": Multiple IOPCBrowseServerAddressSpace Function Commands"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Command Issued Via Command-Line: EXEC xp_cmdshell 'cscript C:\\Delta\\remote.vbs /s:<TargetIP>/u:<Host/Domain>\\<User>/p:<Password>/t:-r cmd /c start c:\\Intel\\opc.exe'"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Command Issued Via Command-Line: EXEC xp_cmdshell \u2018cscript C:\\Delta\\remote.vbs /s:<TargetIP> /u:<Host/Domain>\\<User> /p:<Password> /t:-c sc config imapiservice binPath= \u201cC:\\Intel\\imapi.exe C:\\Intel\\ imapi.dll i.ini\u201d start= auto\u2019;"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Client to Local Hosts: From Engineering Workstation (EWS) to Every IP Address on Network: International Electrotechnical Commission (IEC) 61850 Over TCP Port 102: Broadcast Traffic: Failed Network Connection"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Client to Local Hosts: From Engineering Workstation (EWS) to Every IP Address on Network: International Electrotechnical Commission (IEC) 61850 Over TCP Port 102: Broadcast Traffic: Successful Network Connection"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Local Client to Controller: From Engineering Workstation (EWS) to ABB Sys600: International Electrotechnical Commission (IEC) 61850 Over TCP Port 102: Anomalous Manufacturing Message Specification (MMS) Request: Read Request: Anomalous Function Call: \"CSW, CF, Pos, and Model\", \"CSW, ST, Pos, and stVal\", \"CSW, CO, Pos, Oper, but not $T\", \"CSW, CO, Pos, SBO, but not $T\", \"ctlSelOn\", \"ctlSelOff\", and \"stVal\": Multiple Anomalous Function Calls"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Local Client to Internal Hosts: Over TCP Port 3351"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Local Client to Internal Hosts: Over TCP Port 80"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous System Behavior on Client: Anomalous Connection Interruption: Between Client and Controller"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous System Behavior on Client: Service Crash"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Execution of Anomalous Executable on Client: 61850.exe"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Execution of Anomalous Executable on Client: OPC.exe"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Execution of Anomalous Executable on Client: imapi.exe"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Execution of Anomalous Executable on Client: port.exe"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Presence of Anomalous Binary on Client: Dynamic Link Library (DLL): 61850.dll: With Hash 4e7d2b269088c1575a31668d86de95fd3dde6caa88051d7ec110f7f150058789"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Presence of Anomalous Binary on Client: Dynamic Link Library (DLL): OPCClientDemo.dll"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Presence of Anomalous Binary on Client: Dynamic Link Library (DLL): imapi.dll: With Hash 12ba9887d3007b0a0713d9f1973e1176bd33eccb017b5a7dba166c7c172151e9"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Presence of Anomalous Executable on Client: 61850.exe: With Hash 55e7471ad841bd8a110818760ea89af3bb456493f0798a54ce3b8e7b790afd0a"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Presence of Anomalous Executable on Client: OPC.exe: With Hash 156bd34d713d0c8419a5da040b3c2dd48c4c6b00d8a47698e412db16b1ffac0f"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Presence of Anomalous Executable on Client: imapi.exe: With Hash 56ae7705ffcd56e74e5aecb0e43f17d510c2eaaddc7356f991c0db1daf32a641"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Presence of Anomalous Executable on Client: port.exe"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Presence of Anomalous File on Client: Configuration File: i.ini"
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Anomalous Behavior of Controlled Process: Anomalous Movement of Substation Breakers"
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Anomalous Command Issued Via Command-Line: Anomalous Interface Command on Local Open Platform Communications (OPC) Server: IOPCBrowseServerAddressSpace Function: \"ctlSelOn\", \"ctlSelOff\", \"ctlOperOn\", \"ctlOperOff\", and \"stVal\": Multiple IOPCBrowseServerAddressSpace Function Commands"
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Anomalous Command Issued Via Command-Line: EXEC xp_cmdshell 'cscript C:\\Delta\\remote.vbs /s:<TargetIP>/u:<Host/Domain>\\<User>/p:<Password>/t:-r cmd /c start c:\\Intel\\opc.exe'"
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Anomalous Command Issued Via Command-Line: EXEC xp_cmdshell \u2018cscript C:\\Delta\\remote.vbs /s:<TargetIP> /u:<Host/Domain>\\<User> /p:<Password> /t:-c sc config imapiservice binPath= \u201cC:\\Intel\\imapi.exe C:\\Intel\\ imapi.dll i.ini\u201d start= auto\u2019;"
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Anomalous Network Traffic: From Client to Local Hosts: From Engineering Workstation (EWS) to Every IP Address on Network: International Electrotechnical Commission (IEC) 61850 Over TCP Port 102: Broadcast Traffic: Failed Network Connection"
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Anomalous Network Traffic: From Client to Local Hosts: From Engineering Workstation (EWS) to Every IP Address on Network: International Electrotechnical Commission (IEC) 61850 Over TCP Port 102: Broadcast Traffic: Successful Network Connection"
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Anomalous Network Traffic: From External Server to Controller: From External Server to ABB Sys600: Anomalous Command Within Packet: C_DC_NA_1"
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Anomalous Network Traffic: From External Server to Controller: From External Server to ABB Sys600: Anomalous Command Within Packet: C_SC_NA_1"
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Anomalous Network Traffic: From Local Client to Controller: From Engineering Workstation (EWS) to ABB Sys600: International Electrotechnical Commission (IEC) 60870 Over TCP Port 2404: Execution of Anomalous Script on Internet Object Address (IOA) on Controller"
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Anomalous Network Traffic: From Local Client to Controller: From Engineering Workstation (EWS) to ABB Sys600: International Electrotechnical Commission (IEC) 61850 Over TCP Port 102: Anomalous Manufacturing Message Specification (MMS) Request: Read Request: Anomalous Function Call: \"ctlSelOff\""
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Anomalous Network Traffic: From Local Client to Controller: From Engineering Workstation (EWS) to ABB Sys600: International Electrotechnical Commission (IEC) 61850 Over TCP Port 102: Anomalous Manufacturing Message Specification (MMS) Request: Read Request: Anomalous Function Call: \"ctlSelOn\""
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Anomalous Network Traffic: From Local Client to Controller: From Engineering Workstation (EWS) to ABB Sys600: International Electrotechnical Commission (IEC) 61850 Over TCP Port 102: Anomalous Manufacturing Message Specification (MMS) Request: Read Request: Anomalous Function Call: \"ctlSelOn\", \"ctlSelOff\", and \"stVal\""
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Anomalous Network Traffic: From Local Client to Controller: From Engineering Workstation (EWS) to ABB Sys600: International Electrotechnical Commission (IEC) 61850 Over TCP Port 102: Anomalous Manufacturing Message Specification (MMS) Request: Read Request: Anomalous Function Call: \"stVal\""
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Anomalous System Behavior on Client: Anomalous Connection Interruption: Between Client and Controller"
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Anomalous System Behavior on Client: Service Crash"
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Anomalous System Behavior on Local Host: Windows Process Terminated (Windows Event ID 4689): International Electrotechnical Commission (IEC) 104 Protocol: D2MultiCommService.exe"
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Execution of Anomalous Executable on Client: 101.exe"
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Execution of Anomalous Executable on Client: 104.exe"
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Execution of Anomalous Executable on Client: 61850.exe"
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Execution of Anomalous Executable on Client: OPC.exe"
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Execution of Anomalous Executable on Client: imapi.exe"
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Presence of Anomalous Binary on Client: Dynamic Link Library (DLL): 101.dll"
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Presence of Anomalous Binary on Client: Dynamic Link Library (DLL): 104.dll: With Hash 7907dd95c1d36cf3dc842a1bd804f0db511a0f68f4b3d382c23a3c974a383cad"
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Presence of Anomalous Binary on Client: Dynamic Link Library (DLL): 61850.dll: With Hash 4e7d2b269088c1575a31668d86de95fd3dde6caa88051d7ec110f7f150058789"
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Presence of Anomalous Binary on Client: Dynamic Link Library (DLL): OPCClientDemo.dll"
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Presence of Anomalous Binary on Client: Dynamic Link Library (DLL): imapi.dll: With Hash 12ba9887d3007b0a0713d9f1973e1176bd33eccb017b5a7dba166c7c172151e9"
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Presence of Anomalous Executable on Client: 101.exe"
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Presence of Anomalous Executable on Client: 104.exe"
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Presence of Anomalous Executable on Client: 61850.exe: With Hash 55e7471ad841bd8a110818760ea89af3bb456493f0798a54ce3b8e7b790afd0a"
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Presence of Anomalous Executable on Client: OPC.exe: With Hash 156bd34d713d0c8419a5da040b3c2dd48c4c6b00d8a47698e412db16b1ffac0f"
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Presence of Anomalous Executable on Client: imapi.exe: With Hash 56ae7705ffcd56e74e5aecb0e43f17d510c2eaaddc7356f991c0db1daf32a641"
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Presence of Anomalous File on Client: Configuration File: i.ini"
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Presence of Anomalous File on Local Host: Anomalous Binary Within Configuration File: 104.dll: 'stop_comm_service = 0'"
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Presence of Anomalous File on Local Host: Anomalous Binary Within Configuration File: 104.dll: 'stop_comm_service_name = process_01.exe'"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous Behavior of Controlled Process: Anomalous Movement of Substation Breakers"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous Command Issued Via Command-Line: EXEC xp_cmdshell 'cscript C:\\Delta\\remote.vbs /s:<TargetIP>/u:<Host/Domain>\\<User>/p:<Password>/t:-r cmd /c start c:\\Intel\\opc.exe'"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous Command Issued Via Command-Line: EXEC xp_cmdshell \u2018cscript C:\\Delta\\remote.vbs /s:<TargetIP> /u:<Host/Domain>\\<User> /p:<Password> /t:-c sc config imapiservice binPath= \u201cC:\\Intel\\imapi.exe C:\\Intel\\ imapi.dll i.ini\u201d start= auto\u2019;"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous Network Traffic: From Client to Local Hosts: From Engineering Workstation (EWS) to Every IP Address on Network: International Electrotechnical Commission (IEC) 61850 Over TCP Port 102: Broadcast Traffic: Failed Network Connection"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous Network Traffic: From Client to Local Hosts: From Engineering Workstation (EWS) to Every IP Address on Network: International Electrotechnical Commission (IEC) 61850 Over TCP Port 102: Broadcast Traffic: Successful Network Connection"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous Network Traffic: From Local Client to Controller: From Engineering Workstation (EWS) to ABB Sys600: International Electrotechnical Commission (IEC) 60870 Over TCP Port 2404: Execution of Anomalous Script on Internet Object Address (IOA) on Controller"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous Network Traffic: From Local Client to Controller: From Engineering Workstation (EWS) to ABB Sys600: International Electrotechnical Commission (IEC) 61850 Over TCP Port 102: Anomalous Manufacturing Message Specification (MMS) Request: Read Request: Anomalous Function Call: \"CSW, CF, Pos, and Model\", \"CSW, ST, Pos, and stVal\", \"CSW, CO, Pos, Oper, but not $T\", \"CSW, CO, Pos, SBO, but not $T\", \"ctlSelOn\", \"ctlSelOff\", and \"stVal\": Multiple Anomalous Function Calls"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous Network Traffic: From Local Client to Internal Hosts: Over TCP Port 3351"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous Network Traffic: From Local Client to Internal Hosts: Over TCP Port 443"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous Network Traffic: From Local Client to Internal Hosts: Over TCP Port 80"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous System Behavior on Client: Anomalous Connection Interruption: Between Client and Controller"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous System Behavior on Client: Service Crash"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Execution of Anomalous Executable on Client: 61850.exe"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Execution of Anomalous Executable on Client: OPC.exe"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Execution of Anomalous Executable on Client: imapi.exe"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Execution of Anomalous Executable on Client: port.exe"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Presence of Anomalous Binary on Client: Dynamic Link Library (DLL): 61850.dll: With Hash 4e7d2b269088c1575a31668d86de95fd3dde6caa88051d7ec110f7f150058789"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Presence of Anomalous Binary on Client: Dynamic Link Library (DLL): OPCClientDemo.dll"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Presence of Anomalous Binary on Client: Dynamic Link Library (DLL): imapi.dll: With Hash 12ba9887d3007b0a0713d9f1973e1176bd33eccb017b5a7dba166c7c172151e9"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Presence of Anomalous Executable on Client: 61850.exe: With Hash 55e7471ad841bd8a110818760ea89af3bb456493f0798a54ce3b8e7b790afd0a"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Presence of Anomalous Executable on Client: OPC.exe: With Hash 156bd34d713d0c8419a5da040b3c2dd48c4c6b00d8a47698e412db16b1ffac0f"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Presence of Anomalous Executable on Client: imapi.exe: With Hash 56ae7705ffcd56e74e5aecb0e43f17d510c2eaaddc7356f991c0db1daf32a641"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Presence of Anomalous Executable on Client: port.exe"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Presence of Anomalous File on Client: Configuration File: i.ini"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR009",
+      "descriptions": [
+        {
+          "tech_id": "T0885",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to Remote Server: Hypertext Transfer Protocol (HTTP) Traffic: To Anomalous URLs"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to Remote Server: Server Message Block (SMB) Traffic Over TCP Port 445"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Remote Server to Local Host: Remote Procedure Call (RPC) Traffic Over TCP Port 445"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous System Behavior on Local Host: An Anomalous Service was Installed (Windows Event ID 4697)"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous System Behavior on Local Host: Anomalous Hypertext Transfer Protocol (HTTP) Server Creation"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Directory Service Object was Modified (Windows Event ID 5136): Server Message Block (SMB) Traffic Over TCP Port 445"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Network Share Object was Accessed (Windows Event ID 5140): Server Message Block (SMB) Traffic Over TCP Port 445"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Network Share Object was Added (Windows Event ID 5142): Server Message Block (SMB) Traffic Over TCP Port 445"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Presence of Documented Vulnerability: Presence of Microsoft Windows CVE-2008-4250 (Server Service Remote Procedure Call (RPC) Handling Remote Code Execution Vulnerability (Bugtraq ID 31874))"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Remote Procedure Call (RPC) Traffic Over TCP Port 445 (Windows Event ID 5712)"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR011",
+      "descriptions": [
+        {
+          "tech_id": "T0840",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous Increase in Host Latency"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous Increase in Host Resource Usage"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous Increase in Network Latency"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous Increase in Threads Running"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous Program Starts Service (Windows Event ID 4697): mssecsvc2.0"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Attempts to Connect to Random Externally Routable IPs via 3389 RDP"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Attempts to Connect to Random Externally Routable IPs via 445 SMB"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Enumeration of Active RDP Sessions"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Host System Log Entries for Session Creation (Windows Event ID 4624 type 10)"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Internal Network Connections Over SMB Created Every Few Seconds"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Scheduled Task Executable taskse.exe Will Attempt to Move to Hosts Sharing RDP Connections"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Service Scans Local Subnet for Lists of IP Ranges Over UDP Ports 137, 138 and TCP Ports 139, 445"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR012",
+      "descriptions": [
+        {
+          "tech_id": "T0885",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Industrial Network Traffic on UDP Port 1502: Over Schneider TriStation Protocol"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR013",
+      "descriptions": [
+        {
+          "tech_id": "T0802",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Executable Uses Named Pipe: 561D.tmp: \\\\.\\pipe\\{C1F0BF2D-8C17-4550-AF5A-65A22C61739C}"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Presence of Anomalous File on Local Host: Anomalous MD5 Hash: 2813D34F6197EB4DF42C886EC7F234A1 (32-bit)"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Presence of Anomalous File on Local Host: Anomalous MD5 Hash: 7E37AB34ECDCC3E77E24522DDFD4852D (64-bit)"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Presence of Anomalous File on Local Host: Anomalous SHA256 Hash: 02ef73bd2458627ed7b397ec26ee2de2e92c71a0e7588f78734761d8edbdcd9f (64-bit)"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Presence of Anomalous File on Local Host: Anomalous SHA256 Hash: EAE9771E2EEB7EA3C6059485DA39E77B8C0C369232F01334954FBAC1C186C998 (32-bit)"
+        },
+        {
+          "tech_id": "T0879",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0879",
+          "case_description": "Anomalous Unrecoverable Damage to Computers and Servers: 49,000 Computers and 3,500 Servers"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR016",
+      "descriptions": [
+        {
+          "tech_id": "T0802",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Domain Name System (DNS) Over UDP Port 53: To Anomalous Domain: Anomalous Canonical Name (CNAME) Domain Name System (DNS) Requests"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Domain Name System (DNS) Over UDP Port 53: To Anomalous Domain: Anomalous Canonical Name (CNAME) Domain Name System (DNS) Responses"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Domain Name System (DNS) Over UDP Port 53: To Anomalous Domain: To <uniquesubdomain> .appsync-api.eu-west-1[.]avsvmcloud[.]com"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Domain Name System (DNS) Over UDP Port 53: To Anomalous Domain: To <uniquesubdomain>. appsync-api.us-west-2[.]avsvmcloud[.]com"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Domain Name System (DNS) Over UDP Port 53: To Anomalous Domain: To <uniquesubdomain>.appsync-api.us-east-1[.]avsvmcloud[.]com"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Domain Name System (DNS) Over UDP Port 53: To Anomalous Domain: To <uniquesubdomain>.appsync-api.us-east-2[.]avsvmcloud[.]com"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: To Anomalous Domain: To  <uniquesubdomain>. appsync-api.us-west-2[.]avsvmcloud[.]com"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: To Anomalous Domain: To <uniquesubdomain> .appsync-api.eu-west-1[.]avsvmcloud[.]com"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: To Anomalous Domain: To <uniquesubdomain>.appsync-api.us-east-1[.]avsvmcloud[.]com"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: To Anomalous Domain: To <uniquesubdomain>.appsync-api.us-east-2[.]avsvmcloud[.]com"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Hypertext Transfer Protocol Secure (HTTPS) Over TCP Port 443: To Anomalous Domain: To  <uniquesubdomain>. appsync-api.us-west-2[.]avsvmcloud[.]com"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Hypertext Transfer Protocol Secure (HTTPS) Over TCP Port 443: To Anomalous Domain: To <uniquesubdomain> .appsync-api.eu-west-1[.]avsvmcloud[.]com"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Hypertext Transfer Protocol Secure (HTTPS) Over TCP Port 443: To Anomalous Domain: To <uniquesubdomain>.appsync-api.us-east-1[.]avsvmcloud[.]com"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Hypertext Transfer Protocol Secure (HTTPS) Over TCP Port 443: To Anomalous Domain: To <uniquesubdomain>.appsync-api.us-east-2[.]avsvmcloud[.]com"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous System Behavior on Local Host: Anomalous Windows Programs Running"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous System Behavior on Local Host: Creation of Anomalous File on Local Host: JavaScript Object Notation (JSON) File"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Domain Name System (DNS) Over UDP Port 53: To Anomalous Domain: Anomalous Canonical Name (CNAME) Domain Name System (DNS) Requests"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Domain Name System (DNS) Over UDP Port 53: To Anomalous Domain: Anomalous Canonical Name (CNAME) Domain Name System (DNS) Responses"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Domain Name System (DNS) Over UDP Port 53: To Anomalous Domain: To <uniquesubdomain> .appsync-api.eu-west-1[.]avsvmcloud[.]com"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Domain Name System (DNS) Over UDP Port 53: To Anomalous Domain: To <uniquesubdomain>. appsync-api.us-west-2[.]avsvmcloud[.]com"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Domain Name System (DNS) Over UDP Port 53: To Anomalous Domain: To <uniquesubdomain>.appsync-api.us-east-1[.]avsvmcloud[.]com"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Domain Name System (DNS) Over UDP Port 53: To Anomalous Domain: To <uniquesubdomain>.appsync-api.us-east-2[.]avsvmcloud[.]com"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: To Anomalous Domain: To  <uniquesubdomain>. appsync-api.us-west-2[.]avsvmcloud[.]com: Hypertext Transfer Protocol (HTTP) GET Request"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: To Anomalous Domain: To  <uniquesubdomain>. appsync-api.us-west-2[.]avsvmcloud[.]com: Hypertext Transfer Protocol (HTTP) POST Request"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: To Anomalous Domain: To <uniquesubdomain> .appsync-api.eu-west-1[.]avsvmcloud[.]com: Hypertext Transfer Protocol (HTTP) GET Request"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: To Anomalous Domain: To <uniquesubdomain> .appsync-api.eu-west-1[.]avsvmcloud[.]com: Hypertext Transfer Protocol (HTTP) POST Request"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: To Anomalous Domain: To <uniquesubdomain>.appsync-api.us-east-1[.]avsvmcloud[.]com: Hypertext Transfer Protocol (HTTP) GET Request"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: To Anomalous Domain: To <uniquesubdomain>.appsync-api.us-east-1[.]avsvmcloud[.]com: Hypertext Transfer Protocol (HTTP) POST Request"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: To Anomalous Domain: To <uniquesubdomain>.appsync-api.us-east-2[.]avsvmcloud[.]com: Hypertext Transfer Protocol (HTTP) GET Request"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: To Anomalous Domain: To <uniquesubdomain>.appsync-api.us-east-2[.]avsvmcloud[.]com: Hypertext Transfer Protocol (HTTP) POST Request"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Hypertext Transfer Protocol Secure (HTTPS) Over TCP Port 443: To Anomalous Domain: To  <uniquesubdomain>. appsync-api.us-west-2[.]avsvmcloud[.]com: Hypertext Transfer Protocol (HTTP) GET Request"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Hypertext Transfer Protocol Secure (HTTPS) Over TCP Port 443: To Anomalous Domain: To  <uniquesubdomain>. appsync-api.us-west-2[.]avsvmcloud[.]com: Hypertext Transfer Protocol (HTTP) POST Request"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Hypertext Transfer Protocol Secure (HTTPS) Over TCP Port 443: To Anomalous Domain: To <uniquesubdomain> .appsync-api.eu-west-1[.]avsvmcloud[.]com: Hypertext Transfer Protocol (HTTP) GET Request"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Hypertext Transfer Protocol Secure (HTTPS) Over TCP Port 443: To Anomalous Domain: To <uniquesubdomain> .appsync-api.eu-west-1[.]avsvmcloud[.]com: Hypertext Transfer Protocol (HTTP) POST Request"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Hypertext Transfer Protocol Secure (HTTPS) Over TCP Port 443: To Anomalous Domain: To <uniquesubdomain>.appsync-api.us-east-1[.]avsvmcloud[.]com: Hypertext Transfer Protocol (HTTP) GET Request"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Hypertext Transfer Protocol Secure (HTTPS) Over TCP Port 443: To Anomalous Domain: To <uniquesubdomain>.appsync-api.us-east-1[.]avsvmcloud[.]com: Hypertext Transfer Protocol (HTTP) POST Request"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Hypertext Transfer Protocol Secure (HTTPS) Over TCP Port 443: To Anomalous Domain: To <uniquesubdomain>.appsync-api.us-east-2[.]avsvmcloud[.]com: Hypertext Transfer Protocol (HTTP) GET Request"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Server: From Local Host with Security Information and Event Management (SIEM) Software to External Server: SolarWinds Orion Platform: Hypertext Transfer Protocol Secure (HTTPS) Over TCP Port 443: To Anomalous Domain: To <uniquesubdomain>.appsync-api.us-east-2[.]avsvmcloud[.]com: Hypertext Transfer Protocol (HTTP) POST Request"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR017",
+      "descriptions": [
+        {
+          "tech_id": "T0817",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Anomalous Network Traffic: From External IP to Local Host: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: Hypertext Transfer Protocol (HTTP) GET Request"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Anomalous Network Traffic: From External IP to Local Host: Hypertext Transfer Protocol Secure (HTTPS) Over TCP Port 443: Hypertext Transfer Protocol (HTTP) GET Request"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Anomalous Network Traffic: From Local Host to External IP: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: Hypertext Transfer Protocol (HTTP) GET Request"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Anomalous Network Traffic: From Local Host to External IP: Hypertext Transfer Protocol Secure (HTTPS) Over TCP Port 443: Hypertext Transfer Protocol (HTTP) GET Request"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "User Interaction with Anomalous Browser Update on Local Host: Hypertext Markup Language (HTML) File"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "User Interaction with Anomalous Browser Update on Local Host: JavaScript File"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "User Interaction with Anomalous Browser Update on Local Host: ZIP File"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From External IP to Local Host: File Transfer Protocol (FTP) Over TCP Port 22"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From External IP to Local Host: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: Hypertext Transfer Protocol (HTTP) POST Request"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From External IP to Local Host: Hypertext Transfer Protocol Secure (HTTPS) Over TCP Port 443: Hypertext Transfer Protocol Secure (HTTPS) POST Request"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From External IP to Local Host: Remote Desktop Protocol (RDP) Over TCP Port 3389"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From External IP to Local Host: Secure File Transfer Protocol (SFTP) Over TCP Port 23"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From External IP to Local Host: Server Message Block (SMB) Over TCP Port 445"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External IP: File Transfer Protocol (FTP) Over TCP Port 22"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External IP: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: Hypertext Transfer Protocol (HTTP) GET Request"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External IP: Hypertext Transfer Protocol Secure (HTTPS) Over TCP Port 443: Hypertext Transfer Protocol (HTTP) GET Request"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External IP: Secure File Transfer Protocol (SFTP) Over TCP Port 23"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR018",
+      "descriptions": [
+        {
+          "tech_id": "T0840",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous Network Statistics Regarding Domain Reqests"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Application of DNS Lookup of Internal Host Domain Name"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Internal Host Performing Anomalous Domain Query"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Response Error Codes in Network Domain Name Lookup Traffic"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR019",
+      "descriptions": [
+        {
+          "tech_id": "T0885",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to Anomalous External Proxy: Hypertext Transfer Protocol (HTTP) Traffic Over TCP Port 8080"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Host: Domain Name System (DNS) Traffic Over UDP Port 53"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Host: File Transfer Protocol (FTP) Traffic Over TCP Port 20"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Host: File Transfer Protocol (FTP) Traffic Over TCP Port 21"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Host: Hypertext Transfer Protocol Secure (HTTPS) Traffic Over TCP Port 443"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR020",
+      "descriptions": [
+        {
+          "tech_id": "T0817",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Anomalous Network Traffic: From External Host to Local Host: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: Hypertext Transfer Protocol (HTTP) GET Request"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Anomalous Network Traffic: From External Host to Local Host: Hypertext Transfer Protocol Secure (HTTPS) Over TCP Port 443: Hypertext Transfer Protocol Secure (HTTPS) GET Request"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Host: Domain Name System (DNS) Over TCP/UDP Port 53: docs.google.com"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Host: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: Hypertext Transfer Protocol (HTTP) GET Request: docs.google.com"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Host: Hypertext Transfer Protocol Secure (HTTPS) Over TCP Port 443: Hypertext Transfer Protocol Secure (HTTPS) GET Request: docs.google.com"
+        },
+        {
+          "tech_id": "T0817",
+          "case_description": "Presence of Email Containing an Anomalous Web Link: docs.google.com"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Host: Domain Name System (DNS) Over TCP/UDP Port 53"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Web Server: Hypertext Transfer Protocol (HTTP) Over TCP Port 80"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Web Server: Hypertext Transfer Protocol Secure (HTTPS) Over TCP Port 443"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Execution of Anomalous Executable on Local Host: print_document.exe"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Presence of Anomalous Executable on Local Host: print_document.exe"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR022",
+      "descriptions": [
+        {
+          "tech_id": "T0885",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From External Host to Local Host: Oracle WebLogic Over TCP Port 7001"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From External Host to Local Host: The Onion Router (TOR) Traffic"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Host: Domain Name System (DNS) Over TCP/UDP Port 53"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Host: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: Hypertext Transfer Protocol (HTTP) GET Request"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Host: Hypertext Transfer Protocol Secure (HTTPS) Over TCP Port 443: Hypertext Transfer Protocol Secure (HTTPS) GET Request"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Host: The Onion Router (TOR) Traffic"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR023",
+      "descriptions": [
+        {
+          "tech_id": "T0840",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous Command Issued Via Command-Line: Command-Line CONTAINS (\u201csysteminfo\u201d OR \u201cwhoami\u201d OR \u201cnet users\u201d or \u201cnet localgroup Administrators\u201d OR \u201croute print\u201d OR \u201cipconfig /all\u201d OR \u201carp -a\u201d OR \u201cwmic ntdomain\u201d OR \u201cwmic netuse\u201d OR \u201cwmic nicconfig\u201d OR \u201cGet-ADComputer\u201d OR \u201cnet accounts\u201d OR \u201cInvoke-ShareFinder\u201d)"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous Command Issued Via Command-Line: cmd.exe /C nltest /dclist:[company name], cmd.exe /C net group \u201cdomain Admins\u201d /domain, cmd.exe /C nltest /DOMAIN_TRUSTS, cmd.exe /C type shares.txt, cmd.exe /C ipconfig /all, cmd.exe /C systeminfo, cmd.exe /C whoami /groups, cmd.exe /C net config workstation, cmd.exe /C nltest /domain_trusts, cmd.exe /C nltest /domain_trusts /all_trusts, cmd.exe /C net view /all /domain, cmd.exe /C net view /all, cmd.exe /C net group \"Domain Admins\" /domain, cmd.exe /C query session , cmd.exe /C dir %HOMEDRIVE%%HOMEPATH% , cmd.exe /C nltest /dclist: , cmd.exe /C net group \"Enterprise admins\" /domain, cmd.exe /C dsquery subnet -limit 0, and cmd.exe /C adft.bat: Multiple Anomalous cmd.exe Commands Issued Via Command-Line"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous Command Issued Via Command-Line: nltest.exe, whoami.exe, systeminfo.exe, ipconfig.exe, arp.exe, net.exe, route.exe, dsquery.exe, WMIC.exe, wmic product get name,version, and wmic product where \u201cName like \u2018%Security Application%'\u201d get Name, IdentifyingNumber: Multiple Anomalous Commands Issued Via Command-Line"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous Execution of Executable on Local Host: rundll32.exe"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous Network Traffic: From Local Host to Internal Network Host: Network Basic Input/Output System (NetBIOS) Over TCP Port 139: Session Service Requests"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous Network Traffic: From Local Host to Internal Network Host: Server Message Block (SMB) Over TCP Port 445: Network Share Requests"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous System Behavior on Local Host: Anomalous Call to Windows Application Programming Interface (API): GetIpNetTable()"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous System Behavior on Local Host: Anomalous Call to Windows Application Programming Interface (API): NetShareEnum()"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous System Behavior on Local Host: Associated with Anomalous Host Enumeration: Anomalous Role/Account Discovery, Anomalous Group Discovery, Anomalous Domain Trust Discovery, and Anomalous Routine Address Resolution Protocol (ARP) Cache Network Connection Discovery: Multiple Anomalous Types of Information Discovery"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous System Behavior on Local Host: Associated with Network Share Enumeration"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Execution of Anomalous Executable on Local Host: <5-11 Random Alphanumeric Characters>.exe"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Execution of Anomalous Executable on Local Host: <Conti v3 - 32 Bit>.exe"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Presence of Anomalous Binary on Local Host: Dynamic Link Library (DLL): conti_v3.dll: Conti Service Binary"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Presence of Anomalous Binary on Local Host: Dynamic Link Library (DLL): sys.dll, doc.dll, and 192145.dll: Multiple Anomalous Dynamic Link Libraries (DLLs): Cobalt Strike Beacon Service Binaries"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Presence of Anomalous Executable on Local Host: <5-11 Random Alphanumeric Characters>.exe: Cobalt Strike Service Executable"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Presence of Anomalous Executable on Local Host: <Conti v3 - 32 Bit>.exe: Conti Service Executable"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Presence of Anomalous File on Local Host: .txt File: shares.txt: Containing Network Endpoint Information"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Presence of Anomalous Process on Local Host: <5-11 Random Alphanumeric Characters>.exe, rundll32.exe C:\\Programdata\\sys.dll, rundll32.exe C:\\Programdata\\doc.dll, rundll32.exe C:\\Windows\\192145.dll, and <Conti v3 - 32 Bit>.exe: Presence of Multiple Anomalous Processes on Local Host"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Presence of Anomalous Script on Local Host: Batch Script: adft.bat"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Execution of Executable on Local Host: rundll32.exe, regsvr32.exe, runonce.exe, services.exe, svchost.exe, wuauclt.exe, mstsc.exe, and dllhost.exe: Anomalous Execution of Multiple Executables on Local Host"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From External Host to Local Host: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: Containing Anomalous Binaries"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From External Host to Local Host: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: Containing Anomalous Files"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From External Host to Local Host: Hypertext Transfer Protocol Secure (HTTPS) Over TCP Port 443: Containing Anomalous Binaries"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From External Host to Local Host: Hypertext Transfer Protocol Secure (HTTPS) Over TCP Port 443: Containing Anomalous Files"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From External Host to Local Host: Remote Desktop Protocol (RDP) Over TCP/UDP Port 8080: Session Proxy Redirection: Anomalous File Execution on Local Host from External Host"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Host: Domain Name System (DNS) Over TCP/UDP Port 53"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Host: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: Local Host Requests Anomalous Binaries from Anomalous External Host"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Host: Hypertext Transfer Protocol Secure (HTTPS) Over TCP Port 443: Local Host Requests Anomalous Binaries from Anomalous External Host"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External Host: Remote Desktop Protocol (RDP) Over TCP/UDP Port 8080: Session Proxy Redirection"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Execution of Anomalous Executable on Local Host: <5-11 Random Alphanumeric Characters>.exe"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Execution of Anomalous Executable on Local Host: <Conti v3 - 32 Bit>.exe"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR025",
+      "descriptions": [
+        {
+          "tech_id": "T0802",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Behavior Associated with Native Binary on Local Host: Dynamic Link Library (DLL): comsvcs.dll"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Behavior Associated with Native Binary on Local Host: Sysinternals Procmon"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Call to Windows Application Programming Interface (API) on Local Host: NtQuerySystemInformation and EnumServicesStatusExW: Multiple Anomalous Calls to Windows Application Programming Interface (API) on Local Host"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From External Host to Internal Application Server: From External Host to Microsoft Exchange Server: GoLang (GO) Simple Tunnel (GOST) Over UDP Port 5353"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From External Host to Internal Application Server: From External Host to Microsoft Exchange Server: Hypertext Transfer Protocol Secure (HTTPS) Over TCP Port 443"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From External Host to Internal Application Server: From External Host to Microsoft Exchange Server: Remote Desktop Protocol (RDP) Over TCP Port 3389"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Internal Application Server to External Host: From Microsoft Exchange Server to External Host: GoLang (GO) Simple Tunnel (GOST) Over UDP Port 5353"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Internal Application Server to External Host: From Microsoft Exchange Server to External Host: Hypertext Transfer Protocol Secure (HTTPS) Over TCP Port 443"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Internal Application Server to External Host: From Microsoft Exchange Server to External Host: Remote Desktop Protocol (RDP) Over TCP Port 3389"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Internal Application Server to Internal Domain Controller (DC): From Microsoft Exchange Server to Internal Domain Controller (DC): Remote Procedure Call (RPC) Over TCP Port 135"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous Network Traffic: From Internal Application Server to Internal Domain Controller (DC): From Microsoft Exchange Server to Internal Domain Controller (DC): Server Message Block (SMB) Over TCP Port 445"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous System Behavior on Local Host: Anomalous Access of Local Security Authority Subsystem Service (LSASS) Memory"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Anomalous System Behavior on Local Host: Anomalous Enumeration of Running Services"
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": "Presence of Anomalous Executable on Local Host: GOST system.exe"
+        },
+        {
+          "tech_id": "T0858",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0858",
+          "case_description": "Anomalous Network Traffic: From External Host to Internal Application Server: From External Host to Microsoft Exchange Server: GoLang (GO) Simple Tunnel (GOST) Over UDP Port 5353"
+        },
+        {
+          "tech_id": "T0858",
+          "case_description": "Anomalous Network Traffic: From External Host to Internal Application Server: From External Host to Microsoft Exchange Server: Hypertext Transfer Protocol Secure (HTTPS) Over TCP Port 443"
+        },
+        {
+          "tech_id": "T0858",
+          "case_description": "Anomalous Network Traffic: From External Host to Internal Application Server: From External Host to Microsoft Exchange Server: Remote Desktop Protocol (RDP) Over TCP Port 3389"
+        },
+        {
+          "tech_id": "T0858",
+          "case_description": "Anomalous Network Traffic: From Internal Application Server to External Host: From Microsoft Exchange Server to External Host: GoLang (GO) Simple Tunnel (GOST) Over UDP Port 5353"
+        },
+        {
+          "tech_id": "T0858",
+          "case_description": "Anomalous Network Traffic: From Internal Application Server to External Host: From Microsoft Exchange Server to External Host: Hypertext Transfer Protocol Secure (HTTPS) Over TCP Port 443"
+        },
+        {
+          "tech_id": "T0858",
+          "case_description": "Anomalous Network Traffic: From Internal Application Server to External Host: From Microsoft Exchange Server to External Host: Remote Desktop Protocol (RDP) Over TCP Port 3389"
+        },
+        {
+          "tech_id": "T0858",
+          "case_description": "Anomalous System Behavior on Local Host: Windows Safe Mode Enabled: Automatic Sign-In of Local Administrator Account"
+        },
+        {
+          "tech_id": "T0858",
+          "case_description": "Anonymous System Behavior on Local Host: Registry Key Value Was Modified (Event ID 4657): Modification of Group Policy on Local Host"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From External Host to Internal Application Server: From External Host to Microsoft Exchange Server: GoLang (GO) Simple Tunnel (GOST) Over UDP Port 5353"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From External Host to Internal Application Server: From External Host to Microsoft Exchange Server: Hypertext Transfer Protocol Secure (HTTPS) Over TCP Port 443"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From External Host to Internal Application Server: From External Host to Microsoft Exchange Server: Remote Desktop Protocol (RDP) Over TCP Port 3389"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Internal Application Server to External Host: From Microsoft Exchange Server to External Host: GoLang (GO) Simple Tunnel (GOST) Over UDP Port 5353"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Internal Application Server to External Host: From Microsoft Exchange Server to External Host: Hypertext Transfer Protocol Secure (HTTPS) Over TCP Port 443"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Internal Application Server to External Host: From Microsoft Exchange Server to External Host: Remote Desktop Protocol (RDP) Over TCP Port 3389"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Internal Application Server to External Host: From Microsoft Exchange Server to External Host: Secure Shell (SSH) Over TCP Port 22"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Internal Application Server to Internal Domain Controller (DC): From Microsoft Exchange Server to Internal Domain Controller (DC): Lightweight Directory Access Protocol (LDAP) Over TCP Port 389"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Internal Application Server to Internal Domain Controller (DC): From Microsoft Exchange Server to Internal Domain Controller (DC): Remote Procedure Call (RPC) Over TCP Port 135"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Internal Application Server to Internal Domain Controller (DC): From Microsoft Exchange Server to Internal Domain Controller (DC): Server Message Block (SMB) Over TCP Port 445"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Internal Application Server to Internal Domain Controller (DC): From Microsoft Exchange Server to Internal Domain Controller (DC): Simple Mail Transport Protocol (SMTP) Over TCP Port 25"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR026",
+      "descriptions": [
+        {
+          "tech_id": "T0806",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Anomalous Network Traffic: From Engineering Workstation to Controlled Station: To Eight Specific Hosts: With Private IP Address: IP Address 10.x.x.x: International Electrotechnical Commission (IEC) 104 Protocol Over TCP Port 2404: Containing Double Command Activation Messages (C_DC_NA_1 act)"
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Anomalous Network Traffic: From Engineering Workstation to Controlled Station: To Eight Specific Hosts: With Private IP Address: IP Address 10.x.x.x: International Electrotechnical Commission (IEC) 104 Protocol Over TCP Port 2404: Containing Interrogation Command (C_IC_NA_1)"
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Anomalous Network Traffic: From Engineering Workstation to Controlled Station: To Eight Specific Hosts: With Private IP Address: IP Address 10.x.x.x: International Electrotechnical Commission (IEC) 104 Protocol Over TCP Port 2404: Containing Single Command Activation Messages (C_SC_NA_1 act)"
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Anomalous Network Traffic: From Engineering Workstation to Controlled Station: To Eight Specific Hosts: With Private IP Address: IP Address 192.x.x.x: International Electrotechnical Commission (IEC) 104 Protocol Over TCP Port 2404: Containing Double Command Activation Messages (C_DC_NA_1 act)"
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Anomalous Network Traffic: From Engineering Workstation to Controlled Station: To Eight Specific Hosts: With Private IP Address: IP Address 192.x.x.x: International Electrotechnical Commission (IEC) 104 Protocol Over TCP Port 2404: Containing Interrogation Command (C_IC_NA_1)"
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": "Anomalous Network Traffic: From Engineering Workstation to Controlled Station: To Eight Specific Hosts: With Private IP Address: IP Address 192.x.x.x: International Electrotechnical Commission (IEC) 104 Protocol Over TCP Port 2404: Containing Single Command Activation Messages (C_SC_NA_1 act)"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous Network Traffic: From Controlled Station to Engineering Workstation: International Electrotechnical Commission (IEC) 104 Protocol Over TCP Port 2404: Containing TESTFR CON Control Function Messages"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous Network Traffic: From Engineering Workstation to Controlled Station: To Eight Specific Hosts: With Private IP Address: IP Address 10.x.x.x: International Electrotechnical Commission (IEC) 104 Protocol Over TCP Port 2404: Containing a TESTFR ACT Control Function Message"
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": "Anomalous Network Traffic: From Engineering Workstation to Controlled Station: To Eight Specific Hosts: With Private IP Address: IP Address 192.x.x.x: International Electrotechnical Commission (IEC) 104 Protocol Over TCP Port 2404: Containing a TESTFR ACT Control Function Message"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Execution of Application Programming Interface (API): UNIX Application Programming Interface (API): iproute and ifconfig: Multiple Executions of UNIX Application Programming Interface (API)"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Engineering Workstation to Controlled Station: To Eight Specific Hosts: With Private IP Address: IP Address 10.x.x.x: International Electrotechnical Commission (IEC) 104 Protocol Over TCP Port 2404"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Engineering Workstation to Controlled Station: To Eight Specific Hosts: With Private IP Address: IP Address 192.x.x.x: International Electrotechnical Commission (IEC) 104 Protocol Over TCP Port 2404"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to Linux Hosts: Over All Hosts in Class-C Network (/24): Secure Shell (SSH) Over TCP Port 22"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to Linux Hosts: Over All Hosts in Class-C Network (/24): Secure Shell (SSH) Over TCP Port 2468"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to Linux Hosts: Over All Hosts in Class-C Network (/24): Secure Shell (SSH) Over TCP Port 24687"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to Linux Hosts: Over All Hosts in Class-C Network (/24): Secure Shell (SSH) Over TCP Port 522"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to Solaris Hosts: Over All Hosts in Class-C Network (/24): Secure Shell (SSH) Over TCP Port 22"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to Solaris Hosts: Over All Hosts in Class-C Network (/24): Secure Shell (SSH) Over TCP Port 2468"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to Solaris Hosts: Over All Hosts in Class-C Network (/24): Secure Shell (SSH) Over TCP Port 24687"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to Solaris Hosts: Over All Hosts in Class-C Network (/24): Secure Shell (SSH) Over TCP Port 522"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Presence of Anomalous Script on Local Host: UNIX Bash Script: In /var/log Directory: wobf.sh: With MD5 Hash 73561d9a331c1d8a334ec48dfd94db99"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Presence of Anomalous Script on Local Host: UNIX Bash Script: In /var/log Directory: wsol.sh: With MD5 Hash 97ad7f3ed815c0528b070941be903d07"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Presence of Anomalous Script on Local Host: UNIX Bash Script: sc.sh: With MD5 Hash fbe32784c073e341fc57d175a913905c"
+        }
+      ]
+    },
+    {
+      "case_id": "PAR027",
+      "descriptions": [
+        {
+          "tech_id": "T0858",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0858",
+          "case_description": "Anomalous Command Issued Via Command-Line: Execution of Python Script"
+        },
+        {
+          "tech_id": "T0858",
+          "case_description": "Anomalous Command Issued Via Command-Line: On Control Device: Omron Command 0x2203 (Single File Write)"
+        },
+        {
+          "tech_id": "T0858",
+          "case_description": "Anomalous Command Issued Via Command-Line: On Control Device: Omron Command 0x2207 (File Copy)"
+        },
+        {
+          "tech_id": "T0858",
+          "case_description": "Anomalous Command Issued Via Command-Line: On Control Device: Omron Command 0x2211 (File Memory Write)"
+        },
+        {
+          "tech_id": "T0858",
+          "case_description": "Anomalous Command Issued Via Command-Line: dd Command"
+        },
+        {
+          "tech_id": "T0858",
+          "case_description": "Anomalous Command Issued Via Command-Line: gzip Command"
+        },
+        {
+          "tech_id": "T0858",
+          "case_description": "Anomalous Command Issued Via Command-Line: rsync Command"
+        },
+        {
+          "tech_id": "T0858",
+          "case_description": "Anomalous Command Issued Via Command-Line: tar Command"
+        },
+        {
+          "tech_id": "T0858",
+          "case_description": "Anomalous Network Traffic: From Internal Host to Control Device: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: Factory Interface Network Service (FINS) Protocol"
+        },
+        {
+          "tech_id": "T0858",
+          "case_description": "Anomalous Network Traffic: From Internal Host to Control Device: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: Factory Interface Network Service (FINS) Protocol: Anomalous Packet Content: Filename Dest Name"
+        },
+        {
+          "tech_id": "T0858",
+          "case_description": "Anomalous Network Traffic: From Internal Host to Control Device: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: Factory Interface Network Service (FINS) Protocol: Anomalous Packet Content: Filename Source Name"
+        },
+        {
+          "tech_id": "T0858",
+          "case_description": "Anomalous Network Traffic: From Remote Host to Control Device: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: Factory Interface Network Service (FINS) Protocol"
+        },
+        {
+          "tech_id": "T0858",
+          "case_description": "Anomalous Network Traffic: From Remote Host to Control Device: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: Factory Interface Network Service (FINS) Protocol: Anomalous Packet Content: Filename Dest Name"
+        },
+        {
+          "tech_id": "T0858",
+          "case_description": "Anomalous Network Traffic: From Remote Host to Control Device: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: Factory Interface Network Service (FINS) Protocol: Anomalous Packet Content: Filename Source Name"
+        },
+        {
+          "tech_id": "T0858",
+          "case_description": "Anomalous System Behavior on Local Host: Programmable Logic Controller (PLC): Omron Device: Change in Operating Mode: Monitor Mode to Another Mode"
+        },
+        {
+          "tech_id": "T0858",
+          "case_description": "Anomalous System Behavior on Local Host: Programmable Logic Controller (PLC): Omron Device: Change in Operating Mode: Program Mode to Another Mode"
+        },
+        {
+          "tech_id": "T0858",
+          "case_description": "Anomalous System Behavior on Local Host: Programmable Logic Controller (PLC): Omron Device: Change in Operating Mode: Run Mode to Another Mode"
+        },
+        {
+          "tech_id": "T0858",
+          "case_description": "Creation of Anomalous File on Local Host: .dd File"
+        },
+        {
+          "tech_id": "T0858",
+          "case_description": "Creation of Anomalous File on Local Host: .gz File"
+        },
+        {
+          "tech_id": "T0858",
+          "case_description": "Creation of Anomalous File on Local Host: .tar File"
+        },
+        {
+          "tech_id": "T0858",
+          "case_description": "Presence of Anomalous File on Local Host: .dd File"
+        },
+        {
+          "tech_id": "T0858",
+          "case_description": "Presence of Anomalous File on Local Host: .gz File"
+        },
+        {
+          "tech_id": "T0858",
+          "case_description": "Presence of Anomalous File on Local Host: .tar File"
+        },
+        {
+          "tech_id": "T0879",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0879",
+          "case_description": "Anomalous Damage to Property"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Client Server to Local Hosts: From Client Server with Python Executable to Open Platform Communication (OPC) Unified Architecture (UA) Hosts: Internet Control Message Protocol (ICMP) Echo Request Type 8"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Client Server to Local Hosts: From Client Server with Python Executable to Open Platform Communication (OPC) Unified Architecture (UA) Hosts: Open Platform Communication (OPC) Unified Architecture (UA) Over TCP Port 4840: Containing \"Call Method Request\""
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Client Server to Local Hosts: From Client Server with Python Executable to Open Platform Communication (OPC) Unified Architecture (UA) Hosts: Open Platform Communication (OPC) Unified Architecture (UA) Over TCP Port 4840: Containing \"Hello Message\""
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Client Server to Local Hosts: From Client Server with Python Executable to Open Platform Communication (OPC) Unified Architecture (UA) Hosts: Open Platform Communication (OPC) Unified Architecture (UA) Over TCP Port 4840: Containing \"Read Request\""
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Client Server to Local Hosts: From Client Server with Python Executable to Open Platform Communication (OPC) Unified Architecture (UA) Hosts: Open Platform Communication (OPC) Unified Architecture (UA) Over TCP Port 4840: Containing \"Write Request\""
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Control Device to Local Host: CODESYS Over TCP Port 11740"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Control Device to Local Host: Modbus Over TCP Port 502"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Control Device to Local Host: Over UDP Port 1740"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Control Device to Local Host: Over UDP Port 1741"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Control Device to Local Host: Over UDP Port 1742"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Control Device to Local Host: Over UDP Port 1743"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Control Device to Local Host: Over UDP Port 27127"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From External IP to Local Host: Hypertext Transfer Protocol (HTTP) Over TCP Port 80"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From External IP to Local Host: Hypertext Transfer Secure Protocol (HTTPS) Over TCP Port 443"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Internal Operational Technology (OT) Host to Local Control Device: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: Factory Interface Network Service (FINS) Protocol"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Internal Operational Technology (OT) Host to Local Control Device: Omron SYSMAC Cx Product: Over TCP Port 9600"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Internal Operational Technology (OT) Host to Local Control Device: Omron SYSMAC Cx Product: Over UDP Port 9600"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Internal Operational Technology (OT) Host to Local Control Device: Telnet Over TCP Port 23"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Control Device to Internal Operational Technology (OT) Host: Hypertext Transfer Protocol (HTTP) Over TCP Port 80: Factory Interface Network Service (FINS) Protocol"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Control Device to Internal Operational Technology (OT) Host: Omron SYSMAC Cx Product: Over TCP Port 9600"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Control Device to Internal Operational Technology (OT) Host: Omron SYSMAC Cx Product: Over UDP Port 9600"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Control Device to Internal Operational Technology (OT) Host: Telnet Over TCP Port 23"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to Client Server: From Open Platform Communication (OPC) Unified Architecture (UA) Host to Client Server with Python Executable: Internet Control Message Protocol (ICMP) Echo Reply Type 0"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to Client Server: From Open Platform Communication (OPC) Unified Architecture (UA) Host to Client Server with Python Executable: Open Platform Communication (OPC) Unified Architecture (UA) Over TCP Port 4840: Containing \"Acknowledge Message\""
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to Client Server: From Open Platform Communication (OPC) Unified Architecture (UA) Host to Client Server with Python Executable: Open Platform Communication (OPC) Unified Architecture (UA) Over TCP Port 4840: Containing \"Call Method Response\""
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to Client Server: From Open Platform Communication (OPC) Unified Architecture (UA) Host to Client Server with Python Executable: Open Platform Communication (OPC) Unified Architecture (UA) Over TCP Port 4840: Containing \"Read Response\""
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to Client Server: From Open Platform Communication (OPC) Unified Architecture (UA) Host to Client Server with Python Executable: Open Platform Communication (OPC) Unified Architecture (UA) Over TCP Port 4840: Containing \"Write Response\""
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to Control Device: CODESYS Over TCP Port 11740: Anomalous Malformed Packet"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to Control Device: Modbus Over TCP Port 502"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to Control Device: Over UDP Port 1740"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to Control Device: Over UDP Port 1741"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to Control Device: Over UDP Port 1742"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to Control Device: Over UDP Port 1743"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to Control Device: Over UDP Port 27127"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External IP: Hypertext Transfer Protocol (HTTP) Over TCP Port 80"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Anomalous Network Traffic: From Local Host to External IP: Hypertext Transfer Secure Protocol (HTTPS) Over TCP Port 443"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Presence of Anomalous Application Logs on Local Host: Open Platform Communication (OPC) Unified Architecture (UA) Log Files: Extensible Markup Language (.xml) File: Containing Operational Information: Application Details"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Presence of Anomalous Application Logs on Local Host: Open Platform Communication (OPC) Unified Architecture (UA) Log Files: Extensible Markup Language (.xml) File: Containing Operational Information: Control System States"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Presence of Anomalous Application Logs on Local Host: Open Platform Communication (OPC) Unified Architecture (UA) Log Files: Extensible Markup Language (.xml) File: Containing Operational Information: Firmware Details"
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": "Presence of Anomalous Application Logs on Local Host: Open Platform Communication (OPC) Unified Architecture (UA) Log Files: Extensible Markup Language (.xml) File: Containing Operational Information: Project Recipies"
+        }
+      ]
+    },
+    {
+      "case_id": "S0093",
+      "descriptions": [
+        {
+          "tech_id": "T0802",
+          "case_description": ""
+        }
+      ]
+    },
+    {
+      "case_id": "S0603",
+      "descriptions": [
+        {
+          "tech_id": "T0885",
+          "case_description": ""
+        }
+      ]
+    },
+    {
+      "case_id": "S0604",
+      "descriptions": [
+        {
+          "tech_id": "T0800",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0802",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0840",
+          "case_description": ""
+        }
+      ]
+    },
+    {
+      "case_id": "S0605",
+      "descriptions": [
+        {
+          "tech_id": "T0840",
+          "case_description": ""
+        }
+      ]
+    },
+    {
+      "case_id": "S0606",
+      "descriptions": [
+        {
+          "tech_id": "T0817",
+          "case_description": ""
+        }
+      ]
+    },
+    {
+      "case_id": "S1006",
+      "descriptions": [
+        {
+          "tech_id": "T0858",
+          "case_description": ""
+        }
+      ]
+    },
+    {
+      "case_id": "S1009",
+      "descriptions": [
+        {
+          "tech_id": "T0858",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0885",
+          "case_description": ""
+        }
+      ]
+    },
+    {
+      "case_id": "S1010",
+      "descriptions": [
+        {
+          "tech_id": "T0830",
+          "case_description": ""
+        }
+      ]
+    },
+    {
+      "case_id": "S1045",
+      "descriptions": [
+        {
+          "tech_id": "T0858",
+          "case_description": ""
+        }
+      ]
+    },
+    {
+      "case_id": "S1072",
+      "descriptions": [
+        {
+          "tech_id": "T0802",
+          "case_description": ""
+        },
+        {
+          "tech_id": "T0806",
+          "case_description": ""
+        }
+      ]
+    },
+    {
+      "case_id": "S1157",
+      "descriptions": [
+        {
+          "tech_id": "T0806",
+          "case_description": ""
+        }
+      ]
+    },
+    {
+      "case_id": "S1165",
+      "descriptions": [
+        {
+          "tech_id": "T0885",
+          "case_description": ""
+        }
+      ]
+    }
+  ],
+  "example_usage": "tst",
+  "github": "test",
+  "factsheet": "test"
+}

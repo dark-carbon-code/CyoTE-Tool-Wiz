@@ -1,0 +1,317 @@
+{
+  "tool_name": "",
+  "description": "",
+  "user_roles": [],
+  "tactics_supported": [],
+  "techniques_supported": [],
+  "data_sources": [],
+  "observable_types": [],
+  "use_cases": [],
+  "deployment_context": {
+    "trl": {
+      "id": 3,
+      "level": 3,
+      "name": "Analytical and Experimental Proof\u2011of\u2011Concept",
+      "description": "Laboratory proof\u2011of\u2011concept via analyses and early prototypes.",
+      "deliverables": "['Lab\u2011scale prototypes or test articles', 'Test plans/fixtures', 'Performance reports comparing measured vs. predicted metrics']",
+      "users": "['Lab R&D engineers', 'Prototype developers', 'Systems analysts']",
+      "environment": "Bench\u2011scale labs and high\u2011fidelity simulations",
+      "scale": "Lab pieces (bench\u2011scale prototypes)",
+      "commercial_viable": 0,
+      "label": "Analytical and Experimental Proof\u2011of\u2011Concept"
+    },
+    "hosting_env": [
+      {
+        "id": 1,
+        "label": "Local CLI",
+        "description": "Tool runs as a command-line application on a user\u2019s local machine or testbed."
+      },
+      {
+        "id": 2,
+        "label": "Local GUI Application",
+        "description": "Tool runs as a native graphical application on a local workstation (e.g., Windows .exe or macOS .app)."
+      },
+      {
+        "id": 3,
+        "label": "Virtual Machine",
+        "description": "Tool is deployed as a VM image requiring a hypervisor such as VirtualBox, VMware, or Hyper-V."
+      },
+      {
+        "id": 4,
+        "label": "Containerized (Docker)",
+        "description": "Tool is deployed in a Docker or Podman container, either standalone or as part of a multi-container stack."
+      },
+      {
+        "id": 6,
+        "label": "Web Application",
+        "description": "Tool is accessible via browser and hosted either internally or externally; may be single-page apps or full dashboards."
+      },
+      {
+        "id": null,
+        "label": "Local download from GitHub will be run in docker. The application has both a command line and GUI interface. This application runs best on a Linux host.",
+        "description": "The application has both a command line and a GUI interface see the GitHub readme for more details.",
+        "note": "works best with Linux Ubuntu version 22"
+      }
+    ],
+    "interfaces": [
+      {
+        "id": 1,
+        "label": "Command-Line Interface (CLI)",
+        "description": "Interaction via shell or terminal using typed commands for configuration or execution."
+      },
+      {
+        "id": 2,
+        "label": "Graphical User Interface (GUI)",
+        "description": "Visual interface with forms, buttons, and input fields, accessible via desktop or web."
+      },
+      {
+        "id": 3,
+        "label": "Web Dashboard",
+        "description": "Web-accessible UI offering dashboards, charts, or configuration pages."
+      },
+      {
+        "id": 10,
+        "label": "Interactive Form (Input Fields)",
+        "description": "Form-driven input where users fill out fields like observables, filters, or configs."
+      },
+      {
+        "id": 11,
+        "label": "Interactive CLI Prompt",
+        "description": "CLI interface that prompts user input step-by-step instead of batch execution."
+      },
+      {
+        "id": 14,
+        "label": "Messaging Bot Interface",
+        "description": "Users interact through Slack, Discord, or other chat interfaces where the tool responds to input."
+      }
+    ],
+    "access_methods": [
+      {
+        "id": 1,
+        "label": "Access: Website",
+        "description": "Tool or service is accessed via a public or internal website URL."
+      },
+      {
+        "id": 2,
+        "label": "Access: GitHub Repository",
+        "description": "Tool is available as open-source or binary via GitHub."
+      }
+    ],
+    "input_types": [
+      {
+        "id": null,
+        "label": "User Text Input",
+        "description": "The user will work through the CLI or GUI and input text and click the interface.",
+        "note": "see fact sheet, user guide, and GitHub for more details."
+      }
+    ],
+    "output_types": [
+      {
+        "id": 1,
+        "label": "STIX 2.1 Bundle",
+        "description": "Structured CTI output used for intelligence sharing and correlation"
+      },
+      {
+        "id": 2,
+        "label": "JSON File",
+        "description": "Structured machine-readable output (e.g., alerts, configs, observables)"
+      },
+      {
+        "id": 3,
+        "label": "CSV Export",
+        "description": "Tabular data for analysis in tools like Excel, pandas, or SOC dashboards"
+      },
+      {
+        "id": 4,
+        "label": "PDF Summary Report",
+        "description": "Rich narrative output including results, analysis, figures, and recommendations"
+      },
+      {
+        "id": 7,
+        "label": "YAML Configuration",
+        "description": "Structured output (e.g., adversary profiles, playbooks, pipelines)"
+      },
+      {
+        "id": 14,
+        "label": "Annotated Artifact File",
+        "description": "Original file enriched with metadata, labels, or classifications"
+      },
+      {
+        "id": 15,
+        "label": "Timeline Output",
+        "description": "Temporal view of events, incidents, or attacks (CSV, JSON, HTML)"
+      },
+      {
+        "id": 17,
+        "label": "Research Dataset",
+        "description": "Labeled, anonymized, or synthetic dataset produced by simulations"
+      },
+      {
+        "id": 18,
+        "label": "Simulation Output Log",
+        "description": "Emulation or sim result with environmental telemetry and action logs"
+      },
+      {
+        "id": null,
+        "label": "GUI Dashboard",
+        "description": "The tool application will take the users input and visualize it in a dashboard format that is customizable.",
+        "note": ""
+      }
+    ],
+    "import_formats": [
+      {
+        "id": 1,
+        "label": "STIX 2.1 Bundle",
+        "description": "Structured CTI ingestion format used in threat intelligence systems (e.g., OpenCTI, MISP)"
+      },
+      {
+        "id": 2,
+        "label": "JSON File",
+        "description": "Generic structured data input format used for configurations, enrichment, or model-based inputs"
+      },
+      {
+        "id": 3,
+        "label": "CSV File",
+        "description": "Spreadsheet-compatible format used for importing indicators, logs, or IOC lists"
+      },
+      {
+        "id": 4,
+        "label": "PCAP File",
+        "description": "Packet capture file for ingesting raw network traffic for analysis"
+      },
+      {
+        "id": 5,
+        "label": "PDF Document",
+        "description": "Narrative reports or fact sheets used for NLP-based entity extraction or contextual ingestion"
+      },
+      {
+        "id": 6,
+        "label": "TXT Log",
+        "description": "Unstructured logs or plain-text alerts"
+      },
+      {
+        "id": 7,
+        "label": "YAML Config",
+        "description": "Model or agent configuration input in YAML format"
+      },
+      {
+        "id": 8,
+        "label": "Excel File (XLSX)",
+        "description": "Formatted Excel spreadsheet input, often used in structured observables or use case templates"
+      },
+      {
+        "id": 9,
+        "label": "Image File (PNG/JPG)",
+        "description": "Screenshot or visual input used for OCR or image-based observables"
+      },
+      {
+        "id": 10,
+        "label": "Binary Executable",
+        "description": "Executable files for behavioral analysis or reverse engineering"
+      },
+      {
+        "id": 11,
+        "label": "ELF/PE File",
+        "description": "Compiled Linux (ELF) or Windows (PE) binaries for sandbox or malware analysis"
+      },
+      {
+        "id": 12,
+        "label": "Syslog/CEF/LEEF Stream",
+        "description": "Machine-generated logs for SIEM ingestion, used for log-based parsing and detection"
+      },
+      {
+        "id": 13,
+        "label": "API Request (JSON Payload)",
+        "description": "JSON-based API calls used to ingest task instructions or observable bundles"
+      },
+      {
+        "id": 14,
+        "label": "Container Image (Docker)",
+        "description": "Pulled Docker image for ingesting tool environments or agent deployment contexts"
+      },
+      {
+        "id": 15,
+        "label": "ZIP Archive",
+        "description": "Packaged artifacts or multi-file submissions for batch processing"
+      },
+      {
+        "id": 16,
+        "label": "Markdown File (MD)",
+        "description": "Documentation, readme files, or templated narratives used in LLM-enhanced tools"
+      },
+      {
+        "id": null,
+        "label": "Malware Samples",
+        "description": "There will be an option to import malware files from Virus Total that have a unique SHA256 hash.",
+        "note": ""
+      }
+    ],
+    "export_formats": [
+      {
+        "id": 1,
+        "label": "STIX 2.1",
+        "description": "Structured Threat Intelligence format (OASIS) for sharing CTI with tools like OpenCTI, MISP"
+      },
+      {
+        "id": 2,
+        "label": "JSON",
+        "description": "General-purpose structured format for config, logs, telemetry, or API response data"
+      },
+      {
+        "id": 3,
+        "label": "CSV",
+        "description": "Tabular data format for structured logs, observables, indicators, or reports"
+      },
+      {
+        "id": 5,
+        "label": "TXT",
+        "description": "Raw log export or plain text data for analyst review"
+      },
+      {
+        "id": 6,
+        "label": "PCAP",
+        "description": "Packet capture export for replay or further network analysis"
+      },
+      {
+        "id": 9,
+        "label": "Markdown (.md)",
+        "description": "Lightweight export format for documentation or README-style auto-generated summaries"
+      },
+      {
+        "id": 12,
+        "label": "DOT (Graphviz)",
+        "description": "Exported adversary emulation paths or system diagrams in Graphviz DOT format"
+      },
+      {
+        "id": 13,
+        "label": "MITRE Attack Flow (JSON)",
+        "description": "Standardized adversary sequence format for ATT&CK Flow-based modeling"
+      },
+      {
+        "id": 16,
+        "label": "Zeek Scripts (.zeek)",
+        "description": "Behavioral detection logic or parsing modules for Zeek NIDS"
+      },
+      {
+        "id": 17,
+        "label": "Custom Binary Format",
+        "description": "Proprietary format used for model artifacts or compressed data packages"
+      },
+      {
+        "id": 18,
+        "label": "Docker Image (tar.gz)",
+        "description": "Full system export as a container for reproducible experiments"
+      },
+      {
+        "id": 19,
+        "label": "Executable (.exe / .bin)",
+        "description": "Compiled binary artifacts for deployment in test environments"
+      }
+    ]
+  },
+  "targeted_assets": [],
+  "related_cases": [],
+  "example_usage": "",
+  "github": null,
+  "factsheet": null
+}
