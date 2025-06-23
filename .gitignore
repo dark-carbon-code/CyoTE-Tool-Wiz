@@ -1,0 +1,43 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+.env
+.venv/
+env/
+venv/
+
+# Jupyter & IPython
+.ipynb_checkpoints/
+*.ipynb~
+
+# SQLite / database
+*.sqlite3
+*.sqlite
+*.db
+tool_knowledge.db
+
+# Logs and temp
+*.log
+*.tmp
+*.bak
+
+# OS & IDE metadata
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# JSON tool outputs & intermediate chunking
+data/chunks/
+data/tool_capabilities/*.json
+data/tool_capabilities/*.jsonl
+
+# Rich terminal cache (if any)
+.rich/
+
+# Ignore test scratch scripts
+scripts/quick*.py
