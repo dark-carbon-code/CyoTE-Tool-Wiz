@@ -124,3 +124,35 @@ def save_chunks_for_tool(tool_entry, file_name):
             f.write("\n")
 
     print(f"[green]✔ Extracted {len(chunks)} chunks to: {out_file.name}[/green]")
+
+def generate_empty_tool_template():
+    return {
+        "tool_name": "",
+        "description": "",
+        "user_roles": [],
+        "tactics_supported": [],
+        "techniques_supported": [],
+        "data_sources": [],
+        "observable_types": [],
+        "use_cases": [],
+        "deployment_context": {
+            "trl": {
+                "level": "",
+                "description": "",
+                "commercial_viable": False,
+                "commercial_viable_label": ""
+            },
+            "hosting_env": [],
+            "interfaces": [],
+            "access_methods": [],
+            "input_types": [],
+            "output_types": [],
+            "import_formats": [],
+            "export_formats": []
+        },
+        "targeted_assets": [],
+        "related_cases": [],
+        "example_usage": "",
+        "github": "",
+        "factsheet": ""
+    }

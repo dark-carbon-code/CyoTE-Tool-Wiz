@@ -7,7 +7,8 @@ services:
     ports:
       - "11434:11434"
     volumes:
-      - ollama_data:/root/.ollama
+      - ./ollama-models/blobs:/root/.ollama/models/blobs
+      - ./ollama-models/manifests:/root/.ollama/models/manifests
 
   webui:
     image: ghcr.io/open-webui/open-webui:main
@@ -18,9 +19,10 @@ services:
       - "3000:8080"
     environment:
       - OLLAMA_API_BASE_URL=http://ollama:11434
+      - OPENWEBUI_DOCUMENTS_PATH=/app/documents/cyote_chunks
     volumes:
       - openwebui_data:/app/backend/data
+      - ./chunks_md:/app/documents/cyote_chunks
 
 volumes:
-  ollama_data:
   openwebui_data:
