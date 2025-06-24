@@ -178,6 +178,6 @@ See [`LICENSE`](LICENSE) for details.
 
 ---
 
-> *Developed by Idaho National Laboratory (INL) for critical infrastructure defenders, utilities, vendors, and the DOE Grid Deployment Office.*
+> *Developed by dark-carbon-code
 
 
