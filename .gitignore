@@ -48,10 +48,6 @@ models.zip
 ollama_data/
 openwebui_data/
 
-# Markdown + rendered outputs (optional, if you don't want these in the repo)
-chunks_md/
-data/tool_markdown_summaries/
-
 # Compiled Python files
 *.pyc
 __pycache__/
