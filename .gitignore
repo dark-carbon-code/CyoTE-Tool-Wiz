@@ -41,3 +41,21 @@ data/tool_capabilities/*.jsonl
 
 # Ignore test scratch scripts
 scripts/quick*.py
+
+# Ollama model artifacts
+models/
+models.zip
+ollama_data/
+openwebui_data/
+
+# Markdown + rendered outputs (optional, if you don't want these in the repo)
+chunks_md/
+data/tool_markdown_summaries/
+
+# Compiled Python files
+*.pyc
+__pycache__/
+
+# Tool export/test scripts
+tools/interactive_create_v*
+scripts/print_tool_entry_schema.py
